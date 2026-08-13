@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import { CalendarPlus, BadgeCheck } from "lucide-react";
 import { motion } from "framer-motion";
@@ -35,6 +36,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function AdminPage() {
   const params = useParams();
+  const router = useRouter();
   const eventId = params.id as string;
   const [currentPage, setCurrentPage] = useState("event-info");
   const [open, setOpen] = useState(false);
@@ -107,6 +109,14 @@ export default function AdminPage() {
   ];
 
   const handleLinkClick = (id: string) => {
+    if (id === "logout") {
+      signOut({ callbackUrl: "/" });
+      return;
+    }
+    if (id === "home") {
+      router.push("/home");
+      return;
+    }
     if (id !== "menu") {
       setCurrentPage(id);
     }

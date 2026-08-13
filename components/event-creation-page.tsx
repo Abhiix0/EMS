@@ -16,6 +16,18 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar, Edit, Trash2, Info } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import OptionWheel from "@/components/OptionWheel";
+
+const EVENT_THEMES = [
+  "Hackathon",
+  "Workshop",
+  "Bootcamp",
+  "Seminar",
+  "Tech Talk",
+  "Competition",
+  "Cultural Fest",
+  "Other",
+];
 
 interface Ticket {
   id: string;
@@ -38,6 +50,7 @@ export function EventCreationPage() {
     eventType: "paid",
     eventMode: "",
     currency: "GBP",
+    theme: EVENT_THEMES[0],
   });
 
   const [tickets, setTickets] = useState<Ticket[]>([
@@ -103,6 +116,7 @@ export function EventCreationPage() {
           {
             club_id: clubId,
             name: eventData.name,
+            theme: eventData.theme,
             start_datetime: startDateTime,
             end_datetime: endDateTime,
             event_type: eventData.eventType,
@@ -162,6 +176,34 @@ export function EventCreationPage() {
             }
             className="bg-neutral-800 border-neutral-600 text-white placeholder:text-neutral-400"
           />
+        </div>
+
+        {/* Event Theme */}
+        <div>
+          <div className="flex items-center gap-2 mb-2">
+            <Label className="text-white">Event Theme</Label>
+            <span className="text-red-500">*</span>
+            <Info className="w-4 h-4 text-neutral-400" />
+          </div>
+          <div className="relative h-32 w-full max-w-sm rounded-lg border border-neutral-600 bg-neutral-800 overflow-hidden">
+            <OptionWheel
+              items={EVENT_THEMES}
+              defaultSelected={0}
+              side="left"
+              fontSize={1.2}
+              spacing={1.5}
+              curve={0.6}
+              tilt={5}
+              blur={1.5}
+              fade={0.3}
+              inset={24}
+              textColor="#8a8a8a"
+              activeColor="#ffffff"
+              onChange={(_index: number, item: string) =>
+                setEventData((prev) => ({ ...prev, theme: item }))
+              }
+            />
+          </div>
         </div>
 
         {/* Date Fields */}

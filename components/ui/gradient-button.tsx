@@ -26,18 +26,18 @@ export interface GradientButtonProps
  *   <a href="/somewhere">Go</a>
  * </GradientButton>
  */
-export function GradientButton({
-  asChild = false,
-  className,
-  innerClassName,
-  children,
-  style,
-  ...props
-}: GradientButtonProps) {
+export const GradientButton = React.forwardRef<
+  HTMLButtonElement,
+  GradientButtonProps
+>(function GradientButton(
+  { asChild = false, className, innerClassName, children, style, ...props },
+  ref
+) {
   const Comp = asChild ? Slot : "button";
 
   return (
     <Comp
+      ref={ref}
       className={cn(
         // No outer margins; behave like the base Button for layout
         "group inline-flex items-center rounded-sm bg-gradient-to-r from-[#FF8AC9] via-[#D96CE5] to-[#7B2FE5] p-1 shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500/40",
@@ -57,6 +57,6 @@ export function GradientButton({
       </span>
     </Comp>
   );
-}
+});
 
 export default GradientButton;

@@ -21,29 +21,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Partner from "@/components/Partner";
 import { supabase } from "@/lib/supabase/browserClient"; // ✅ make sure your supabase client path is correct
 
-/** Reusable background blobs */
-const BackgroundBlobs = () => (
-  <>
-    <div
-      className="
-        absolute -bottom-72 left-1/2 w-[120vmax] h-[60vmax]
-        rounded-t-full
-        bg-[radial-gradient(ellipse_at_bottom,rgba(160,100,200,0.4),transparent_70%)]
-        -translate-x-1/2
-        z-0 pointer-events-none
-      "
-    />
-    <div
-      className="
-        absolute -bottom-64 right-[-10%] w-[70vmax] h-[40vmax]
-        rounded-t-full
-        dark:bg-[radial-gradient(ellipse_at_bottom,rgba(160,60,220,0.4),transparent_70%)] bg-[radial-gradient(ellipse_at_bottom,rgba(244,164,191,1),transparent_70%)]
-        z-0 pointer-events-none
-      "
-    />
-  </>
-);
-
 export default function ProfilePage() {
   const [currentPage, setCurrentPage] = useState("profile");
   const [open, setOpen] = useState(false);
@@ -162,8 +139,6 @@ export default function ProfilePage() {
         dark:bg-[#0A0B1E] bg-[#FAF9F6]
       "
     >
-      <BackgroundBlobs />
-
       <div className="relative z-10 flex flex-col md:flex-row w-full items-stretch">
         <Sidebar open={open} setOpen={setOpen}>
           <SidebarBody className="justify-between gap-10 dark:bg-neutral-900/90 dark:border-r dark:border-neutral-800 bg-[#FAF9F6]/90 backdrop-blur">

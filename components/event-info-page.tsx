@@ -202,9 +202,15 @@ export function EventInfoPage({ event, onEventUpdate }: EventInfoPageProps) {
 
   // Tickets State
   const [tickets, setTickets] = useState<Ticket[]>([]);
-  const [newTicket, setNewTicket] = useState({
+  const [newTicket, setNewTicket] = useState<{
+    name: string;
+    class: "general" | "vip" | "premium";
+    price: number;
+    inclusions: string[];
+    available: number;
+  }>({
     name: "",
-    class: "general" as const,
+    class: "general",
     price: 0,
     inclusions: [""],
     available: 100,

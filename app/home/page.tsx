@@ -1,22 +1,12 @@
 "use client";
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
-import Autoplay from "embla-carousel-autoplay";
-import AnimatedContent from "@/components/AnimatedContent";
+import React, { useEffect, useMemo, useState } from "react";
 import { FocusCards } from "@/components/ui/focus-cards";
 import FadeContent from "@/components/FadeContent";
 import LogoLoop from "@/components/LogoLoop";
+import GradientWaves from "@/components/GradientWaves";
 import { HomeIcon } from "lucide-react";
 import { supabase } from "@/lib/supabase/browserClient";
 function Page() {
-  const plugin = useRef(Autoplay({ delay: 5000 }));
   const [events, setEvents] = useState<
     Array<{ id: string; name: string; banners: Record<string, string> }>
   >([]);
@@ -79,68 +69,36 @@ function Page() {
   );
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center dark:bg-[#0A0B1E] bg-white overflow-hidden">
-      {/* Background blobs */}
-      <div className="absolute -bottom-72 left-1/2 w-[120vmax] h-[60vmax] rounded-t-full bg-[radial-gradient(ellipse_at_bottom,rgba(160,100,200,0.4),transparent_70%)] -translate-x-1/2 z-0" />
-      <div className="absolute -bottom-64 right-[-10%] w-[70vmax] h-[40vmax] rounded-t-full bg-[radial-gradient(ellipse_at_bottom,rgba(160,60,220,0.6),transparent_70%)] z-0" />
+    <div className="relative min-h-screen dark:bg-[#0A0B1E] bg-white overflow-hidden">
+      {/* Hero section — animated wave background confined to just this block */}
+      <section className="relative w-full flex items-center justify-center overflow-hidden min-h-[85vh]">
+        <div className="absolute inset-0 z-0">
+          <GradientWaves
+            horizonColor="#0A0B1E"
+            waveColor="#7B4DFF"
+            crestColor="#FF9FFC"
+            speed={0.4}
+            amplitude={2.5}
+            waveScale={0.6}
+            waveRatio={0.9}
+            swell={35}
+            turbulence={20}
+            tilt={1.11}
+            zoom={1.0}
+            height={5.5}
+            fogDepth={15}
+            detail="medium"
+            brightness={1.4}
+            opacity={1}
+            mouseInteraction
+            parallaxStrength={0.5}
+            grain
+            grainIntensity={0.05}
+          />
+        </div>
+      </section>
 
-      <div className="relative z-10 w-full mt-10 mb-10">
-        <AnimatedContent
-          distance={150}
-          direction="vertical"
-          reverse={false}
-          duration={0.8}
-          ease="ease-in-out"
-          initialOpacity={0.2}
-          animateOpacity
-          threshold={0.2}
-          delay={0.3}
-          onComplete={() => plugin.current?.reset()}
-        >
-          <Carousel
-            opts={{ align: "center", loop: true }}
-            plugins={[plugin.current as any]}
-            className="w-full"
-          >
-            <CarouselContent
-              className={`-ml-4 md:-ml-6 ${
-                events.length === 1 ? "justify-center" : ""
-              }`}
-            >
-              {events.map((e) => (
-                <CarouselItem
-                  key={e.id}
-                  className="pl-4 md:pl-6 basis-[90%] sm:basis-[85%] md:basis-[75%] lg:basis-[70%]"
-                >
-                  {/* no borders, no shadow, no padding */}
-                  <Card className="w-full border-0 bg-transparent shadow-none">
-                    {/* fixed aspect: 16:9 mobile, 21:9 desktop */}
-                    <CardContent className="relative p-0 overflow-hidden rounded-2xl aspect-video md:aspect-[21/9]">
-                      {/* Mobile (16:9) */}
-                      <img
-                        src={e.banners?.["16:9"]}
-                        alt={`${e.name} 16:9 banner`}
-                        className="block md:hidden absolute inset-0 w-full h-full object-cover"
-                        draggable={false}
-                      />
-                      {/* Desktop (21:9) — your 886x380 PNG */}
-                      <img
-                        src={e.banners?.["21:9"]}
-                        alt={`${e.name} 21:9 banner`}
-                        className="hidden md:block absolute inset-0 w-full h-full object-cover"
-                        draggable={false}
-                      />
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-            <CarouselPrevious className="left-4 md:left-8 top-1/2 -translate-y-1/2" />
-            <CarouselNext className="right-4 md:right-8 top-1/2 -translate-y-1/2" />
-          </Carousel>
-        </AnimatedContent>
-
+      <div className="relative z-10 w-full mb-10">
         <div className="mt-20">
           <FadeContent
             blur={true}

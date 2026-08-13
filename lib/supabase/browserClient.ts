@@ -23,11 +23,10 @@ function loggingFetch(input: RequestInfo | URL, init?: RequestInit) {
   });
 }
 
-export const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  {
-    global: { fetch: loggingFetch }, // ✅ scoped logging
-    auth: { persistSession: true, autoRefreshToken: true },
-  }
-);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  global: { fetch: loggingFetch }, // ✅ scoped logging
+  auth: { persistSession: true, autoRefreshToken: true },
+});

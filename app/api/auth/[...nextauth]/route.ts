@@ -1,20 +1,32 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { createOrUpdateUser } from "@/app/actions/auth";
 import { googleSubToUuid } from "@/lib/utils/id";
 
 export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET || "ems_nextauth_secret_key_8923471092384",
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      profile(profile) {
-        console.log("[NextAuth] Google profile received:", profile);
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "email", placeholder: "user@example.com" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.email) {
+          return null;
+        }
+        const email = credentials.email.trim();
+        if (!email) return null;
+
+        const id = googleSubToUuid(email);
+        const name = email.split("@")[0] || "User";
+
         return {
-          id: googleSubToUuid(profile.sub),
-          name: profile.name || profile.email?.split("@")[0] || "User",
-          email: profile.email,
-          image: profile.picture,
+          id,
+          name,
+          email,
+          image: null,
         };
       },
     }),
@@ -27,15 +39,18 @@ export const authOptions: NextAuthOptions = {
         "Account:",
         account
       );
-      if (account?.provider === "google" && user) {
-        const result = await createOrUpdateUser({
-          id: user.id,
-          email: user.email!,
-          name: user.name!,
-          image: user.image,
-        });
-        console.log("[NextAuth] createOrUpdateUser result:", result);
-        if (result.error) return false;
+      if (user && user.id && user.email) {
+        try {
+          const result = await createOrUpdateUser({
+            id: user.id,
+            email: user.email,
+            name: user.name || user.email.split("@")[0] || "User",
+            image: user.image,
+          });
+          console.log("[NextAuth] createOrUpdateUser result:", result);
+        } catch (err) {
+          console.error("[NextAuth] createOrUpdateUser error:", err);
+        }
       }
       return true;
     },
@@ -48,14 +63,14 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.sub;
+        (session.user as any).id = token.sub;
         console.log("[NextAuth] session:", session);
       }
       return session;
     },
   },
   session: { strategy: "jwt" },
-  debug: true, // enables NextAuth debug logging
+  debug: true,
 };
 
 const handler = NextAuth(authOptions);
