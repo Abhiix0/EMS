@@ -29,7 +29,6 @@ export const Card = React.memo(function Card({
   const [phase, setPhase] = useState<SpinPhase>("idle");
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (isHovered) {
       if (phase === "idle" || phase === "spinning-out") {
         setPhase("spinning-in");

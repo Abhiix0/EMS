@@ -380,9 +380,9 @@ export default function ProfilePage() {
     if (!sessionUserId) return;
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchProfileData();
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+
     fetchStudentCouncil();
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+
     fetchFacultyCouncil();
   }, [
     sessionUserId,

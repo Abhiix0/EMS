@@ -54,9 +54,30 @@ export const ALLOWED_STORAGE_BUCKETS = [
   "permission-letters",
   "event-reports",
   "profile-avatars",
+  "event-assets",
 ] as const;
 
 export type AllowedBucket = (typeof ALLOWED_STORAGE_BUCKETS)[number];
+
+// ---------------------------------------------------------------------------
+// POST /api/auth/register  (JSON body)
+// ---------------------------------------------------------------------------
+
+export const registerSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .toLowerCase()
+    .email("Invalid email address")
+    .min(1, "Email is required"),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .max(128, "Password is too long"),
+  full_name: z.string().trim().min(1, "Full name is required").max(100),
+});
+
+export type RegisterInput = z.infer<typeof registerSchema>;
 
 // ---------------------------------------------------------------------------
 // POST /api/events/create  (multipart/form-data — fields only, not the file)
@@ -98,9 +119,8 @@ export const storageUploadSchema = z.object({
     }),
   }),
   /**
-   * Storage path for the file. Must not contain '..' segments.
-   * The route separately enforces that the path starts with the session user
-   * ID, so we only check structural validity here.
+   * Storage path for the file. Authorization is handled separately in the
+   * route — this schema only checks for structural validity (no '..' segments).
    */
   path: z
     .string()

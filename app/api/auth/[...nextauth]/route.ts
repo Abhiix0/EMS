@@ -2,7 +2,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { createOrUpdateUser } from "@/app/actions/auth";
-import { googleSubToUuid } from "@/lib/utils/id";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 
 // Fail fast at startup: NEXTAUTH_SECRET must be set explicitly.
@@ -67,13 +66,11 @@ export const authOptions: NextAuthOptions = {
         );
         if (!passwordMatch) return null;
 
-        // Derive the stable UUID the rest of the app uses for this user.
-        // googleSubToUuid is a uuidv5 helper — the name is historical; it
-        // works for any string input.
-        const id = googleSubToUuid(user.id ?? email);
-
+        // Return the user's actual ID from the DB row — never re-hash it.
+        // Re-hashing would produce a different UUID every time, causing
+        // duplicate user rows on every login.
         return {
-          id,
+          id: user.id,
           name: user.full_name ?? email.split("@")[0],
           email: user.email,
           image: user.avatar_url ?? null,

@@ -59,7 +59,7 @@ export function ParticipantsPage({ event }: ParticipantsPageProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   // Load participants from Supabase
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     if (event) loadParticipants();
   }, [event]);

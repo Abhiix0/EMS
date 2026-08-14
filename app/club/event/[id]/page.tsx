@@ -62,7 +62,6 @@ export default function EventDashboard() {
     const parseHash = () => {
       const h = (window.location.hash || "").replace("#", "");
       if ((allowed as readonly string[]).includes(h)) {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setCurrentPage(h);
       }
     };

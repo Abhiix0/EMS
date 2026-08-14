@@ -121,9 +121,9 @@ const OptionWheel = ({
 
   // Keep refs in sync with the latest props so callbacks always read current values
   // without triggering re-renders. This is the documented ref-as-mutable-value pattern.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   onChangeRef.current = onChange;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   cfgRef.current = {
     count: items.length,
     items,
@@ -202,7 +202,6 @@ const OptionWheel = ({
     rafRef.current =
       posRef.current === targetRef.current
         ? null
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         : requestAnimationFrame(runFrame);
   }, []);
 

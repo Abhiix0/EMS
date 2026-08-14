@@ -20,13 +20,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Setting state in an effect is intentional here: we must read localStorage
     // and matchMedia after mount to avoid SSR hydration mismatches.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+
     const savedTheme = localStorage.getItem("theme") as Theme | null;
     if (savedTheme) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setTheme(savedTheme);
     } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTheme("dark");
     }
     setMounted(true);

@@ -24,7 +24,7 @@ export interface DbUser {
   email: string;
   full_name: string | null;
   avatar_url: string | null;
-  role?: string | null;          // "user" | "club" | "admin"
+  role?: string | null; // "user" | "club" | "admin"
   password_hash?: string | null; // server-only; never select client-side
   created_at: ISODateString;
   updated_at: ISODateString;
@@ -52,10 +52,7 @@ export interface DbClub {
 // ---------------------------------------------------------------------------
 
 export type EventStatus =
-  | "draft"
-  | "pending_approval"
-  | "approved"
-  | "rejected";
+  "draft" | "pending_approval" | "approved" | "rejected";
 export type EventType = "free" | "paid";
 export type EventHosted = "self" | "iic";
 
@@ -165,12 +162,7 @@ export interface DbEventCoupon {
 // ---------------------------------------------------------------------------
 
 export type FormFieldType =
-  | "text"
-  | "email"
-  | "number"
-  | "textarea"
-  | "select"
-  | "checkbox";
+  "text" | "email" | "number" | "textarea" | "select" | "checkbox";
 
 export interface DbEventForm {
   id: UUID;

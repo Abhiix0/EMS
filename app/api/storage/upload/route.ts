@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { storageUploadSchema } from "@/lib/api/schemas";
+import { authorizeEventStoragePath } from "@/lib/api/storage-auth";
 import {
   forbidden,
   ok,
@@ -42,10 +43,13 @@ export async function POST(req: NextRequest) {
     }
 
     // ── 4. Path ownership enforcement ─────────────────────────────────────
-    // Paths must be scoped to the authenticated user's ID so users cannot
-    // overwrite each other's files.
-    if (!path.startsWith(`${userId}/`)) {
-      return forbidden("Upload path must be scoped to your own user directory");
+    // Paths are scoped to events. Verify the acting user owns the event
+    // at the head of the path.
+    const authorized = await authorizeEventStoragePath(path, userId);
+    if (!authorized) {
+      return forbidden(
+        "You do not have permission to upload to this event's storage"
+      );
     }
 
     // ── 5. Upload ──────────────────────────────────────────────────────────

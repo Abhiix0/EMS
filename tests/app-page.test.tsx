@@ -27,7 +27,6 @@ vi.mock("next/headers", () => ({
 }));
 
 // ── Import component after mocks are hoisted ──────────────────────────────────
-// eslint-disable-next-line import/first -- mocks must be declared before import
 import RootPage from "../app/page";
 import { redirect } from "next/navigation";
 
