@@ -12,6 +12,8 @@ import { Plus, Trash2, Copy } from "lucide-react";
 import type { DiscountType } from "@/types/database";
 
 import type { Coupon } from "./types";
+
+interface CouponsTabProps {
   coupons: Coupon[];
   newCoupon: { code: string; discount: number; type: "percentage" | "fixed"; maxUses: number };
   setNewCoupon: Dispatch<SetStateAction<CouponsTabProps["newCoupon"]>>;
