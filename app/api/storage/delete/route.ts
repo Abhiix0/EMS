@@ -1,60 +1,57 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { supabaseAdmin } from "@/lib/supabase/admin";
+import { storageDeleteSchema } from "@/lib/api/schemas";
+import {
+  forbidden,
+  ok,
+  serverError,
+  unauthorized,
+  validationError,
+} from "@/lib/api/response";
 
-export const runtime = "nodejs"; // ensure Node runtime
-
-// Only these buckets may be deleted from through this generic delete endpoint.
-const ALLOWED_BUCKETS = new Set([
-  "permission-letters",
-  "event-reports",
-  "profile-avatars",
-]);
+export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
-  // 1. Require a valid session.
+  // ── 1. Authentication ──────────────────────────────────────────────────────
   const session = await getServerSession(authOptions);
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  if (!session?.user?.id) return unauthorized();
+
+  const userId = session.user.id;
 
   try {
-    const body = await req.json();
-    const { bucket, path } = body || {};
-
-    if (typeof bucket !== "string" || typeof path !== "string") {
-      return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    // ── 2. Parse + validate JSON body with Zod ─────────────────────────────
+    const body = await req.json().catch(() => null);
+    if (body === null) {
+      return validationError([
+        { code: "custom", path: [], message: "Request body must be valid JSON" },
+      ]);
     }
 
-    // 2. Reject requests targeting buckets not in the allowlist.
-    if (!ALLOWED_BUCKETS.has(bucket)) {
-      return NextResponse.json(
-        { error: `Bucket '${bucket}' is not permitted via this endpoint` },
-        { status: 403 }
-      );
-    }
+    const parsed = storageDeleteSchema.safeParse(body);
+    if (!parsed.success) return validationError(parsed.error.issues);
 
-    // 3. Enforce that the path being deleted belongs to the authenticated user.
-    //    Paths must start with <userId>/ so a user can only delete their own files.
-    const userId = session.user.id as string;
+    const { bucket, path } = parsed.data;
+
+    // ── 3. Path ownership enforcement ─────────────────────────────────────
     if (!path.startsWith(`${userId}/`)) {
-      return NextResponse.json(
-        { error: "You may only delete files within your own user directory" },
-        { status: 403 }
-      );
+      return forbidden("You may only delete files within your own user directory");
     }
 
-    const { data, error } = await supabaseAdmin.storage.from(bucket).remove([path]);
+    // ── 4. Delete ──────────────────────────────────────────────────────────
+    const { data, error } = await supabaseAdmin.storage
+      .from(bucket)
+      .remove([path]);
+
     if (error) {
-      console.error("[delete] Storage delete error:", error.message);
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      console.error("[delete] storage error:", error.message);
+      return serverError(error.message);
     }
 
-    return NextResponse.json({ success: true, data }, { status: 200 });
+    return ok({ deleted: data });
   } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    console.error("[delete] Unexpected error");
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("[delete] unexpected error");
+    return serverError(err instanceof Error ? err.message : "Unknown error");
   }
 }

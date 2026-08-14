@@ -1,59 +1,55 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { supabaseAdmin } from "@/lib/supabase/admin";
+import { storageUploadSchema } from "@/lib/api/schemas";
+import {
+  forbidden,
+  ok,
+  serverError,
+  unauthorized,
+  validationError,
+} from "@/lib/api/response";
 
-export const runtime = "nodejs"; // ensure Node runtime for Buffer
-
-// Only these buckets may be written to through this generic upload endpoint.
-// The event-blueprints bucket is intentionally excluded here — uploads to it
-// go through /api/events/create which performs additional validation.
-const ALLOWED_BUCKETS = new Set([
-  "permission-letters",
-  "event-reports",
-  "profile-avatars",
-]);
+// Node runtime required for Buffer.
+export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
-  // 1. Require a valid session.
+  // ── 1. Authentication ──────────────────────────────────────────────────────
   const session = await getServerSession(authOptions);
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  if (!session?.user?.id) return unauthorized();
+
+  const userId = session.user.id;
 
   try {
     const form = await req.formData();
 
-    const bucket = form.get("bucket");
-    const path = form.get("path");
+    // ── 2. Validate text fields with Zod ───────────────────────────────────
+    const parsed = storageUploadSchema.safeParse({
+      bucket: form.get("bucket"),
+      path: form.get("path"),
+    });
+    if (!parsed.success) return validationError(parsed.error.issues);
+
+    const { bucket, path } = parsed.data;
+
+    // ── 3. Verify the file is present ──────────────────────────────────────
     const file = form.get("file");
-
-    if (typeof bucket !== "string" || typeof path !== "string" || !(file instanceof Blob)) {
-      return NextResponse.json({ error: "Invalid form data" }, { status: 400 });
+    if (!(file instanceof Blob)) {
+      return validationError([
+        { code: "custom", path: ["file"], message: "file is required" },
+      ]);
     }
 
-    // 2. Reject requests targeting buckets not in the allowlist.
-    if (!ALLOWED_BUCKETS.has(bucket)) {
-      return NextResponse.json(
-        { error: `Bucket '${bucket}' is not permitted via this endpoint` },
-        { status: 403 }
-      );
-    }
-
-    // 3. Enforce that the upload path is scoped to the authenticated user's ID
-    //    so users cannot overwrite each other's files.
-    //    Convention: paths must start with <userId>/
-    //    (profile-avatars, permission-letters, and event-reports all follow this pattern)
-    const userId = session.user.id as string;
+    // ── 4. Path ownership enforcement ─────────────────────────────────────
+    // Paths must be scoped to the authenticated user's ID so users cannot
+    // overwrite each other's files.
     if (!path.startsWith(`${userId}/`)) {
-      return NextResponse.json(
-        { error: "Upload path must be scoped to your own user directory" },
-        { status: 403 }
-      );
+      return forbidden("Upload path must be scoped to your own user directory");
     }
 
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
+    // ── 5. Upload ──────────────────────────────────────────────────────────
+    const buffer = Buffer.from(await file.arrayBuffer());
 
     const { data, error } = await supabaseAdmin.storage
       .from(bucket)
@@ -64,16 +60,17 @@ export async function POST(req: NextRequest) {
       });
 
     if (error) {
-      console.error("[upload] Storage upload error:", error.message);
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      console.error("[upload] storage error:", error.message);
+      return serverError(error.message);
     }
 
-    const { data: pub } = supabaseAdmin.storage.from(bucket).getPublicUrl(data.path);
+    const { data: pub } = supabaseAdmin.storage
+      .from(bucket)
+      .getPublicUrl(data.path);
 
-    return NextResponse.json({ path: data.path, publicUrl: pub.publicUrl }, { status: 200 });
+    return ok({ path: data.path, publicUrl: pub.publicUrl });
   } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    console.error("[upload] Unexpected error");
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("[upload] unexpected error");
+    return serverError(err instanceof Error ? err.message : "Unknown error");
   }
 }
