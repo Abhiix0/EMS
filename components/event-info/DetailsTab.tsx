@@ -200,7 +200,7 @@ export default function DetailsTab(props: DetailsTabProps) {
                         try {
                           const json = buildBannersJson(nextState);
                           const { error } = await supabase.from("events").update({ banners: json }).eq("id", event.id);
-                          if (error) console.error("Failed to update banners JSON:", (error as any).message);
+                          if (error) console.error("Failed to update banners JSON:", error.message);
                         } catch (e) {
                           console.error("Unexpected error updating banners JSON:", e);
                         }
@@ -214,7 +214,7 @@ export default function DetailsTab(props: DetailsTabProps) {
 
                 {banners[cfg.key as keyof BannerState] ? (
                   <div className="relative w-full h-40 bg-neutral-800 rounded overflow-hidden">
-                    <Image src={(banners[cfg.key as keyof BannerState] as any).url} alt={cfg.label} fill className="object-contain" />
+                  <Image src={banners[cfg.key as keyof BannerState]!.url} alt={cfg.label} fill className="object-contain" />
                   </div>
                 ) : (
                   <div className="flex items-center gap-3">
@@ -243,8 +243,8 @@ export default function DetailsTab(props: DetailsTabProps) {
                         fd.append("file", file);
                         const res = await fetch("/api/storage/upload", { method: "POST", body: fd });
                         if (!res.ok) {
-                          const j = await res.json().catch(() => ({} as any));
-                          alert(`Upload failed: ${(j as any)?.error || res.statusText}`);
+                          const j = await res.json().catch(() => ({ error: res.statusText })) as { error?: string };
+                          alert(`Upload failed: ${j?.error || res.statusText}`);
                           (e.currentTarget as HTMLInputElement).value = "";
                           return;
                         }
@@ -254,7 +254,7 @@ export default function DetailsTab(props: DetailsTabProps) {
                         try {
                           const json = buildBannersJson(nextState2);
                           const { error } = await supabase.from("events").update({ banners: json }).eq("id", event.id);
-                          if (error) console.error("Failed to update banners JSON:", (error as any).message);
+                          if (error) console.error("Failed to update banners JSON:", error.message);
                         } catch (e) {
                           console.error("Unexpected error updating banners JSON:", e);
                         }

@@ -154,7 +154,7 @@ export default function ProfilePage() {
     Array<{ id: string; name: string; banners: Record<string, string> }>
   >([]);
 
-  const sessionUserId = (session as any)?.user?.id || null;
+  const sessionUserId = session?.user?.id ?? null;
 
   useEffect(() => {
     if (!sessionUserId) return;
@@ -268,8 +268,8 @@ export default function ProfilePage() {
       });
 
       setIsEditModalOpen(false);
-    } catch (error: any) {
-      setUpdateError(error.message || "Failed to update profile");
+    } catch (error: unknown) {
+      setUpdateError(error instanceof Error ? error.message : "Failed to update profile");
     } finally {
       setIsUpdating(false);
     }
@@ -321,7 +321,7 @@ export default function ProfilePage() {
   const handleSaveStudent = async () => {
     try {
       setIsUpdating(true);
-      const studentData: any = {
+      const studentData: Omit<StudentCouncilMember, "id"> & { id?: string } = {
         club_id: sessionUserId,
         role: studentForm.role,
         name: studentForm.name,
@@ -345,9 +345,9 @@ export default function ProfilePage() {
 
       await fetchStudentCouncil();
       setIsStudentModalOpen(false);
-    } catch (error: any) {
-      console.error("Error saving student:", error);
-      setUpdateError(error.message);
+    } catch (error: unknown) {
+      console.error("Error saving student:", error instanceof Error ? error.message : error);
+      setUpdateError(error instanceof Error ? error.message : "Failed to save member");
     } finally {
       setIsUpdating(false);
     }
@@ -365,8 +365,8 @@ export default function ProfilePage() {
       if (error) throw error;
 
       await fetchStudentCouncil();
-    } catch (error: any) {
-      console.error("Error deleting student:", error);
+    } catch (error: unknown) {
+      console.error("Error deleting student:", error instanceof Error ? error.message : error);
       alert("Failed to delete member");
     }
   };
@@ -417,7 +417,7 @@ export default function ProfilePage() {
   const handleSaveFaculty = async () => {
     try {
       setIsUpdating(true);
-      const facultyData: any = {
+      const facultyData: Omit<FacultyCouncilMember, "id"> & { id?: string } = {
         club_id: sessionUserId,
         role: facultyForm.role,
         name: facultyForm.name,
@@ -443,9 +443,9 @@ export default function ProfilePage() {
 
       await fetchFacultyCouncil();
       setIsFacultyModalOpen(false);
-    } catch (error: any) {
-      console.error("Error saving faculty:", error);
-      setUpdateError(error.message);
+    } catch (error: unknown) {
+      console.error("Error saving faculty:", error instanceof Error ? error.message : error);
+      setUpdateError(error instanceof Error ? error.message : "Failed to save member");
     } finally {
       setIsUpdating(false);
     }
@@ -463,8 +463,8 @@ export default function ProfilePage() {
       if (error) throw error;
 
       await fetchFacultyCouncil();
-    } catch (error: any) {
-      console.error("Error deleting faculty:", error);
+    } catch (error: unknown) {
+      console.error("Error deleting faculty:", error instanceof Error ? error.message : error);
       alert("Failed to delete member");
     }
   };
@@ -620,7 +620,7 @@ export default function ProfilePage() {
                 {stats.banners.length > 0 ? (
                   <Carousel
                     opts={{ align: "center", loop: true }}
-                    plugins={[plugin.current as any]}
+                    plugins={[plugin.current]}
                   >
                     <CarouselContent>
                       {stats.banners.map((bannerUrl, index) => (

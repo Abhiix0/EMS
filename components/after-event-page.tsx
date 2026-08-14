@@ -4,6 +4,7 @@ import { Upload, FileText, Share2 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { useSession } from "next-auth/react";
 import { supabase } from "@/lib/supabase/browserClient";
+import type { DbAfterEventReport } from "@/types/database";
 import { toast } from "sonner";
 import StepperHeader from "@/components/after-event/StepperHeader";
 import ReportStepCard from "@/components/after-event/ReportStepCard";
@@ -50,7 +51,7 @@ interface AfterEventPageProps {
 
 export function AfterEventPage({ eventId }: AfterEventPageProps) {
   const { data: session } = useSession();
-  const sessionUserId = (session as any)?.user?.id || null;
+  const sessionUserId = session?.user?.id ?? null;
   const [currentStep, setCurrentStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -336,7 +337,7 @@ export function AfterEventPage({ eventId }: AfterEventPageProps) {
   };
 
   // Submit form data to database
-  const upsertReport = async (fields: Record<string, any>) => {
+  const upsertReport = async (fields: Partial<DbAfterEventReport>) => {
     if (!sessionUserId) {
       console.error("No user in NextAuth session");
       throw new Error("User not authenticated");

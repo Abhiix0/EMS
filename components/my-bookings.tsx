@@ -111,7 +111,7 @@ export default function MyBookings() {
           {tickets.map((t) => (
             <TicketCard
               key={t.id}
-              tier={t.tier as any}
+              tier={t.tier}
               ticketNo={t.ticketNo}
               dateRange={t.dateRange}
               timeLabel={t.timeLabel}

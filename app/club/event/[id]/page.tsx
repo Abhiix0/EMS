@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import {
@@ -61,7 +61,7 @@ export default function EventDashboard() {
     ] as const;
     const parseHash = () => {
       const h = (window.location.hash || "").replace("#", "");
-      if (allowed.includes(h as any)) {
+      if ((allowed as readonly string[]).includes(h)) {
         setCurrentPage(h);
       }
     };

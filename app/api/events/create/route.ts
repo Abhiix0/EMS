@@ -93,8 +93,8 @@ export async function POST(req: Request) {
 
     // Validate file type and size
     const MAX_BYTES = 200 * 1024; // 200 KB
-    const fileSize = (file as any).size as number;
-    const fileType = (file as any).type as string;
+    const fileSize = file.size;
+    const fileType = file.type;
 
     if (!fileType || fileType !== "application/pdf") {
       return NextResponse.json(
@@ -181,10 +181,11 @@ export async function POST(req: Request) {
       { id: data.id, event_blueprint: blueprintUrl },
       { status: 201 }
     );
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Unexpected error";
     console.error("[events/create] Unexpected error");
     return NextResponse.json(
-      { error: err?.message || "Unexpected error" },
+      { error: message },
       { status: 500 }
     );
   }

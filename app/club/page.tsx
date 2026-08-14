@@ -121,7 +121,7 @@ export default function EventsPage() {
   const { data: session, status: authStatus } = useSession();
   const router = useRouter();
 
-  const sessionUserId = (session as any)?.user?.id || null;
+  const sessionUserId = session?.user?.id ?? null;
 
   const fetchEvents = async () => {
     if (!sessionUserId) return;
@@ -187,7 +187,7 @@ export default function EventsPage() {
 
       // Fetch after_event_reports for each calendar event
       const calendarEventsWithReports = await Promise.all(
-        (calendarData || []).map(async (item: any) => {
+        (calendarData || []).map(async (item: CalendarEvent & { events?: Event }) => {
           const { data: reportData } = await supabase
             .from("after_event_reports")
             .select("report_submitted, media_uploaded, social_media_promoted")
@@ -846,7 +846,7 @@ export default function EventsPage() {
 
               try {
                 setFormSubmitting(true);
-                const sessionUserId = (session as any)?.user?.id || null;
+                const sessionUserId = session?.user?.id ?? null;
                 console.log("[EventForm] Session user ID:", sessionUserId);
 
                 if (!sessionUserId) {
@@ -905,9 +905,10 @@ export default function EventsPage() {
 
                 console.log("[EventForm] Refreshing events list...");
                 await fetchEvents();
-              } catch (err: any) {
-                console.error("[EventForm] Unexpected error:", err);
-                setFormError(err?.message || "Something went wrong");
+              } catch (err: unknown) {
+                const message = err instanceof Error ? err.message : "Something went wrong";
+                console.error("[EventForm] Unexpected error");
+                setFormError(message);
               } finally {
                 setFormSubmitting(false);
               }

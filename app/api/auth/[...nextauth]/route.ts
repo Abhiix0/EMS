@@ -111,7 +111,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       // Expose the stable ID on the session object for use in API routes.
       if (session.user) {
-        (session.user as any).id = token.sub;
+        session.user.id = token.sub ?? "";
       }
       // Do NOT log session here — it contains email and other PII.
       return session;

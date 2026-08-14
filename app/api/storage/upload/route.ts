@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
       .upload(path, buffer, {
         cacheControl: "3600",
         upsert: false,
-        contentType: (file as any).type || "application/octet-stream",
+        contentType: file.type || "application/octet-stream",
       });
 
     if (error) {
@@ -71,8 +71,9 @@ export async function POST(req: NextRequest) {
     const { data: pub } = supabaseAdmin.storage.from(bucket).getPublicUrl(data.path);
 
     return NextResponse.json({ path: data.path, publicUrl: pub.publicUrl }, { status: 200 });
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Unknown error";
     console.error("[upload] Unexpected error");
-    return NextResponse.json({ error: err?.message ?? "Unknown error" }, { status: 500 });
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

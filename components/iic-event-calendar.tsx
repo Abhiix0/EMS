@@ -28,13 +28,13 @@ import {
 } from "@/components/ui/table";
 import { Eye, Plus, Search, Trash2, CheckCircle2, XCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase/browserClient";
+import type { DbEvent, DbClub } from "@/types/database";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+
 import {
   EventReportDialog,
   type AfterEventReportData,
 } from "@/components/event-report-dialog";
-
-interface EventData {
   id: string;
   title: string;
   quarter: string;
@@ -164,7 +164,7 @@ export function IICEventCalendar() {
       if (error) throw error;
 
       // Check for reports for each event
-      const eventIds = (data || []).map((e: any) => e.id);
+      const eventIds = (data ?? []).map((e: Pick<DbEvent, "id">) => e.id);
       const { data: reports } = await supabase
         .from("after_event_reports")
         .select("event_id")
@@ -172,7 +172,12 @@ export function IICEventCalendar() {
 
       const reportedEventIds = new Set(reports?.map((r) => r.event_id) || []);
 
-      const mapped: EventData[] = (data || []).map((e: any) => ({
+      type IICEventRow = Pick<
+        DbEvent,
+        "id" | "name" | "additional_details" | "quarter" | "semester" | "description" | "date_range" | "club_id"
+      > & { clubs: Pick<DbClub, "name"> | null };
+
+      const mapped: EventData[] = (data ?? []).map((e: IICEventRow) => ({
         id: e.id,
         title: e.name,
         quarter: e.quarter || "",
@@ -214,8 +219,8 @@ export function IICEventCalendar() {
         .order("name", { ascending: true });
       if (error) throw error;
       setClubs((data as Club[]) || []);
-    } catch (e: any) {
-      console.error("Failed to load clubs", e?.message || e);
+    } catch (e: unknown) {
+      console.error("Failed to load clubs", e instanceof Error ? e.message : e);
       setClubs([]);
     } finally {
       setIsLoadingClubs(false);
@@ -255,7 +260,7 @@ export function IICEventCalendar() {
       const start = new Date();
       const end = new Date(start.getTime() + 60 * 60 * 1000);
 
-      const payload: Record<string, any> = {
+      const payload: Partial<DbEvent> & { description: string; date_range: string } = {
         name: title,
         hosted: "iic",
         club_id: clubId,
@@ -279,8 +284,8 @@ export function IICEventCalendar() {
       setForm({ title: "", description: "", semesterQuarter: "", clubId: "" });
       // refresh list
       fetchEvents();
-    } catch (e: any) {
-      setSubmitError(e?.message || "Failed to create event");
+    } catch (e: unknown) {
+      setSubmitError(e instanceof Error ? e.message : "Failed to create event");
     } finally {
       setSubmitting(false);
     }

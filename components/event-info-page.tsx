@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/lib/supabase/browserClient";
+import type { EventBanners } from "@/types/database";
 import DetailsTab from "@/components/event-info/DetailsTab";
 import FormsTab from "@/components/event-info/FormsTab";
 import CouponsTab from "@/components/event-info/CouponsTab";
@@ -91,7 +92,7 @@ export function EventInfoPage({ event, onEventUpdate }: EventInfoPageProps) {
       });
 
       // Initialize banners from events.banners JSON if present
-      setBannersFromJson((event as any).banners);
+      setBannersFromJson((event.banners as EventBanners | null | undefined) ?? null);
     }
   }, [event]);
 
@@ -113,7 +114,7 @@ export function EventInfoPage({ event, onEventUpdate }: EventInfoPageProps) {
           { k: "logo_png", file: "logo_png" },
         ] as const;
 
-        const found: Partial<typeof banners> = {};
+        const found: Partial<BannerState> = {};
         const { data, error } = await supabase.storage
           .from(bucket)
           .list(basePath);
@@ -125,12 +126,12 @@ export function EventInfoPage({ event, onEventUpdate }: EventInfoPageProps) {
               const { data: pub } = supabase.storage
                 .from(bucket)
                 .getPublicUrl(path);
-              (found as any)[k] = { path, url: pub.publicUrl };
+              found[k] = { path, url: pub.publicUrl };
             }
           }
         }
         // Merge only found entries to avoid wiping out newly set values
-        setBanners((prev) => ({ ...prev, ...(found as any) }));
+        setBanners((prev) => ({ ...prev, ...found }));
       } catch (e) {
         console.error("Error loading banners:", e);
       }

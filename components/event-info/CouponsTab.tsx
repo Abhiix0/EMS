@@ -9,9 +9,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Trash2, Copy } from "lucide-react";
-import type { Coupon } from "./types";
+import type { DiscountType } from "@/types/database";
 
-interface CouponsTabProps {
+import type { Coupon } from "./types";
   coupons: Coupon[];
   newCoupon: { code: string; discount: number; type: "percentage" | "fixed"; maxUses: number };
   setNewCoupon: Dispatch<SetStateAction<CouponsTabProps["newCoupon"]>>;
@@ -50,7 +50,7 @@ export default function CouponsTab({ coupons, newCoupon, setNewCoupon, addCoupon
             </div>
             <div>
               <Label className="text-white">Type</Label>
-              <Select value={newCoupon.type} onValueChange={(value) => setNewCoupon({ ...newCoupon, type: value as any })}>
+              <Select value={newCoupon.type} onValueChange={(value) => setNewCoupon({ ...newCoupon, type: value as DiscountType })}>
                 <SelectTrigger className="bg-neutral-800 border-neutral-600 text-white">
                   <SelectValue />
                 </SelectTrigger>

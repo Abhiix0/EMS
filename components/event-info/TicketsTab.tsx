@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Trash2 } from "lucide-react";
-import type { Ticket } from "./types";
+import type { Ticket, TicketClass } from "./types";
 
 interface TicketsTabProps {
   tickets: Ticket[];
@@ -42,7 +42,7 @@ export default function TicketsTab({ tickets, newTicket, setNewTicket, addTicket
             </div>
             <div>
               <Label className="text-white">Ticket Class</Label>
-              <Select value={newTicket.class} onValueChange={(value) => setNewTicket({ ...newTicket, class: value as any })}>
+              <Select value={newTicket.class} onValueChange={(value) => setNewTicket({ ...newTicket, class: value as TicketClass })}>
                 <SelectTrigger className="bg-neutral-800 border-neutral-600 text-white">
                   <SelectValue />
                 </SelectTrigger>

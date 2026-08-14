@@ -33,7 +33,7 @@ export default function FormsTab({ formFields, newField, setNewField, addFormFie
           <div className="grid grid-cols-4 gap-4 mb-4">
             <div>
               <Label className="text-white">Field Type</Label>
-              <Select value={newField.type as FormsTabPropsFieldType} onValueChange={(value) => setNewField({ ...newField, type: value as any })}>
+              <Select value={newField.type as FormsTabPropsFieldType} onValueChange={(value) => setNewField({ ...newField, type: value as FormsTabPropsFieldType })}>
                 <SelectTrigger className="bg-neutral-800 border-neutral-600 text-white">
                   <SelectValue />
                 </SelectTrigger>
