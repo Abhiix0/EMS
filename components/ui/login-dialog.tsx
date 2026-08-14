@@ -54,7 +54,9 @@ export function LoginDialog({ children, triggerClassName }: LoginDialogProps) {
 
   return (
     <Dialog>
-      <DialogTrigger asChild className={triggerClassName}>{children}</DialogTrigger>
+      <DialogTrigger asChild className={triggerClassName}>
+        {children}
+      </DialogTrigger>
       <DialogContent
         className="max-w-3xl w-full p-0 overflow-hidden border-0 bg-transparent shadow-none"
         showCloseButton={false}

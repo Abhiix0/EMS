@@ -42,7 +42,9 @@ export function badRequest(message: string): NextResponse<ApiErrorBody> {
  * 400 Bad Request — Zod validation failure.
  * Includes the flattened issue list so callers can highlight individual fields.
  */
-export function validationError(issues: ZodIssue[]): NextResponse<ApiErrorBody> {
+export function validationError(
+  issues: ZodIssue[]
+): NextResponse<ApiErrorBody> {
   // Build a single human-readable summary from the first issue per path.
   const summary = issues
     .map((i) => {

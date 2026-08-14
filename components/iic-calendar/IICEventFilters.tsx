@@ -41,16 +41,28 @@ export default function IICEventFilters({
           <SelectValue placeholder="Select Semester" />
         </SelectTrigger>
         <SelectContent className="bg-neutral-800 border-neutral-700">
-          <SelectItem value="semester-1-quarter-1" className="text-white hover:bg-neutral-700">
+          <SelectItem
+            value="semester-1-quarter-1"
+            className="text-white hover:bg-neutral-700"
+          >
             Semester 1 - Quarter 1
           </SelectItem>
-          <SelectItem value="semester-1-quarter-2" className="text-white hover:bg-neutral-700">
+          <SelectItem
+            value="semester-1-quarter-2"
+            className="text-white hover:bg-neutral-700"
+          >
             Semester 1 - Quarter 2
           </SelectItem>
-          <SelectItem value="semester-2-quarter-3" className="text-white hover:bg-neutral-700">
+          <SelectItem
+            value="semester-2-quarter-3"
+            className="text-white hover:bg-neutral-700"
+          >
             Semester 2 - Quarter 3
           </SelectItem>
-          <SelectItem value="semester-2-quarter-4" className="text-white hover:bg-neutral-700">
+          <SelectItem
+            value="semester-2-quarter-4"
+            className="text-white hover:bg-neutral-700"
+          >
             Semester 2 - Quarter 4
           </SelectItem>
         </SelectContent>
@@ -63,7 +75,9 @@ export default function IICEventFilters({
       >
         <SelectTrigger className="w-72 bg-neutral-800 border-neutral-700 text-white">
           <SelectValue
-            placeholder={isLoadingClubs ? "Loading clubs..." : "Filter by Club (All)"}
+            placeholder={
+              isLoadingClubs ? "Loading clubs..." : "Filter by Club (All)"
+            }
           />
         </SelectTrigger>
         <SelectContent className="bg-neutral-800 border-neutral-700">

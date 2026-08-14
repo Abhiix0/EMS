@@ -49,7 +49,9 @@ export default function EventsPage() {
   // Dialog state
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [detailDialogOpen, setDetailDialogOpen] = useState(false);
-  const [selectedIicEvent, setSelectedIicEvent] = useState<ClubEvent | null>(null);
+  const [selectedIicEvent, setSelectedIicEvent] = useState<ClubEvent | null>(
+    null
+  );
 
   const handleViewIicEvent = (event: ClubEvent) => {
     setSelectedIicEvent(event);
@@ -129,10 +131,18 @@ export default function EventsPage() {
               </SelectTrigger>
               <SelectContent className="border-neutral-700">
                 <SelectItem value="all">All Semesters & Quarters</SelectItem>
-                <SelectItem value="semester-1-quarter-1">Semester 1 - Quarter 1</SelectItem>
-                <SelectItem value="semester-1-quarter-2">Semester 1 - Quarter 2</SelectItem>
-                <SelectItem value="semester-2-quarter-3">Semester 2 - Quarter 3</SelectItem>
-                <SelectItem value="semester-2-quarter-4">Semester 2 - Quarter 4</SelectItem>
+                <SelectItem value="semester-1-quarter-1">
+                  Semester 1 - Quarter 1
+                </SelectItem>
+                <SelectItem value="semester-1-quarter-2">
+                  Semester 1 - Quarter 2
+                </SelectItem>
+                <SelectItem value="semester-2-quarter-3">
+                  Semester 2 - Quarter 3
+                </SelectItem>
+                <SelectItem value="semester-2-quarter-4">
+                  Semester 2 - Quarter 4
+                </SelectItem>
               </SelectContent>
             </Select>
 
@@ -154,7 +164,8 @@ export default function EventsPage() {
               </div>
             ) : filteredIicEvents.length === 0 ? (
               <div className="col-span-full text-neutral-400">
-                {iicSearchTerm || (iicSemesterFilter && iicSemesterFilter !== "all")
+                {iicSearchTerm ||
+                (iicSemesterFilter && iicSemesterFilter !== "all")
                   ? "No IIC events match your search criteria."
                   : "No IIC events yet."}
               </div>

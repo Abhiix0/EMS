@@ -24,7 +24,10 @@ export async function createOrUpdateUser(profile: UserProfile) {
       .maybeSingle();
 
     if (fetchError) {
-      console.error("[Supabase] createOrUpdateUser: fetch error", fetchError.message);
+      console.error(
+        "[Supabase] createOrUpdateUser: fetch error",
+        fetchError.message
+      );
     }
 
     const userData = {
@@ -40,7 +43,10 @@ export async function createOrUpdateUser(profile: UserProfile) {
         .from("users")
         .insert([{ ...userData, created_at: new Date().toISOString() }]);
       if (insertError) {
-        console.error("[Supabase] createOrUpdateUser: insert error", insertError.message);
+        console.error(
+          "[Supabase] createOrUpdateUser: insert error",
+          insertError.message
+        );
       }
     } else {
       const { error: updateError } = await supabase
@@ -48,10 +54,13 @@ export async function createOrUpdateUser(profile: UserProfile) {
         .update(userData)
         .eq("id", profile.id);
       if (updateError) {
-        console.error("[Supabase] createOrUpdateUser: update error", updateError.message);
+        console.error(
+          "[Supabase] createOrUpdateUser: update error",
+          updateError.message
+        );
       }
     }
-  } catch (err) {
+  } catch (_) {
     console.error("[Supabase] createOrUpdateUser: unexpected exception");
   }
 

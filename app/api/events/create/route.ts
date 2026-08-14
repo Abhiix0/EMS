@@ -84,7 +84,10 @@ export async function POST(req: Request) {
       .maybeSingle();
 
     if (clubErr) {
-      console.error("[events/create] club ownership lookup error:", clubErr.message);
+      console.error(
+        "[events/create] club ownership lookup error:",
+        clubErr.message
+      );
       return serverError("Could not verify club ownership");
     }
     if (!club) return forbidden("You do not administer this club");
@@ -114,7 +117,8 @@ export async function POST(req: Request) {
       .from(BUCKET)
       .getPublicUrl(filePath);
 
-    if (!publicUrlData.publicUrl) return serverError("Failed to get public URL");
+    if (!publicUrlData.publicUrl)
+      return serverError("Failed to get public URL");
 
     // ── 6. Insert event row ────────────────────────────────────────────────
     // Always generate a fresh server-side UUID — never trust a client-supplied id.

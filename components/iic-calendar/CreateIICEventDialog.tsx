@@ -62,7 +62,13 @@ export default function CreateIICEventDialog({
   };
 
   return (
-    <Dialog open={open} onOpenChange={(v) => { if (!v) handleClose(); else onOpenChange(true); }}>
+    <Dialog
+      open={open}
+      onOpenChange={(v) => {
+        if (!v) handleClose();
+        else onOpenChange(true);
+      }}
+    >
       <DialogContent className="bg-neutral-900 text-white border-neutral-800">
         <DialogHeader>
           <DialogTitle>Create IIC Event</DialogTitle>
@@ -163,9 +169,7 @@ export default function CreateIICEventDialog({
             </Select>
           </div>
 
-          {submitError && (
-            <p className="text-sm text-red-400">{submitError}</p>
-          )}
+          {submitError && <p className="text-sm text-red-400">{submitError}</p>}
           {submitSuccess && (
             <p className="text-sm text-green-400">{submitSuccess}</p>
           )}

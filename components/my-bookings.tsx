@@ -16,6 +16,30 @@ type TicketItem = {
   timeLabel: string;
 };
 
+// Hoisted outside MyBookings so React doesn't recreate it on every render.
+function TicketDesign({ selected }: { selected: TicketItem | null }) {
+  if (!selected) return null;
+  return (
+    <div className="w-full flex justify-center">
+      <div className="relative w-[620px] max-w-[92vw]">
+        <Image
+          src="/elements/ticket.svg"
+          alt="Ticket"
+          width={1200}
+          height={600}
+          priority
+          className="w-full h-auto block"
+        />
+        <div className="pointer-events-none absolute inset-0">
+          <p className="absolute right-[9%] top-1/2 -translate-y-1/2 text-[18px] tracking-wide text-black">
+            ID: {selected.ticketNo}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function MyBookings() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<TicketItem | null>(null);
@@ -75,32 +99,6 @@ export default function MyBookings() {
     setOpen(true);
   };
 
-  const TicketDesign = () => {
-    if (!selected) return null;
-    return (
-      <div className="w-full flex justify-center">
-        {/* Wrapper that matches the uploaded ticket aspect/size and isolates clicks */}
-        <div className="relative w-[620px] max-w-[92vw]">
-          {/* Ticket SVG (from /public/elements/ticket.svg) */}
-          <Image
-            src="/elements/ticket.svg"
-            alt="Ticket"
-            width={1200}
-            height={600}
-            priority
-            className="w-full h-auto block"
-          />
-
-          {/* Overlay: ID text at right-center (like your screenshot) */}
-          <div className="pointer-events-none absolute inset-0">
-            <p className="absolute right-[9%] top-1/2 -translate-y-1/2 text-[18px] tracking-wide text-black">
-              ID: {selected.ticketNo}
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <>
@@ -130,14 +128,14 @@ export default function MyBookings() {
             className="p-0 bg-transparent border-none shadow-none max-w-[680px]"
             showCloseButton={false}
           >
-            <TicketDesign />
+            <TicketDesign selected={selected} />
           </DialogContent>
         </Dialog>
       ) : (
         <Drawer open={open} onOpenChange={setOpen}>
           <DrawerContent className="border-none">
             <div className="py-6">
-              <TicketDesign />
+              <TicketDesign selected={selected} />
             </div>
           </DrawerContent>
         </Drawer>

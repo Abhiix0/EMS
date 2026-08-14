@@ -6,7 +6,12 @@ import { Upload, FileText, Share2 } from "lucide-react";
 import { supabase } from "@/lib/supabase/browserClient";
 import type { DbAfterEventReport } from "@/types/database";
 import { toast } from "sonner";
-import type { FormData, FileUploads, ValidationErrors, StepConfig } from "./types";
+import type {
+  FormData,
+  FileUploads,
+  ValidationErrors,
+  StepConfig,
+} from "./types";
 
 // ---------------------------------------------------------------------------
 // Step definitions (static — defined once, referenced by hook and shell)
@@ -67,7 +72,9 @@ export function useAfterEventReport(eventId: string) {
     linkedinUrl: "",
   });
 
-  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>(
+    {}
+  );
 
   // ── File uploads ───────────────────────────────────────────────────────────
   const [fileUploads, setFileUploads] = useState<FileUploads>({
@@ -154,7 +161,8 @@ export function useAfterEventReport(eventId: string) {
     if (!formData.programType) errors.programType = "Program type is required";
     if (formData.programType === "other" && !formData.otherProgramType)
       errors.otherProgramType = "Please specify other program type";
-    if (!formData.programTheme) errors.programTheme = "Program theme is required";
+    if (!formData.programTheme)
+      errors.programTheme = "Program theme is required";
     if (!formData.duration || formData.duration <= 0)
       errors.duration = "Duration must be greater than 0";
     if (!formData.startDate) errors.startDate = "Start date is required";
@@ -171,9 +179,11 @@ export function useAfterEventReport(eventId: string) {
       errors.facultyParticipants = "Faculty participants must be 0 or more";
     if (!formData.sessionDelivery)
       errors.sessionDelivery = "Session delivery mode is required";
-    if (!formData.activityLead) errors.activityLead = "Activity lead is required";
+    if (!formData.activityLead)
+      errors.activityLead = "Activity lead is required";
     if (!formData.objective.trim()) errors.objective = "Objective is required";
-    if (!formData.benefits.trim()) errors.benefits = "Benefits description is required";
+    if (!formData.benefits.trim())
+      errors.benefits = "Benefits description is required";
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -184,7 +194,8 @@ export function useAfterEventReport(eventId: string) {
       errors.eventImages = "At least one event image is required";
     if (fileUploads.eventImages.length > 3)
       errors.eventImages = "Maximum 3 images allowed";
-    if (!fileUploads.eventReport) errors.eventReport = "Event report is required";
+    if (!fileUploads.eventReport)
+      errors.eventReport = "Event report is required";
     if (!fileUploads.permissionLetter)
       errors.permissionLetter = "Permission letter is required";
     setValidationErrors(errors);
@@ -228,7 +239,8 @@ export function useAfterEventReport(eventId: string) {
       if (file.size > 200 * 1024) {
         errors.eventReport = "Report exceeds 200KB limit";
       } else if (
-        !["application/pdf",
+        ![
+          "application/pdf",
           "application/msword",
           "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         ].includes(file.type)
@@ -404,11 +416,7 @@ export function useAfterEventReport(eventId: string) {
             );
           }
 
-          if (
-            imageUrls.length === 0 ||
-            !reportUrl ||
-            !permissionLetterUrl
-          ) {
+          if (imageUrls.length === 0 || !reportUrl || !permissionLetterUrl) {
             toast.error(
               "Upload failed. Please ensure at least one image, a report, and a permission letter are uploaded."
             );
@@ -444,8 +452,7 @@ export function useAfterEventReport(eventId: string) {
 
       if (!completedSteps.includes(stepId))
         setCompletedSteps((prev) => [...prev, stepId]);
-      if (stepId < AFTER_EVENT_STEPS.length - 1)
-        setCurrentStep(stepId + 1);
+      if (stepId < AFTER_EVENT_STEPS.length - 1) setCurrentStep(stepId + 1);
     } catch (error) {
       console.error("Error completing step:", error);
       toast.error("An error occurred. Please try again.");

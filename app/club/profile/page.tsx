@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import { supabase } from "@/lib/supabase/browserClient";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -9,17 +9,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
-import {
-  CalendarDays,
-  Award,
-  ImageIcon,
-  Pencil,
-  Trash2,
-  Plus,
-} from "lucide-react";
+import { ImageIcon, Pencil, Trash2, Plus } from "lucide-react";
 import Image from "next/image";
 import {
   Dialog,
@@ -150,20 +141,10 @@ export default function ProfilePage() {
   });
 
   const plugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
-  const [events, setEvents] = useState<
-    Array<{ id: string; name: string; banners: Record<string, string> }>
-  >([]);
 
   const sessionUserId = session?.user?.id ?? null;
 
-  useEffect(() => {
-    if (!sessionUserId) return;
-    fetchProfileData();
-    fetchStudentCouncil();
-    fetchFacultyCouncil();
-  }, [sessionUserId]);
-
-  const fetchProfileData = async () => {
+  const fetchProfileData = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -224,7 +205,7 @@ export default function ProfilePage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [sessionUserId]);
 
   const openEditModal = () => {
     setEditForm({
@@ -269,14 +250,16 @@ export default function ProfilePage() {
 
       setIsEditModalOpen(false);
     } catch (error: unknown) {
-      setUpdateError(error instanceof Error ? error.message : "Failed to update profile");
+      setUpdateError(
+        error instanceof Error ? error.message : "Failed to update profile"
+      );
     } finally {
       setIsUpdating(false);
     }
   };
 
   // Student Council functions
-  const fetchStudentCouncil = async () => {
+  const fetchStudentCouncil = useCallback(async () => {
     const { data, error } = await supabase
       .from("student_council")
       .select("*")
@@ -287,7 +270,7 @@ export default function ProfilePage() {
     } else {
       setStudentCouncil(data || []);
     }
-  };
+  }, [sessionUserId]);
 
   const openStudentModal = (member?: StudentCouncilMember) => {
     if (member) {
@@ -322,15 +305,15 @@ export default function ProfilePage() {
     try {
       setIsUpdating(true);
       const studentData: Omit<StudentCouncilMember, "id"> & { id?: string } = {
-        club_id: sessionUserId,
+        club_id: sessionUserId!,
         role: studentForm.role,
         name: studentForm.name,
         email: studentForm.email,
-        discipline: studentForm.discipline || null,
-        semester: studentForm.semester || null,
-        stream: studentForm.stream || null,
-        year: studentForm.year ? parseInt(studentForm.year) : null,
-        association_with: studentForm.association_with || null,
+        discipline: studentForm.discipline || undefined,
+        semester: studentForm.semester || undefined,
+        stream: studentForm.stream || undefined,
+        year: studentForm.year ? parseInt(studentForm.year) : undefined,
+        association_with: studentForm.association_with || undefined,
       };
 
       if (editingStudent) {
@@ -346,8 +329,13 @@ export default function ProfilePage() {
       await fetchStudentCouncil();
       setIsStudentModalOpen(false);
     } catch (error: unknown) {
-      console.error("Error saving student:", error instanceof Error ? error.message : error);
-      setUpdateError(error instanceof Error ? error.message : "Failed to save member");
+      console.error(
+        "Error saving student:",
+        error instanceof Error ? error.message : error
+      );
+      setUpdateError(
+        error instanceof Error ? error.message : "Failed to save member"
+      );
     } finally {
       setIsUpdating(false);
     }
@@ -366,13 +354,16 @@ export default function ProfilePage() {
 
       await fetchStudentCouncil();
     } catch (error: unknown) {
-      console.error("Error deleting student:", error instanceof Error ? error.message : error);
+      console.error(
+        "Error deleting student:",
+        error instanceof Error ? error.message : error
+      );
       alert("Failed to delete member");
     }
   };
 
   // Faculty Council functions
-  const fetchFacultyCouncil = async () => {
+  const fetchFacultyCouncil = useCallback(async () => {
     const { data, error } = await supabase
       .from("faculty_council")
       .select("*")
@@ -383,7 +374,22 @@ export default function ProfilePage() {
     } else {
       setFacultyCouncil(data || []);
     }
-  };
+  }, [sessionUserId]);
+
+  useEffect(() => {
+    if (!sessionUserId) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchProfileData();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchStudentCouncil();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchFacultyCouncil();
+  }, [
+    sessionUserId,
+    fetchProfileData,
+    fetchStudentCouncil,
+    fetchFacultyCouncil,
+  ]);
 
   const openFacultyModal = (member?: FacultyCouncilMember) => {
     if (member) {
@@ -418,17 +424,17 @@ export default function ProfilePage() {
     try {
       setIsUpdating(true);
       const facultyData: Omit<FacultyCouncilMember, "id"> & { id?: string } = {
-        club_id: sessionUserId,
+        club_id: sessionUserId!,
         role: facultyForm.role,
         name: facultyForm.name,
         phone: facultyForm.phone,
         email: facultyForm.email,
-        department: facultyForm.department || null,
-        designation: facultyForm.designation || null,
-        qualification: facultyForm.qualification || null,
+        department: facultyForm.department || undefined,
+        designation: facultyForm.designation || undefined,
+        qualification: facultyForm.qualification || undefined,
         experience: facultyForm.experience
           ? parseInt(facultyForm.experience)
-          : null,
+          : undefined,
       };
 
       if (editingFaculty) {
@@ -444,8 +450,13 @@ export default function ProfilePage() {
       await fetchFacultyCouncil();
       setIsFacultyModalOpen(false);
     } catch (error: unknown) {
-      console.error("Error saving faculty:", error instanceof Error ? error.message : error);
-      setUpdateError(error instanceof Error ? error.message : "Failed to save member");
+      console.error(
+        "Error saving faculty:",
+        error instanceof Error ? error.message : error
+      );
+      setUpdateError(
+        error instanceof Error ? error.message : "Failed to save member"
+      );
     } finally {
       setIsUpdating(false);
     }
@@ -464,7 +475,10 @@ export default function ProfilePage() {
 
       await fetchFacultyCouncil();
     } catch (error: unknown) {
-      console.error("Error deleting faculty:", error instanceof Error ? error.message : error);
+      console.error(
+        "Error deleting faculty:",
+        error instanceof Error ? error.message : error
+      );
       alert("Failed to delete member");
     }
   };
@@ -620,6 +634,7 @@ export default function ProfilePage() {
                 {stats.banners.length > 0 ? (
                   <Carousel
                     opts={{ align: "center", loop: true }}
+
                     plugins={[plugin.current]}
                   >
                     <CarouselContent>

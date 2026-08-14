@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Eye, Download, Share2, Settings } from "lucide-react";
 import { useRouter } from "next/navigation";
 import type { ClubEvent } from "./types";
@@ -11,7 +10,10 @@ interface SelfEventCardProps {
   onViewIic: (event: ClubEvent) => void;
 }
 
-export default function SelfEventCard({ event, onViewIic }: SelfEventCardProps) {
+export default function SelfEventCard({
+  event,
+  onViewIic,
+}: SelfEventCardProps) {
   const router = useRouter();
 
   return (

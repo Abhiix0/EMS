@@ -59,10 +59,9 @@ export function ParticipantsPage({ event }: ParticipantsPageProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   // Load participants from Supabase
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if (event) {
-      loadParticipants();
-    }
+    if (event) loadParticipants();
   }, [event]);
 
   const loadParticipants = async () => {
@@ -159,8 +158,8 @@ export function ParticipantsPage({ event }: ParticipantsPageProps) {
     }
   };
 
-  const handleView = (participant: Participant) => {
-    console.log("[v0] Viewing participant:", participant);
+  const handleView = (_participant: Participant) => {
+    // TODO: implement participant detail view
   };
 
   const getPassTypeBadge = (passType: string) => {

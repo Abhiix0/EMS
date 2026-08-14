@@ -41,9 +41,13 @@ export default function DateTimePicker({
           Number(parts[1]) - 1,
           Number(parts[2])
         );
-        if (!isNaN(parsed.getTime())) setDate(parsed);
+        if (!isNaN(parsed.getTime())) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect
+          setDate(parsed);
+        }
       }
     }
+
     if (t) setTime(t.length === 5 ? `${t}:00` : t);
   }, [value]);
 
@@ -72,7 +76,10 @@ export default function DateTimePicker({
                 <ChevronDownIcon className="h-4 w-4" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto overflow-hidden p-0" align="start">
+            <PopoverContent
+              className="w-auto overflow-hidden p-0"
+              align="start"
+            >
               <Calendar
                 mode="single"
                 selected={date}

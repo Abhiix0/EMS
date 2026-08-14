@@ -86,9 +86,11 @@ export function useClubEvents(sessionUserId: string | null) {
   // Initial fetch + re-fetch when auth resolves
   useEffect(() => {
     if (!sessionUserId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsLoading(false);
       return;
     }
+
     fetchEvents();
   }, [sessionUserId, fetchEvents]);
 

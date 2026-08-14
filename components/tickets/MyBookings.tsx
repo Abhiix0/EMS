@@ -62,7 +62,9 @@ function MyBookings() {
             ticketNo={t.ticketNo}
             dateRange={t.dateRange}
             timeLabel={t.timeLabel}
-            onView={() => console.log("View ticket", t.ticketNo)}
+            onView={() => {
+              /* TODO: open ticket detail */
+            }}
           />
         ))}
       </div>

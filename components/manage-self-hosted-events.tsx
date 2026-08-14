@@ -67,6 +67,7 @@ export function ManageSelfHostedEvents() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     fetchEvents();
     const onFocus = () => fetchEvents();
     window.addEventListener("focus", onFocus);

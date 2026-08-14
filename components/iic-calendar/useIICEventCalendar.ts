@@ -28,8 +28,7 @@ export function useIICEventCalendar() {
     try {
       const parts = selectedSemester.split("-");
       const semester = parts.length >= 2 ? `${parts[0]}-${parts[1]}` : "";
-      const quarter =
-        parts.length >= 4 ? `${parts[2]}-${parts[3]}` : "";
+      const quarter = parts.length >= 4 ? `${parts[2]}-${parts[3]}` : "";
 
       let query = supabase
         .from("events")
@@ -86,10 +85,13 @@ export function useIICEventCalendar() {
     }
   }, [selectedSemester, selectedClubId]);
 
-  // Initial fetch + focus-refresh
   useEffect(() => {
-    fetchEvents();
-    const onFocus = () => fetchEvents();
+    void (async () => {
+      await fetchEvents();
+    })();
+    const onFocus = () => {
+      void fetchEvents();
+    };
     window.addEventListener("focus", onFocus);
     return () => window.removeEventListener("focus", onFocus);
   }, [fetchEvents]);
@@ -108,10 +110,7 @@ export function useIICEventCalendar() {
       if (error) throw error;
       setClubs((data as IICClub[]) || []);
     } catch (e: unknown) {
-      console.error(
-        "Failed to load clubs",
-        e instanceof Error ? e.message : e
-      );
+      console.error("Failed to load clubs", e instanceof Error ? e.message : e);
       setClubs([]);
     } finally {
       setIsLoadingClubs(false);
@@ -119,7 +118,7 @@ export function useIICEventCalendar() {
   }, []);
 
   useEffect(() => {
-    fetchClubs();
+    void fetchClubs();
   }, [fetchClubs]);
 
   // ── Delete event ───────────────────────────────────────────────────────────
@@ -128,10 +127,7 @@ export function useIICEventCalendar() {
       "Are you sure you want to delete this event? This action cannot be undone."
     );
     if (!ok) return;
-    const { error } = await supabase
-      .from("events")
-      .delete()
-      .eq("id", eventId);
+    const { error } = await supabase.from("events").delete().eq("id", eventId);
     if (error) {
       console.error("Failed to delete event:", error.message);
       return;
@@ -177,7 +173,8 @@ export function useIICEventCalendar() {
   // Re-fetch clubs each time the create dialog opens
   useEffect(() => {
     if (!createDialogOpen) return;
-    fetchClubs();
+
+    void fetchClubs();
   }, [createDialogOpen, fetchClubs]);
 
   const handleCreateEvent = async (form: CreateIICEventForm) => {
@@ -226,9 +223,7 @@ export function useIICEventCalendar() {
       fetchEvents();
       return true;
     } catch (e: unknown) {
-      setSubmitError(
-        e instanceof Error ? e.message : "Failed to create event"
-      );
+      setSubmitError(e instanceof Error ? e.message : "Failed to create event");
       return false;
     } finally {
       setSubmitting(false);

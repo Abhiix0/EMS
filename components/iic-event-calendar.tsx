@@ -2,9 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import {
-  EventReportDialog,
-} from "@/components/event-report-dialog";
+import { EventReportDialog } from "@/components/event-report-dialog";
 import { useIICEventCalendar } from "@/components/iic-calendar/useIICEventCalendar";
 import IICEventFilters from "@/components/iic-calendar/IICEventFilters";
 import IICEventTable from "@/components/iic-calendar/IICEventTable";

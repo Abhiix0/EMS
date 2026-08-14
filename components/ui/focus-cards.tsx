@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 type CardItem = {
@@ -30,6 +29,7 @@ export const Card = React.memo(function Card({
   const [phase, setPhase] = useState<SpinPhase>("idle");
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (isHovered) {
       if (phase === "idle" || phase === "spinning-out") {
         setPhase("spinning-in");
@@ -99,6 +99,7 @@ export const Card = React.memo(function Card({
         </div>
       </div>
 
+      {/* eslint-disable-next-line react/no-unknown-property */}
       <style jsx>{`
         @keyframes spinEaseIn {
           0% {

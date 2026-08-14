@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+﻿import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { createOrUpdateUser } from "@/app/actions/auth";
@@ -24,7 +24,11 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email", placeholder: "user@example.com" },
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "user@example.com",
+        },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
@@ -91,7 +95,7 @@ export const authOptions: NextAuthOptions = {
             name: user.name ?? user.email.split("@")[0] ?? "User",
             image: user.image,
           });
-        } catch (err) {
+        } catch (_) {
           console.error("[NextAuth] createOrUpdateUser failed");
           // Returning false would block sign-in; log and continue so the
           // user is not silently locked out by a transient DB error.

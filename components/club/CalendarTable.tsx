@@ -4,12 +4,7 @@ import { useRouter } from "next/navigation";
 import { Eye, Upload, FileDown, Trash2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -102,9 +97,7 @@ export default function CalendarTable({
 
                   return (
                     <TableRow key={calEvent.id}>
-                      <TableCell className="font-medium">
-                        {index + 1}
-                      </TableCell>
+                      <TableCell className="font-medium">{index + 1}</TableCell>
                       <TableCell>
                         <div>
                           <p className="font-semibold">{event.name}</p>
@@ -136,9 +129,7 @@ export default function CalendarTable({
                         <Button
                           size="sm"
                           onClick={() =>
-                            router.push(
-                              `/club/event/${event.id}#after-event`
-                            )
+                            router.push(`/club/event/${event.id}#after-event`)
                           }
                           className="bg-blue-600 hover:bg-blue-700 text-white"
                         >
@@ -147,10 +138,7 @@ export default function CalendarTable({
                         </Button>
                       </TableCell>
                       <TableCell className="text-center">
-                        <Badge
-                          variant="outline"
-                          className={status.className}
-                        >
+                        <Badge variant="outline" className={status.className}>
                           {status.label}
                         </Badge>
                       </TableCell>

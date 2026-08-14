@@ -25,7 +25,11 @@ export async function POST(req: NextRequest) {
     const body = await req.json().catch(() => null);
     if (body === null) {
       return validationError([
-        { code: "custom", path: [], message: "Request body must be valid JSON" },
+        {
+          code: "custom",
+          path: [],
+          message: "Request body must be valid JSON",
+        },
       ]);
     }
 
@@ -36,7 +40,9 @@ export async function POST(req: NextRequest) {
 
     // ── 3. Path ownership enforcement ─────────────────────────────────────
     if (!path.startsWith(`${userId}/`)) {
-      return forbidden("You may only delete files within your own user directory");
+      return forbidden(
+        "You may only delete files within your own user directory"
+      );
     }
 
     // ── 4. Delete ──────────────────────────────────────────────────────────

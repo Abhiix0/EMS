@@ -68,12 +68,16 @@ export function EventReportDialog({
   data,
 }: ProgramDataDialogProps) {
   // Load club info for the Submitted By section using submitted_by as the club ID
-  const [club, setClub] = useState<Pick<DbClub, "id" | "name" | "email" | "avatar_url"> | null>(null);
+  const [club, setClub] = useState<Pick<
+    DbClub,
+    "id" | "name" | "email" | "avatar_url"
+  > | null>(null);
   const [loadingClub, setLoadingClub] = useState(false);
 
   useEffect(() => {
     const clubId = data?.submitted_by ?? null;
     if (!open || !clubId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setClub(null);
       return;
     }
@@ -139,7 +143,7 @@ export function EventReportDialog({
                 <div>
                   <h3 className="text-sm font-semibold">Submitted By</h3>
                   <p className="text-2xl">
-                    {loadingClub ? "Loading..." : club?.name ?? "—"}
+                    {loadingClub ? "Loading..." : (club?.name ?? "—")}
                   </p>
                   {club?.email && (
                     <p className="text-xs text-neutral-400">{club.email}</p>

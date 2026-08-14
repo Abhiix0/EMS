@@ -80,13 +80,10 @@ export const createEventSchema = z
       errorMap: () => ({ message: 'Event type must be "free" or "paid"' }),
     }),
   })
-  .refine(
-    (d) => new Date(d.end_datetime) >= new Date(d.start_datetime),
-    {
-      message: "End datetime must be after start datetime",
-      path: ["end_datetime"],
-    }
-  );
+  .refine((d) => new Date(d.end_datetime) >= new Date(d.start_datetime), {
+    message: "End datetime must be after start datetime",
+    path: ["end_datetime"],
+  });
 
 export type CreateEventInput = z.infer<typeof createEventSchema>;
 
@@ -143,8 +140,18 @@ export type StorageDeleteInput = z.infer<typeof storageDeleteSchema>;
 
 export const patchMeSchema = z
   .object({
-    first_name: z.string().trim().max(100, "First name too long").nullable().optional(),
-    last_name: z.string().trim().max(100, "Last name too long").nullable().optional(),
+    first_name: z
+      .string()
+      .trim()
+      .max(100, "First name too long")
+      .nullable()
+      .optional(),
+    last_name: z
+      .string()
+      .trim()
+      .max(100, "Last name too long")
+      .nullable()
+      .optional(),
     phone_number: z
       .string()
       .trim()

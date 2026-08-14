@@ -116,9 +116,7 @@ export default function CreateEventDialog({
       resetForm();
       await onCreated();
     } catch (err: unknown) {
-      setFormError(
-        err instanceof Error ? err.message : "Something went wrong"
-      );
+      setFormError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
       setFormSubmitting(false);
     }
@@ -235,16 +233,12 @@ export default function CreateEventDialog({
               id="event_blueprint"
               type="file"
               accept="application/pdf"
-              onChange={(e) =>
-                setEventBlueprint(e.target.files?.[0] || null)
-              }
+              onChange={(e) => setEventBlueprint(e.target.files?.[0] || null)}
               required
             />
           </div>
 
-          {formError && (
-            <p className="text-sm text-red-500">{formError}</p>
-          )}
+          {formError && <p className="text-sm text-red-500">{formError}</p>}
 
           <DialogFooter className="flex gap-2">
             <Button
