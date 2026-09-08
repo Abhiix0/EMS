@@ -42,6 +42,7 @@ export default function RootLayout({
         />
       </head>
       <body
+        suppressHydrationWarning
         className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${figtree.className}`}
       >
         <Providers>
