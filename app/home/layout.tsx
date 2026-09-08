@@ -2,7 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import TopBar from "@/components/top-bar";
+import LandingNavbar from "@/components/landing-navbar";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 
@@ -34,12 +34,8 @@ export default async function HomeLayout({
 
   return (
     <>
-      <TopBar />
-      {/* Spacer to offset the fixed top bar height */}
-      <div className="h-16" />
-      <main className="min-h-screen bg-background text-foreground">
-        {children}
-      </main>
+      <LandingNavbar />
+      {children}
     </>
   );
 }

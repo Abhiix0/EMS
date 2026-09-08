@@ -10,7 +10,16 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ["source.unsplash.com", "hxcygmrgqrfjoggeuwnw.supabase.co"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "source.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "hxcygmrgqrfjoggeuwnw.supabase.co",
+      },
+    ],
   },
   // ✅ Fix turbopack root detection with multiple lockfiles
   turbopack: {
