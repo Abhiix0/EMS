@@ -6,22 +6,31 @@ import { Figtree } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import Footer from "@/components/ui/footer";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export const metadata: Metadata = {
-  title: "Club Event Dashboard",
-  description: "Event management dashboard",
-  generator: "v0.app",
+  title: "Event Management System",
+  description:
+    "Campus club and event management platform with registration, ticketing, and event analytics.",
 };
 
 const figtree = Figtree({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let session = null;
+  try {
+    session = await getServerSession(authOptions);
+  } catch {
+    session = null;
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -45,7 +54,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${figtree.className}`}
       >
-        <Providers>
+        <Providers session={session}>
           {/* Spacer to offset the fixed top bar height */}
           <main className="min-h-screen bg-background text-foreground">
             {children}

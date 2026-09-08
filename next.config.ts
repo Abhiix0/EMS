@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   // ✅ Skip ESLint during `next build`
   eslint: {
     ignoreDuringBuilds: true,

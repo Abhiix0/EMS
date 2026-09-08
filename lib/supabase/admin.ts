@@ -7,21 +7,21 @@
  */
 
 import { createClient } from "@supabase/supabase-js";
+import logger from "@/lib/logger";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  "https://placeholder-project.supabase.co";
+const serviceRoleKey =
+  process.env.SUPABASE_SERVICE_ROLE_KEY || "placeholder-service-role-key";
 
-if (!supabaseUrl) {
-  throw new Error(
-    "Missing environment variable: NEXT_PUBLIC_SUPABASE_URL is required."
-  );
-}
-
-if (!serviceRoleKey) {
-  throw new Error(
-    "Missing environment variable: SUPABASE_SERVICE_ROLE_KEY is required. " +
-      "Do NOT substitute the anon key — doing so silently removes the RLS bypass " +
-      "that server-side API routes depend on."
+if (
+  !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  !process.env.SUPABASE_SERVICE_ROLE_KEY
+) {
+  logger.warn(
+    "[Supabase Admin] NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is not set. " +
+      "Database operations will fail until credentials are provided in settings."
   );
 }
 
