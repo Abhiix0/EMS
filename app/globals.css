@@ -177,3 +177,53 @@
   border-radius: 18px !important;
   box-shadow: 0 12px 30px rgb(0 0 0 / 35%);
 }
+
+/* MLR Official Season Ribbon Animations */
+@keyframes ribbon-entrance {
+  0% {
+    transform: translateY(-120%) rotate(0deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(6px) rotate(2deg);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-2px) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes ribbon-sway {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  25% {
+    transform: rotate(1.8deg) translateY(1.5px);
+  }
+  50% {
+    transform: rotate(0deg) translateY(0);
+  }
+  75% {
+    transform: rotate(-1.8deg) translateY(1.5px);
+  }
+}
+
+.animate-ribbon {
+  transform-origin: top center;
+  animation: 
+    ribbon-entrance 0.9s cubic-bezier(0.22, 1, 0.36, 1) both,
+    ribbon-sway 5s ease-in-out infinite 0.9s;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ribbon {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+

@@ -130,24 +130,24 @@ export function LandingNavbar() {
         </div>
       </nav>
 
-      {/* Far Right: Hanging Blue MLH Official Season Ribbon (Desktop/Tablet) */}
+      {/* Far Right: Hanging Red MLR Official Season Ribbon (Desktop/Tablet) */}
       <a
-        id="mlh-trust-badge"
-        href="https://mlh.io"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Major League Hacking 2027 Official Season Badge"
-        className="pointer-events-auto absolute right-4 top-0 z-50 hidden w-[62px] transition-transform duration-200 hover:translate-y-1 sm:right-6 sm:w-[68px] md:right-8 lg:right-10 lg:w-[72px] md:block drop-shadow-[0_10px_20px_rgba(0,0,0,0.55)] hover:drop-shadow-[0_14px_28px_rgba(0,0,0,0.7)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D539F] focus-visible:ring-offset-2"
+        id="mlr-trust-badge"
+        href="#mlr"
+        aria-label="MLR 2027 Official Season Badge"
+        className="group pointer-events-auto absolute right-4 top-0 z-50 hidden w-[62px] origin-top transition-all duration-300 ease-out hover:translate-y-1.5 sm:right-6 sm:w-[68px] md:right-8 lg:right-10 lg:w-[72px] md:block drop-shadow-[0_10px_20px_rgba(239,68,68,0.3)] hover:drop-shadow-[0_16px_28px_rgba(239,68,68,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EF4444] focus-visible:ring-offset-2"
       >
-        <Image
-          src="/badges/mlh-trust-badge-2027-blue.svg"
-          alt="Major League Hacking 2027 Season Official Badge"
-          width={72}
-          height={126}
-          priority
-          referrerPolicy="no-referrer"
-          className="h-auto w-full select-none"
-        />
+        <div className="animate-ribbon origin-top">
+          <Image
+            src="/badges/mlr-trust-badge-2027-red.svg"
+            alt="MLR 2027 Official Season Badge"
+            width={72}
+            height={126}
+            priority
+            referrerPolicy="no-referrer"
+            className="h-auto w-full select-none transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
       </a>
 
       {/* Mobile Slide-down Panel */}
@@ -226,16 +226,14 @@ export function LandingNavbar() {
             )}
           </div>
 
-          {/* Mobile MLH Official Season Badge Link */}
+          {/* Mobile MLR Official Season Badge Link */}
           <div className="flex flex-col items-center justify-center border-t border-border/40 pt-4 text-center">
             <a
-              href="https://mlh.io"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-[#1D539F]/30 bg-[#1D539F]/10 px-3.5 py-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-[#1D539F] hover:bg-[#1D539F]/20 transition-colors"
+              href="#mlr"
+              className="inline-flex items-center gap-2 rounded-full border border-[#EF4444]/30 bg-[#EF4444]/10 px-3.5 py-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-[#EF4444] hover:bg-[#EF4444]/20 transition-colors"
             >
-              <span className="size-2 rounded-full bg-[#1D539F]" />
-              <span>MLH · OFFICIAL 2027 SEASON</span>
+              <span className="size-2 rounded-full bg-[#EF4444] animate-pulse" />
+              <span>MLR · OFFICIAL 2027 SEASON</span>
             </a>
           </div>
         </div>
