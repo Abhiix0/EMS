@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Compass } from "lucide-react";
 import { motion } from "motion/react";
+import { useHappeningPeopleTransition } from "./use-happening-people-transition";
 
 /**
  * FIND YOUR PEOPLE Section — Editorial Neo-Brutalism for CIE / EMS
@@ -125,6 +126,8 @@ const DEPT_CLUBS: DeptClub[] = [
 ];
 
 export default function FindYourPeople() {
+  useHappeningPeopleTransition();
+
   return (
     <section
       id="find-your-people"
@@ -157,8 +160,11 @@ export default function FindYourPeople() {
         {/* ========================================================
             1. SECTION HEADER
            ======================================================== */}
-        <header className="mb-14 sm:mb-20">
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b-2 border-[#0A0F1D]">
+        <header id="find-your-people-header" className="mb-14 sm:mb-20">
+          <div
+            id="find-your-people-badge-strip"
+            className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b-2 border-[#0A0F1D]"
+          >
             <div className="flex items-center gap-3">
               <span className="inline-block w-2.5 h-2.5 bg-[#C5283D] border border-[#0A0F1D]" />
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#0A0F1D]/70 font-semibold">
@@ -178,13 +184,19 @@ export default function FindYourPeople() {
               >
                 FIND YOUR PEOPLE
               </h2>
-              <p className="mt-4 text-xl sm:text-2xl lg:text-3xl font-serif italic text-[#0A0F1D]/80">
+              <p
+                id="find-your-people-quote"
+                className="mt-4 text-xl sm:text-2xl lg:text-3xl font-serif italic text-[#0A0F1D]/80"
+              >
                 &ldquo;There&apos;s probably a club for that.&rdquo;
               </p>
             </div>
 
             <div className="lg:col-span-4 flex lg:justify-end">
-              <div className="border border-[#0A0F1D] bg-white p-3.5 shadow-[2px_2px_0px_0px_#0A0F1D] max-w-xs">
+              <div
+                id="find-your-people-mapping-card"
+                className="border border-[#0A0F1D] bg-white p-3.5 shadow-[2px_2px_0px_0px_#0A0F1D] max-w-xs"
+              >
                 <div className="flex items-center gap-2 font-mono text-[11px] text-[#0A0F1D]/60 uppercase tracking-wider mb-1">
                   <Compass className="size-3.5 text-[#C5283D]" />
                   <span>COMMUNITY MAPPING</span>
@@ -203,7 +215,10 @@ export default function FindYourPeople() {
            ======================================================== */}
         <div className="mb-20 sm:mb-28">
           {/* Subheader Label */}
-          <div className="flex items-baseline justify-between mb-8 pb-3 border-b border-[#0A0F1D]/20">
+          <div
+            id="find-your-people-main-subheader"
+            className="flex items-baseline justify-between mb-8 pb-3 border-b border-[#0A0F1D]/20"
+          >
             <div className="flex items-center gap-2.5">
               <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] px-2.5 py-0.5 bg-[#0A0F1D] text-[#F6F5F0]">
                 MAIN CLUBS
@@ -223,7 +238,7 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="lg:col-span-7 bg-[#0A0F1D] text-[#F6F5F0] border-2 border-[#0A0F1D] p-6 sm:p-8 shadow-[5px_5px_0px_0px_#C5283D] flex flex-col justify-between group relative overflow-hidden"
+              className="club-identity-card lg:col-span-7 bg-[#0A0F1D] text-[#F6F5F0] border-2 border-[#0A0F1D] p-6 sm:p-8 shadow-[5px_5px_0px_0px_#C5283D] flex flex-col justify-between group relative overflow-hidden"
             >
               <div
                 className="pointer-events-none absolute right-4 -bottom-6 font-black text-[120px] sm:text-[140px] text-white/[0.04] select-none font-mono leading-none tracking-tighter"
@@ -275,7 +290,7 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="lg:col-span-5 bg-white border-2 border-[#0A0F1D] p-6 sm:p-7 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-5 bg-white border-2 border-[#0A0F1D] p-6 sm:p-7 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-4">
@@ -315,7 +330,7 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="lg:col-span-4 bg-[#0A0F1D] text-[#F6F5F0] border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-4 bg-[#0A0F1D] text-[#F6F5F0] border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -357,7 +372,7 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -400,7 +415,7 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -442,7 +457,7 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -484,7 +499,7 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -526,7 +541,7 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#C5283D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#C5283D] flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -569,7 +584,10 @@ export default function FindYourPeople() {
            ======================================================== */}
         <div className="mb-16 sm:mb-20">
           {/* Subheader Label */}
-          <div className="flex items-baseline justify-between mb-8 pb-3 border-b border-[#0A0F1D]/20">
+          <div
+            id="find-your-people-dept-subheader"
+            className="flex items-baseline justify-between mb-8 pb-3 border-b border-[#0A0F1D]/20"
+          >
             <div className="flex items-center gap-2.5">
               <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] px-2.5 py-0.5 bg-[#0A0F1D] text-[#F6F5F0]">
                 DEPARTMENT CLUBS
@@ -590,7 +608,7 @@ export default function FindYourPeople() {
                 key={club.id}
                 whileHover={{ y: -2, x: 1 }}
                 transition={{ duration: 0.12 }}
-                className="bg-white border-2 border-[#0A0F1D] p-4 sm:p-5 shadow-[3px_3px_0px_0px_#0A0F1D] flex flex-col justify-between group hover:border-[#C5283D] transition-colors"
+                className="dept-identity-card bg-white border-2 border-[#0A0F1D] p-4 sm:p-5 shadow-[3px_3px_0px_0px_#0A0F1D] flex flex-col justify-between group hover:border-[#C5283D] transition-colors"
               >
                 <div>
                   <div className="flex items-center justify-between gap-1 mb-3">
@@ -635,7 +653,10 @@ export default function FindYourPeople() {
         {/* ========================================================
             4. SECTION FOOTER / CALL TO ACTION
            ======================================================== */}
-        <div className="pt-8 border-t-2 border-[#0A0F1D] flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div
+          id="find-your-people-footer"
+          className="pt-8 border-t-2 border-[#0A0F1D] flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
           <div>
             <span className="font-mono text-xs uppercase tracking-wider text-[#0A0F1D]/60 block font-semibold">
               EXPLORE THE COMPLETE GUILD DIRECTORY

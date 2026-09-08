@@ -113,7 +113,10 @@ export default function HappeningNow() {
         }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto">
+      <div
+        id="happening-now-board-exit"
+        className="relative z-10 w-full max-w-7xl mx-auto"
+      >
         {/* ========================================================================= */}
         {/* SECTION HEADER: BOLD EDITORIAL TITLE + MANDATORY SUPPORTING STATEMENT    */}
         {/* ========================================================================= */}
@@ -142,7 +145,7 @@ export default function HappeningNow() {
         {/* ========================================================================= */}
         <div id="happening-now-featured" className="mb-10 sm:mb-14">
           <article
-            id="featured-event-poster"
+            id="happening-now-featured-article"
             className="group relative bg-[#F4F3EE] text-[#0A0F1D] border-2 border-black rounded-xl sm:rounded-2xl p-6 sm:p-9 lg:p-11 shadow-[8px_8px_0px_#000000,14px_14px_0px_#8B1E2D] hover:shadow-[6px_6px_0px_#000000,10px_10px_0px_#8B1E2D] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 overflow-hidden"
           >
             {/* Top Registration Crosshairs (Printed Artifact Detail) */}
@@ -384,7 +387,10 @@ export default function HappeningNow() {
         {/* ========================================================================= */}
         {/* BOTTOM ACTION: EDITORIAL VIEW ALL EVENTS CALLOUT                          */}
         {/* ========================================================================= */}
-        <div className="mt-14 sm:mt-18 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div
+          id="happening-now-bottom"
+          className="mt-14 sm:mt-18 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
           <div className="text-xs font-mono text-slate-400 uppercase tracking-widest text-center sm:text-left">
             [ ALL CLUBS · ALL DEPARTMENTS · VERIFIED CIE CALENDAR ]
           </div>
