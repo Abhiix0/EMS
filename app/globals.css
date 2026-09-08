@@ -198,7 +198,8 @@
 }
 
 @keyframes ribbon-sway {
-  0%, 100% {
+  0%,
+  100% {
     transform: rotate(0deg) translateY(0);
   }
   25% {
@@ -214,7 +215,7 @@
 
 .animate-ribbon {
   transform-origin: top center;
-  animation: 
+  animation:
     ribbon-entrance 0.9s cubic-bezier(0.22, 1, 0.36, 1) both,
     ribbon-sway 5s ease-in-out infinite 0.9s;
   will-change: transform;
@@ -226,4 +227,3 @@
     transform: none !important;
   }
 }
-

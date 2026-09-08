@@ -10,7 +10,6 @@ import {
   Tag,
   Sparkles,
 } from "lucide-react";
-import { motion } from "motion/react";
 
 /**
  * HAPPENING NOW Section — Dark Editorial Neo-Brutalism for CIE / EMS
@@ -118,7 +117,7 @@ export default function HappeningNow() {
         {/* ========================================================================= */}
         {/* SECTION HEADER: BOLD EDITORIAL TITLE + MANDATORY SUPPORTING STATEMENT    */}
         {/* ========================================================================= */}
-        <div className="mb-14 sm:mb-18 lg:mb-20">
+        <div id="happening-now-header" className="mb-14 sm:mb-18 lg:mb-20">
           <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded border border-white/15 bg-white/[0.03] text-[11px] font-mono tracking-widest uppercase text-[#6EE7B7] mb-3">
             <span>●</span>
             <span>LIVE CAMPUS EPHEMERA</span>
@@ -141,13 +140,7 @@ export default function HappeningNow() {
         {/* ========================================================================= */}
         {/* ASYMMETRICAL COMPOSITION: DOMINANT FEATURED EVENT POSTER                  */}
         {/* ========================================================================= */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-10 sm:mb-14"
-        >
+        <div id="happening-now-featured" className="mb-10 sm:mb-14">
           <article
             id="featured-event-poster"
             className="group relative bg-[#F4F3EE] text-[#0A0F1D] border-2 border-black rounded-xl sm:rounded-2xl p-6 sm:p-9 lg:p-11 shadow-[8px_8px_0px_#000000,14px_14px_0px_#8B1E2D] hover:shadow-[6px_6px_0px_#000000,10px_10px_0px_#8B1E2D] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 overflow-hidden"
@@ -264,20 +257,17 @@ export default function HappeningNow() {
               </Link>
             </div>
           </article>
-        </motion.div>
+        </div>
 
         {/* ========================================================================= */}
         {/* ASYMMETRICAL COMPOSITION: STAGGERED SUPPORTING EVENTS                     */}
         {/* ========================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <div
+          id="happening-now-supporting"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start"
+        >
           {/* Supporting Event 1: Left-aligned, slightly wider ticket-style card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5"
-          >
+          <div className="lg:col-span-5">
             <Link
               href={SUPPORTING_EVENTS[0].href}
               className="group block relative bg-[#0F172A] border-2 border-black rounded-xl p-5 sm:p-6 shadow-[6px_6px_0px_#000000] hover:shadow-[4px_4px_0px_#C5283D] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-150"
@@ -317,16 +307,10 @@ export default function HappeningNow() {
                 </span>
               </div>
             </Link>
-          </motion.div>
+          </div>
 
           {/* Supporting Event 2: Center-indented cream paper dispatch card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-4 lg:-mt-2"
-          >
+          <div className="lg:col-span-4 lg:-mt-2">
             <Link
               href={SUPPORTING_EVENTS[1].href}
               className="group block relative bg-[#F4F3EE] text-[#0A0F1D] border-2 border-black rounded-xl p-5 sm:p-6 shadow-[6px_6px_0px_#000000] hover:shadow-[4px_4px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-150"
@@ -360,16 +344,10 @@ export default function HappeningNow() {
                 </span>
               </div>
             </Link>
-          </motion.div>
+          </div>
 
           {/* Supporting Event 3: Right-aligned compact notice block with registration stamp */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-3 lg:mt-3"
-          >
+          <div className="lg:col-span-3 lg:mt-3">
             <Link
               href={SUPPORTING_EVENTS[2].href}
               className="group block relative bg-[#111827] border-2 border-black rounded-xl p-5 sm:p-6 shadow-[6px_6px_0px_#000000] hover:shadow-[4px_4px_0px_#6EE7B7] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-150"
@@ -400,7 +378,7 @@ export default function HappeningNow() {
                 </span>
               </div>
             </Link>
-          </motion.div>
+          </div>
         </div>
 
         {/* ========================================================================= */}

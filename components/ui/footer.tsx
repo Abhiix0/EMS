@@ -46,7 +46,9 @@ export default function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 w-full ml-0 md:ml-12 lg:ml-[200px]">
             {/* Quick Links */}
             <div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 sm:mb-4">Quick Links</h3>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 sm:mb-4">
+                Quick Links
+              </h3>
               <ul className="space-y-2.5 sm:space-y-3 list-disc marker:text-white/70 pl-5 text-lg sm:text-xl">
                 <li>
                   <Link
@@ -77,7 +79,9 @@ export default function Footer() {
 
             {/* Socials */}
             <div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 sm:mb-4">Socials</h3>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 sm:mb-4">
+                Socials
+              </h3>
               <ul className="space-y-2.5 sm:space-y-3 text-lg sm:text-xl">
                 <li>
                   <a
@@ -128,10 +132,15 @@ export default function Footer() {
 
             {/* Contact Us */}
             <div className="ml-0 sm:-ml-6">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 sm:mb-4">Contact Us</h3>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 sm:mb-4">
+                Contact Us
+              </h3>
               <ul className="space-y-2.5 sm:space-y-3 text-lg sm:text-xl">
                 <li className="inline-flex items-start sm:items-center gap-3 py-0.5">
-                  <Phone className="size-5 shrink-0 mt-0.5 sm:mt-0" aria-hidden="true" />
+                  <Phone
+                    className="size-5 shrink-0 mt-0.5 sm:mt-0"
+                    aria-hidden="true"
+                  />
                   <a
                     href="tel:+919951312204"
                     target="_blank"
@@ -142,7 +151,10 @@ export default function Footer() {
                   </a>
                 </li>
                 <li className="inline-flex items-start sm:items-center gap-3 py-0.5">
-                  <Mail className="size-5 shrink-0 mt-0.5 sm:mt-0" aria-hidden="true" />
+                  <Mail
+                    className="size-5 shrink-0 mt-0.5 sm:mt-0"
+                    aria-hidden="true"
+                  />
                   <a
                     href="mailto:ciemlrit@mlrit.ac.in"
                     className="hover:opacity-90 transition-opacity break-all sm:break-normal"
@@ -157,7 +169,9 @@ export default function Footer() {
 
         {/* subtle bottom line */}
         <div className="border-t border-white/10 py-6 text-xs sm:text-sm text-white/70">
-          <p className="leading-relaxed">© {new Date().getFullYear()} CIE, MLRIT. All rights reserved.</p>
+          <p className="leading-relaxed">
+            © {new Date().getFullYear()} CIE, MLRIT. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

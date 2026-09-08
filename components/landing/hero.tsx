@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, Compass } from "lucide-react";
 import { motion } from "motion/react";
+import { useHeroHappeningTransition } from "./use-hero-happening-transition";
 
 /**
  * Hero Section — Dark Editorial Neo-Brutalism for CIE / EMS
@@ -23,6 +24,8 @@ import { motion } from "motion/react";
  * - Dark outlines: #050811 / #000000
  */
 export default function Hero() {
+  useHeroHappeningTransition();
+
   return (
     <section
       id="hero"
@@ -58,63 +61,68 @@ export default function Hero() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-6 xl:col-span-7 flex flex-col items-start text-left"
           >
-            {/* 1. EMS Status Pill */}
             <div
-              id="ems-status-pill"
-              className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full border border-white/15 bg-white/[0.04] backdrop-blur-xs shadow-[2px_2px_0px_#000000] text-xs font-mono font-medium text-[#F8F9FA] tracking-wider select-none mb-6 sm:mb-8 transition-colors hover:border-white/30"
+              id="hero-editorial-lift"
+              className="w-full flex flex-col items-start text-left"
             >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6EE7B7] opacity-60" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#6EE7B7]" />
-              </span>
-              <span className="font-bold tracking-widest text-[11px] text-[#F8F9FA]">
-                EMS
-              </span>
-              <span className="text-white/30 text-[10px]">•</span>
-              <span className="text-[#6EE7B7] text-[11px] uppercase tracking-wider font-semibold">
-                ACTIVE
-              </span>
-            </div>
-
-            {/* 2. Primary Headline: Bold, Chunky, Display-Oriented Editorial with Hard Crimson Offset Shadow */}
-            <h1
-              id="hero-heading"
-              className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[4.75rem] xl:text-[5.5rem] font-extrabold tracking-tight text-[#F8F9FA] leading-[0.94] uppercase select-none"
-              style={{
-                textShadow: "4px 4px 0 #8B1E2D",
-              }}
-            >
-              Campus,
-              <br />
-              <span className="inline-block mt-1 sm:mt-2">in motion.</span>
-            </h1>
-
-            {/* 3. Supporting Tagline: Clean Sans-Serif, High Contrast Off-White */}
-            <p className="mt-5 sm:mt-7 text-lg sm:text-xl lg:text-2xl text-[#F8F9FA]/80 font-normal max-w-xl leading-relaxed tracking-normal">
-              One place for what&apos;s happening.
-            </p>
-
-            {/* 4. Call To Actions: Tactile Neo-Brutalist Buttons with Clear Priority */}
-            <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 sm:gap-5 w-full sm:w-auto">
-              {/* Primary CTA: Cream Solid Fill + Dark Border + Hard Crimson Offset Shadow */}
-              <Link
-                href="/events"
-                id="hero-primary-cta"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg text-base font-bold text-[#050811] bg-[#F8F9FA] border-2 border-[#050811] shadow-[4px_4px_0px_#C5283D] hover:shadow-[2px_2px_0px_#C5283D] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all duration-150 group"
+              {/* 1. EMS Status Pill */}
+              <div
+                id="ems-status-pill"
+                className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full border border-white/15 bg-white/[0.04] backdrop-blur-xs shadow-[2px_2px_0px_#000000] text-xs font-mono font-medium text-[#F8F9FA] tracking-wider select-none mb-6 sm:mb-8 transition-colors hover:border-white/30"
               >
-                <span>Explore Events</span>
-                <ArrowRight className="size-4.5 transition-transform duration-150 group-hover:translate-x-1 text-[#050811]" />
-              </Link>
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6EE7B7] opacity-60" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#6EE7B7]" />
+                </span>
+                <span className="font-bold tracking-widest text-[11px] text-[#F8F9FA]">
+                  EMS
+                </span>
+                <span className="text-white/30 text-[10px]">•</span>
+                <span className="text-[#6EE7B7] text-[11px] uppercase tracking-wider font-semibold">
+                  ACTIVE
+                </span>
+              </div>
 
-              {/* Secondary CTA: Transparent Ghost + Thin Light Border + Subtle Tactile Surface */}
-              <Link
-                href="/clubs"
-                id="hero-secondary-cta"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-base font-medium text-[#F8F9FA] bg-white/[0.03] hover:bg-white/[0.08] border border-white/20 hover:border-white/40 active:bg-white/[0.12] transition-all duration-150 backdrop-blur-xs"
+              {/* 2. Primary Headline: Bold, Chunky, Display-Oriented Editorial with Hard Crimson Offset Shadow */}
+              <h1
+                id="hero-heading"
+                className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[4.75rem] xl:text-[5.5rem] font-extrabold tracking-tight text-[#F8F9FA] leading-[0.94] uppercase select-none"
+                style={{
+                  textShadow: "4px 4px 0 #8B1E2D",
+                }}
               >
-                <Compass className="size-4 text-[#6EE7B7]" />
-                <span>Explore Clubs</span>
-              </Link>
+                Campus,
+                <br />
+                <span className="inline-block mt-1 sm:mt-2">in motion.</span>
+              </h1>
+
+              {/* 3. Supporting Tagline: Clean Sans-Serif, High Contrast Off-White */}
+              <p className="mt-5 sm:mt-7 text-lg sm:text-xl lg:text-2xl text-[#F8F9FA]/80 font-normal max-w-xl leading-relaxed tracking-normal">
+                One place for what&apos;s happening.
+              </p>
+
+              {/* 4. Call To Actions: Tactile Neo-Brutalist Buttons with Clear Priority */}
+              <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 sm:gap-5 w-full sm:w-auto">
+                {/* Primary CTA: Cream Solid Fill + Dark Border + Hard Crimson Offset Shadow */}
+                <Link
+                  href="/events"
+                  id="hero-primary-cta"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg text-base font-bold text-[#050811] bg-[#F8F9FA] border-2 border-[#050811] shadow-[4px_4px_0px_#C5283D] hover:shadow-[2px_2px_0px_#C5283D] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all duration-150 group"
+                >
+                  <span>Explore Events</span>
+                  <ArrowRight className="size-4.5 transition-transform duration-150 group-hover:translate-x-1 text-[#050811]" />
+                </Link>
+
+                {/* Secondary CTA: Transparent Ghost + Thin Light Border + Subtle Tactile Surface */}
+                <Link
+                  href="/clubs"
+                  id="hero-secondary-cta"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-base font-medium text-[#F8F9FA] bg-white/[0.03] hover:bg-white/[0.08] border border-white/20 hover:border-white/40 active:bg-white/[0.12] transition-all duration-150 backdrop-blur-xs"
+                >
+                  <Compass className="size-4 text-[#6EE7B7]" />
+                  <span>Explore Clubs</span>
+                </Link>
+              </div>
             </div>
           </motion.div>
 
@@ -129,6 +137,7 @@ export default function Hero() {
           >
             {/* Isometric Perspective Container */}
             <div
+              id="hero-booklet-lift"
               className="relative w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[460px] mx-auto select-none"
               style={{
                 perspective: "1200px",
