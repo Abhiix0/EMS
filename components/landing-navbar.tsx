@@ -133,14 +133,16 @@ export function LandingNavbar() {
       {/* Far Right: Hanging Red MLR Official Season Ribbon (Desktop/Tablet) */}
       <a
         id="mlr-trust-badge"
-        href="#mlr"
-        aria-label="MLR 2027 Official Season Badge"
+        href="https://mlrit.ac.in/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="MLR 2026 Official Season Badge"
         className="group pointer-events-auto absolute right-4 top-0 z-50 hidden w-[62px] origin-top transition-all duration-300 ease-out hover:translate-y-1.5 sm:right-6 sm:w-[68px] md:right-8 lg:right-10 lg:w-[72px] md:block drop-shadow-[0_10px_20px_rgba(239,68,68,0.3)] hover:drop-shadow-[0_16px_28px_rgba(239,68,68,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EF4444] focus-visible:ring-offset-2"
       >
         <div className="animate-ribbon origin-top">
           <Image
-            src="/badges/mlr-trust-badge-2027-red.svg"
-            alt="MLR 2027 Official Season Badge"
+            src="/badges/mlr-trust-badge-2026-red.svg"
+            alt="MLR 2026 Official Season Badge"
             width={72}
             height={126}
             priority
@@ -229,11 +231,13 @@ export function LandingNavbar() {
           {/* Mobile MLR Official Season Badge Link */}
           <div className="flex flex-col items-center justify-center border-t border-border/40 pt-4 text-center">
             <a
-              href="#mlr"
+              href="https://mlrit.ac.in/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-[#EF4444]/30 bg-[#EF4444]/10 px-3.5 py-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-[#EF4444] hover:bg-[#EF4444]/20 transition-colors"
             >
               <span className="size-2 rounded-full bg-[#EF4444] animate-pulse" />
-              <span>MLR · OFFICIAL 2027 SEASON</span>
+              <span>MLR · OFFICIAL 2026 SEASON</span>
             </a>
           </div>
         </div>
