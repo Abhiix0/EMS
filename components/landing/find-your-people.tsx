@@ -156,7 +156,10 @@ export default function FindYourPeople() {
         aria-hidden="true"
       />
 
-      <div className="relative max-w-7xl mx-auto w-full">
+      <div
+        id="find-your-people-board-exit"
+        className="relative max-w-7xl mx-auto w-full"
+      >
         {/* ========================================================
             1. SECTION HEADER
            ======================================================== */}

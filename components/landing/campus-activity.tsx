@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
+import { usePeopleIndexTransition } from "./use-people-index-transition";
 
 /**
  * YOUR CAMPUS HAS A LOT GOING ON — Section 04: The Campus Index
@@ -61,6 +62,8 @@ const ROWS: IndexRow[] = [
 ];
 
 export default function CampusActivity() {
+  usePeopleIndexTransition();
+
   return (
     <section
       id="campus-activity"
@@ -93,7 +96,7 @@ export default function CampusActivity() {
         {/* ========================================================
             PART A: LARGE EDITORIAL HEADING (CHAPTER DIVIDER)
            ======================================================== */}
-        <header className="mb-16 sm:mb-24 lg:mb-28">
+        <header id="campus-index-header" className="mb-16 sm:mb-24 lg:mb-28">
           {/* Chapter Metadata Bar */}
           <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/15">
             <div className="flex items-center gap-3">
@@ -131,13 +134,7 @@ export default function CampusActivity() {
             const isCrimson = row.accentColor === "crimson";
 
             return (
-              <motion.div
-                key={row.number}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-              >
+              <motion.div key={row.number} className="campus-index-row">
                 <Link
                   href={row.href}
                   aria-label={`${row.category}: ${row.supporting}`}

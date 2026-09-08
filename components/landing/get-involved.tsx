@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Get Involved section component for CIE Landing Page.
  * Phase 1 structural skeleton with section heading "GET INVOLVED"
@@ -7,20 +9,29 @@ import React from "react";
 import Link from "next/link";
 import { LogIn, Compass, ArrowRight } from "lucide-react";
 import { LoginDialog } from "@/components/ui/login-dialog";
+import { useIndexInvitationTransition } from "./use-index-invitation-transition";
 
 export default function GetInvolved() {
+  useIndexInvitationTransition();
+
   return (
     <section
       id="get-involved"
       aria-labelledby="get-involved-heading"
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full"
     >
-      <div className="relative rounded-3xl border border-white/10 bg-white/[0.02] p-8 sm:p-12 lg:p-16 overflow-hidden">
+      <div
+        id="get-involved-card"
+        className="relative rounded-3xl border border-white/10 bg-white/[0.02] p-8 sm:p-12 lg:p-16 overflow-hidden"
+      >
         {/* Ambient subtle backlighting without hard gradient blobs */}
         <div className="absolute inset-0 bg-radial from-white/[0.03] to-transparent pointer-events-none" />
 
         <div className="relative z-10 max-w-3xl mx-auto text-center flex flex-col items-center">
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-red-400 font-semibold mb-3">
+          <span
+            id="get-involved-badge"
+            className="text-xs font-mono uppercase tracking-[0.25em] text-red-400 font-semibold mb-3"
+          >
             Participate &amp; Lead
           </span>
           <h2
@@ -29,13 +40,19 @@ export default function GetInvolved() {
           >
             GET INVOLVED
           </h2>
-          <p className="mt-6 text-base sm:text-lg text-slate-300 max-w-xl font-normal leading-relaxed">
+          <p
+            id="get-involved-copy"
+            className="mt-6 text-base sm:text-lg text-slate-300 max-w-xl font-normal leading-relaxed"
+          >
             Whether you are here to organize an event, join an innovation
             cohort, or participate in the next hackathon, jump right in.
           </p>
 
           {/* Structural CTA Areas: Login and Explore */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full max-w-md">
+          <div
+            id="get-involved-actions"
+            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full max-w-md"
+          >
             {/* Login CTA Area */}
             <LoginDialog>
               <button
@@ -58,7 +75,10 @@ export default function GetInvolved() {
             </Link>
           </div>
 
-          <div className="mt-10 pt-8 border-t border-white/5 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400">
+          <div
+            id="get-involved-institutions"
+            className="mt-10 pt-8 border-t border-white/5 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400"
+          >
             <span>MLR Institute of Technology</span>
             <span>•</span>
             <span>Centre for Innovation &amp; Entrepreneurship</span>

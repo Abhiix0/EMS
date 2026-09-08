@@ -12,11 +12,20 @@ import {
   Mail,
   Phone,
 } from "lucide-react";
+import { useInvitationFooterTransition } from "@/components/landing/use-invitation-footer-transition";
 
 export default function Footer() {
+  useInvitationFooterTransition();
+
   return (
-    <footer className="bg-black text-white font-figtree overflow-hidden">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <footer
+      id="site-footer"
+      className="bg-black text-white font-figtree overflow-hidden"
+    >
+      <div
+        id="site-footer-content"
+        className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8"
+      >
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-12 py-8 sm:py-10">
           {/* Left: Logos */}
           <div className="flex flex-col items-start gap-4 sm:gap-6 shrink-0">
