@@ -21,7 +21,7 @@ export default function Footer() {
   return (
     <footer
       id="site-footer"
-      className="relative bg-[#212529] text-[#E9ECEF] font-sans overflow-hidden border-t-2 border-[#212529]"
+      className="relative bg-[#212529] text-[#E9ECEF] font-sans overflow-hidden border-t border-[#212529]"
     >
       {/* Torn Paper Boundary at Top */}
       <div className="absolute top-0 left-0 right-0 -translate-y-[99%] overflow-hidden leading-none pointer-events-none z-20">
@@ -35,7 +35,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-12 py-10 sm:py-12">
           {/* Left: Logos with subtle border badge */}
           <div className="flex flex-col items-start gap-4 sm:gap-6 shrink-0">
-            <div className="bg-white p-3 rounded-lg border-2 border-[#212529] shadow-[3px_3px_0px_#FB5607]">
+            <div className="bg-white p-3 rounded-xl border border-black/10 paper-shadow-soft">
               <Image
                 src="/logos/mlrit.svg"
                 alt="MLRIT"
@@ -44,7 +44,7 @@ export default function Footer() {
                 className="h-auto w-32 sm:w-36"
               />
             </div>
-            <div className="bg-white p-3 rounded-lg border-2 border-[#212529] shadow-[3px_3px_0px_#8338EC]">
+            <div className="bg-white p-3 rounded-xl border border-black/10 paper-shadow-soft">
               <Image
                 src="/logos/iic.png"
                 alt="Institution's Innovation Council"
@@ -65,7 +65,7 @@ export default function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 w-full ml-0 md:ml-12 lg:ml-[200px]">
             {/* Quick Links */}
             <div>
-              <h3 className="text-xl sm:text-2xl font-display uppercase tracking-wide text-[#E9ECEF] mb-3 sm:mb-4">
+              <h3 className="text-xl sm:text-2xl font-display font-bold uppercase tracking-wide text-[#E9ECEF] mb-3 sm:mb-4">
                 Quick Links
               </h3>
               <ul className="space-y-2.5 sm:space-y-3 list-disc marker:text-[#FB5607] pl-5 text-base sm:text-lg font-medium">
@@ -98,7 +98,7 @@ export default function Footer() {
 
             {/* Socials */}
             <div>
-              <h3 className="text-xl sm:text-2xl font-display uppercase tracking-wide text-[#E9ECEF] mb-3 sm:mb-4">
+              <h3 className="text-xl sm:text-2xl font-display font-bold uppercase tracking-wide text-[#E9ECEF] mb-3 sm:mb-4">
                 Socials
               </h3>
               <ul className="space-y-2.5 sm:space-y-3 text-base sm:text-lg font-medium">
@@ -163,7 +163,7 @@ export default function Footer() {
 
             {/* Contact Us */}
             <div className="ml-0 sm:-ml-6">
-              <h3 className="text-xl sm:text-2xl font-display uppercase tracking-wide text-[#E9ECEF] mb-3 sm:mb-4">
+              <h3 className="text-xl sm:text-2xl font-display font-bold uppercase tracking-wide text-[#E9ECEF] mb-3 sm:mb-4">
                 Contact Us
               </h3>
               <ul className="space-y-2.5 sm:space-y-3 text-base sm:text-lg font-medium">
@@ -199,7 +199,7 @@ export default function Footer() {
         </div>
 
         {/* Subtle bottom line */}
-        <div className="border-t-2 border-dashed border-white/15 py-6 text-xs sm:text-sm font-mono text-[#E9ECEF]/70">
+        <div className="border-t border-dashed border-white/15 py-6 text-xs sm:text-sm font-mono text-[#E9ECEF]/70">
           <p className="leading-relaxed">
             © {new Date().getFullYear()} CIE, MLRIT. All rights reserved. [
             VOLCANIC ASH PALETTE // EDITION 2026 ]

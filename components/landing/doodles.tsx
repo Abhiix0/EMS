@@ -173,22 +173,106 @@ export function ScotchTape({
 }) {
   const colorStyles = {
     neutral:
-      "bg-white/70 border-y border-black/15 shadow-[0_1px_3px_rgba(0,0,0,0.15)]",
+      "bg-white/65 border-y border-black/10 shadow-[0_1px_3px_rgba(33,37,41,0.08)]",
     orange:
-      "bg-[#FB5607]/25 border-y border-[#FB5607]/30 shadow-[0_1px_3px_rgba(0,0,0,0.15)]",
+      "bg-[#FB5607]/22 border-y border-[#FB5607]/25 shadow-[0_1px_3px_rgba(251,86,7,0.12)]",
     violet:
-      "bg-[#8338EC]/25 border-y border-[#8338EC]/30 shadow-[0_1px_3px_rgba(0,0,0,0.15)]",
+      "bg-[#8338EC]/22 border-y border-[#8338EC]/25 shadow-[0_1px_3px_rgba(131,56,236,0.12)]",
   };
 
   return (
     <div
-      className={`h-5 sm:h-6 backdrop-blur-[1px] select-none pointer-events-none ${colorStyles[color]} ${className}`}
+      className={`h-5 sm:h-6 backdrop-blur-[2px] select-none pointer-events-none ${colorStyles[color]} ${className}`}
       style={{
         clipPath:
-          "polygon(0% 12%, 4% 0%, 96% 0%, 100% 15%, 98% 85%, 100% 100%, 3% 98%, 0% 80%)",
+          "polygon(0% 15%, 3% 0%, 97% 0%, 100% 12%, 98% 88%, 100% 100%, 3% 98%, 0% 82%)",
       }}
       aria-hidden="true"
     />
+  );
+}
+
+export function WashiTape({
+  className = "",
+  color = "violet",
+}: {
+  className?: string;
+  color?: "neutral" | "orange" | "violet";
+}) {
+  const colorStyles = {
+    neutral: "bg-white/60 border-x border-dashed border-black/15",
+    orange: "bg-[#FB5607]/22 border-x border-dashed border-[#FB5607]/35",
+    violet: "bg-[#8338EC]/22 border-x border-dashed border-[#8338EC]/35",
+  };
+
+  return (
+    <div
+      className={`h-4 sm:h-5 backdrop-blur-[2px] shadow-[0_1px_3px_rgba(33,37,41,0.06)] select-none pointer-events-none ${colorStyles[color]} ${className}`}
+      style={{
+        clipPath: "polygon(2% 0%, 98% 0%, 100% 50%, 98% 100%, 2% 100%, 0% 50%)",
+      }}
+      aria-hidden="true"
+    />
+  );
+}
+
+export function PencilAsterisk({
+  className = "size-4 text-[#FB5607]",
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12 3V21M4.5 7.5L19.5 16.5M4.5 16.5L19.5 7.5" />
+    </svg>
+  );
+}
+
+export function CurlyBracket({
+  className = "w-4 h-12 text-[#8338EC]",
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox="0 0 20 60"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M16 4C10 4 8 8 8 16V24C8 28 4 30 2 30C4 30 8 32 8 36V44C8 52 10 56 16 56" />
+    </svg>
+  );
+}
+
+export function CircleHighlighter({
+  className = "w-32 h-12 text-[#FB5607]",
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox="0 0 140 50"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12 25C15 12 45 6 82 7C118 8 135 18 132 30C128 42 98 46 58 45C22 44 4 36 8 22" />
+    </svg>
   );
 }
 

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Caveat:wght@500;600;700&family=Dela+Gothic+One&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&family=Space+Grotesk:wght@500;600;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -9,13 +9,16 @@
   --color-volcanic-violet: #8338EC;
   --color-volcanic-dark: #212529;
   --color-volcanic-ash: #E9ECEF;
-  --font-display: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
-  --font-dela: 'Dela Gothic One', sans-serif;
+  --color-ash-paper: #E9ECEF;
+  --color-ash-dark: #212529;
+  --color-lava-orange: #FB5607;
+  --color-electric-violet: #8338EC;
+  --font-display: 'Space Grotesk', sans-serif;
   --font-script: 'Caveat', cursive;
   --font-body: 'Plus Jakarta Sans', var(--font-geist-sans), sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: 'Plus Jakarta Sans', var(--font-geist-sans), sans-serif;
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -102,10 +105,11 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -117,8 +121,123 @@
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@keyframes ribbonFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(0.4deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.animate-ribbon {
+  animation: ribbonFloat 4s ease-in-out infinite;
+  transform-origin: top center;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ribbon {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ========================================================================= */
+/* DIGITAL SCRATCHPAD & PERSONAL SKETCHBOOK UTILITIES                        */
+/* ========================================================================= */
+
+.bg-paper-grain {
+  background-color: #E9ECEF;
+  background-image: radial-gradient(rgba(33, 37, 41, 0.05) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.bg-notebook-ruled {
+  background-color: #E9ECEF;
+  background-image:
+    repeating-linear-gradient(to bottom, transparent, transparent 27px, rgba(33, 37, 41, 0.045) 28px),
+    radial-gradient(rgba(33, 37, 41, 0.04) 1px, transparent 1px);
+  background-size: 100% 28px, 16px 16px;
+}
+
+.bg-notebook-grid {
+  background-color: #E9ECEF;
+  background-image:
+    linear-gradient(rgba(33, 37, 41, 0.045) 1px, transparent 1px),
+    linear-gradient(to right, rgba(33, 37, 41, 0.045) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Soft Feathered Paper Shadows (No 90-degree black block shadows) */
+.paper-shadow {
+  box-shadow: 0 4px 20px -2px rgba(33, 37, 41, 0.06), 0 2px 6px -1px rgba(33, 37, 41, 0.04);
+}
+
+.paper-shadow-lift {
+  box-shadow: 0 12px 28px -4px rgba(33, 37, 41, 0.1), 0 4px 10px -2px rgba(33, 37, 41, 0.06);
+}
+
+.paper-shadow-soft {
+  box-shadow: 0 2px 10px -1px rgba(33, 37, 41, 0.05), 0 1px 3px rgba(33, 37, 41, 0.03);
+}
+
+/* Highlighter Text Marker Sweeps */
+.highlighter-orange {
+  background: rgba(251, 86, 7, 0.20);
+  border-radius: 2px;
+  padding: 0 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.highlighter-violet {
+  background: rgba(131, 56, 236, 0.20);
+  border-radius: 2px;
+  padding: 0 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Translucent Washi Tape Strips */
+.washi-tape-orange {
+  background: rgba(251, 86, 7, 0.22);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 4px rgba(33, 37, 41, 0.08);
+  border-left: 1px dashed rgba(251, 86, 7, 0.35);
+  border-right: 1px dashed rgba(251, 86, 7, 0.35);
+}
+
+.washi-tape-violet {
+  background: rgba(131, 56, 236, 0.22);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 4px rgba(33, 37, 41, 0.08);
+  border-left: 1px dashed rgba(131, 56, 236, 0.35);
+  border-right: 1px dashed rgba(131, 56, 236, 0.35);
+}
+
+.washi-tape-soft {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 3px rgba(33, 37, 41, 0.08);
+  border-left: 1px dashed rgba(33, 37, 41, 0.2);
+  border-right: 1px dashed rgba(33, 37, 41, 0.2);
 }
 
 @layer utilities {

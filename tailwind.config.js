@@ -28,6 +28,10 @@ module.exports = {
       colors: {
         primary: "#F4A4BF",
         secondary: "#A652BC",
+        "ash-paper": "#E9ECEF",
+        "ash-dark": "#212529",
+        "lava-orange": "#FB5607",
+        "electric-violet": "#8338EC",
         "volcanic-orange": "#FB5607",
         "volcanic-violet": "#8338EC",
         "volcanic-dark": "#212529",
@@ -35,10 +39,10 @@ module.exports = {
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
-        display: ["'Comic Sans MS'", "'Comic Neue'", "cursive", "sans-serif"],
-        dela: ["'Dela Gothic One'", "sans-serif"],
+        display: ["'Space Grotesk'", "sans-serif"],
         script: ["'Caveat'", "cursive"],
         body: ["'Plus Jakarta Sans'", "sans-serif"],
+        sans: ["'Plus Jakarta Sans'", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

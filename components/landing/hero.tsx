@@ -10,18 +10,18 @@ import {
   MarkerSquiggle,
   DoodleStar,
   DoodleArrow,
-  DoodleSparkle,
   DoodleSmiley,
-  ScotchTape,
+  WashiTape,
+  PencilAsterisk,
 } from "./doodles";
 
 /**
- * Hero Section — Zine-Inspired Grunge Scrapbook / Indie Collage
+ * Hero Section — Digital Scratchpad & Personal Sketchbook
  * with custom "Volcanic Ash" color system:
- * - Lava Orange: #FB5607
- * - Electric Violet: #8338EC
- * - Obsidian Charcoal: #212529
- * - Ash Pale White: #E9ECEF
+ * - Pale Ash Paper: #E9ECEF
+ * - Soft Obsidian Ink: #212529
+ * - Lava Orange Highlighter: #FB5607
+ * - Electric Violet Felt Pen: #8338EC
  */
 export default function Hero() {
   useHeroHappeningTransition();
@@ -30,14 +30,14 @@ export default function Hero() {
     <section
       id="hero"
       aria-labelledby="hero-heading"
-      className="relative w-full min-h-[calc(100vh-5rem)] pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24 flex items-center justify-center overflow-x-clip bg-[#E9ECEF] bg-paper-grain text-[#212529]"
+      className="relative w-full min-h-[calc(100vh-5rem)] pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24 flex items-center justify-center overflow-x-clip bg-[#E9ECEF] text-[#212529]"
     >
-      {/* Subtle Grain & Graph Pattern Overlay */}
+      {/* Subtle Graph / Grid Texture Overlay */}
       <div
         className="absolute inset-0 pointer-events-none opacity-40"
         style={{
           backgroundImage:
-            "radial-gradient(rgba(33, 37, 41, 0.12) 1px, transparent 1px)",
+            "linear-gradient(rgba(33, 37, 41, 0.035) 1px, transparent 1px), linear-gradient(to right, rgba(33, 37, 41, 0.035) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
           maskImage:
             "radial-gradient(ellipse 85% 75% at 50% 45%, black 40%, transparent 100%)",
@@ -62,80 +62,87 @@ export default function Hero() {
               id="hero-editorial-lift"
               className="w-full flex flex-col items-start text-left"
             >
-              {/* 1. EMS Status Badge with Tape Accent */}
+              {/* 1. EMS Status Badge with Washi Tape Accent */}
               <div className="relative mb-6 sm:mb-8">
-                <ScotchTape
+                <WashiTape
                   color="orange"
-                  className="absolute -top-3 -left-3 w-16 rotate-[-6deg] z-10"
+                  className="absolute -top-2.5 -left-3 w-16 rotate-[-5deg] z-10"
                 />
                 <div
                   id="ems-status-pill"
-                  className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border-1.5 border-[#212529] bg-white shadow-[2px_2px_0px_#212529] text-xs font-mono font-bold text-[#212529] tracking-wider select-none"
+                  className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-black/10 bg-white/90 paper-shadow-soft text-xs font-mono font-medium text-[#212529] tracking-wider select-none"
                 >
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FB5607] opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FB5607]" />
                   </span>
-                  <span className="tracking-widest">EMS // CIE</span>
+                  <span className="tracking-widest font-semibold">
+                    EMS // CIE
+                  </span>
                   <span className="text-[#212529]/30 text-[10px]">•</span>
-                  <span className="text-[#FB5607] uppercase tracking-wider font-extrabold">
+                  <span className="text-[#FB5607] uppercase tracking-wider font-bold">
                     ACTIVE 2026
                   </span>
                 </div>
               </div>
 
-              {/* 2. Primary Headline: Distressed Brutalist Display Font with Crown & Marker Squiggle */}
+              {/* 2. Primary Headline: Clean Sans mixed with Organic Highlighter Script */}
               <div className="relative inline-block max-w-2xl">
-                <CrownDoodle className="absolute -top-7 left-20 sm:left-28 size-9 sm:size-11 text-[#FB5607] -rotate-6 pointer-events-none" />
+                <CrownDoodle className="absolute -top-7 left-20 sm:left-28 size-9 sm:size-11 text-[#FB5607] -rotate-6 pointer-events-none opacity-90" />
                 <h1
                   id="hero-heading"
-                  className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[4.75rem] xl:text-[5.5rem] text-[#212529] leading-[0.94] tracking-tight -rotate-1 select-none"
+                  className="text-[#212529] leading-[0.96] tracking-tight select-none"
                 >
-                  CAMPUS,
-                  <br />
-                  <span className="text-[#FB5607] inline-block mt-1">
-                    IN MOTION.
+                  <span className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.25rem] block">
+                    CAMPUS,
+                  </span>
+                  <span className="font-script text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.75rem] text-[#FB5607] font-bold inline-block mt-1 -rotate-1 relative">
+                    <span className="relative z-10">IN MOTION.</span>
+                    <span
+                      className="absolute inset-x-[-8px] bottom-2 top-3 -z-10 rounded-sm bg-[#FB5607]/15 -rotate-1"
+                      aria-hidden="true"
+                    />
                   </span>
                 </h1>
-                <MarkerSquiggle className="w-56 sm:w-80 h-4 text-[#FB5607] mt-2" />
+                <MarkerSquiggle className="w-48 sm:w-64 h-3 text-[#FB5607] mt-2 opacity-80" />
               </div>
 
               {/* 3. Handwritten Scrapbook Accent Note */}
-              <div className="mt-4 sm:mt-5 flex items-center gap-3 font-script text-2xl sm:text-3xl font-bold text-[#212529] -rotate-1.5 select-none">
+              <div className="mt-4 sm:mt-5 flex items-center gap-3 font-script text-2xl sm:text-3xl font-bold text-[#212529]/90 -rotate-1 select-none">
                 <span>Same campus. Different perspective.</span>
-                <DoodleStar className="size-4 text-[#8338EC]" />
-                <DoodleSparkle className="size-5 text-[#FB5607] hidden sm:block" />
+                <DoodleStar className="size-4 text-[#8338EC] opacity-80" />
+                <PencilAsterisk className="size-4 text-[#FB5607] hidden sm:block opacity-80" />
               </div>
 
-              {/* 4. Supporting Tagline: Clean Grotesque Sans */}
-              <p className="mt-4 sm:mt-5 text-base sm:text-lg lg:text-xl text-[#212529]/80 font-body font-normal max-w-xl leading-relaxed">
-                Discover. Register. Participate. Your one-stop zine platform for
-                all college events, hackathons, and student collectives.
+              {/* 4. Supporting Tagline: Crisp Accessible Sans */}
+              <p className="mt-4 sm:mt-5 text-base sm:text-lg lg:text-xl text-[#212529]/75 font-body font-normal max-w-xl leading-relaxed">
+                Discover. Register. Participate. Your personal campus sketchbook
+                for all college events, hackathons, and student collectives.
               </p>
 
-              {/* 5. Call To Actions: Tactile Volcanic Brutalist Buttons */}
+              {/* 5. Call To Actions: Organic Tactile Buttons */}
               <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 sm:gap-5 w-full sm:w-auto">
-                {/* Primary CTA: Rounded Pill in Obsidian Charcoal with Lava Orange Drop-Shadow */}
+                {/* Primary CTA: Dark Obsidian Pill with Soft Lava Orange Ambient Glow */}
                 <Link
                   href="/events"
                   id="hero-primary-cta"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-sm font-black uppercase tracking-wider text-[#E9ECEF] bg-[#212529] border-2 border-[#212529] shadow-[4px_4px_0px_#FB5607] hover:shadow-[2px_2px_0px_#FB5607] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all duration-150 group cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-wider text-[#E9ECEF] bg-[#212529] paper-shadow hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-4px_rgba(251,86,7,0.35)] active:translate-y-0 transition-all duration-200 group cursor-pointer"
                 >
                   <span>Explore Events</span>
-                  <ArrowRight className="size-4 transition-transform duration-150 group-hover:translate-x-1 text-[#FB5607]" />
+                  <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1 text-[#FB5607]" />
                 </Link>
 
-                {/* Secondary CTA: Outline Pill in #212529 with Electric Violet Hover */}
+                {/* Secondary CTA: Soft Outline Pill with Subtle Pencil Border */}
                 <Link
                   href="/clubs"
                   id="hero-secondary-cta"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-bold uppercase tracking-wider text-[#212529] bg-white/70 hover:bg-white hover:text-[#8338EC] border-2 border-[#212529] hover:border-[#8338EC] shadow-[3px_3px_0px_#212529] hover:shadow-[3px_3px_0px_#8338EC] transition-all duration-150 cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-semibold uppercase tracking-wider text-[#212529] bg-white/60 hover:bg-white hover:text-[#8338EC] border border-[#212529]/25 hover:border-[#8338EC]/50 paper-shadow-soft hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
                 >
                   <Compass className="size-4 text-[#8338EC]" />
                   <span>Explore Clubs</span>
                 </Link>
 
-                <div className="hidden sm:flex items-center gap-1.5 ml-2 font-script text-lg text-[#8338EC]">
+                <div className="hidden sm:flex items-center gap-1.5 ml-2 font-script text-xl text-[#8338EC]">
                   <DoodleArrow className="w-8 h-6 text-[#8338EC] -rotate-6" />
                   <span>jump in!</span>
                 </div>
@@ -144,10 +151,10 @@ export default function Hero() {
           </motion.div>
 
           {/* ========================================================================= */}
-          {/* RIGHT SIDE: SCRAPBOOK COLLAGE CENTERPIECE                                */}
+          {/* RIGHT SIDE: SKETCHBOOK COLLAGE CENTERPIECE                               */}
           {/* ========================================================================= */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-6 xl:col-span-5 relative flex items-center justify-center pt-6 lg:pt-0"
@@ -157,100 +164,100 @@ export default function Hero() {
               id="hero-booklet-lift"
               className="relative w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[460px] mx-auto select-none"
             >
-              {/* Scotch Tape across top-left */}
-              <ScotchTape
+              {/* Washi Tape Anchors across top edges */}
+              <WashiTape
                 color="orange"
-                className="absolute -top-3 left-6 w-24 rotate-[-6deg] z-30"
+                className="absolute -top-2.5 left-8 w-24 rotate-[-4deg] z-30"
               />
-              <ScotchTape
+              <WashiTape
                 color="violet"
-                className="absolute -top-3 right-8 w-20 rotate-[4deg] z-30"
+                className="absolute -top-2.5 right-10 w-20 rotate-[3deg] z-30"
               />
 
-              {/* Floating Collage Wrapper with Subtle Tilt */}
+              {/* Floating Collage Wrapper with Organic Slanted Tilt */}
               <div
                 className="relative transition-transform duration-300 ease-out hover:rotate-[-0.5deg]"
                 style={{
-                  transform: "rotate(1.5deg)",
+                  transform: "rotate(1deg)",
                 }}
               >
-                {/* 1. Physical Dossier Backing Card */}
-                <div className="relative bg-[#212529] text-[#E9ECEF] border-2 border-[#212529] rounded-2xl p-3 sm:p-4.5 shadow-[8px_8px_0px_#212529,14px_14px_0px_#FB5607]">
+                {/* 1. Physical Dossier Backing Sheet */}
+                <div className="relative bg-white/95 text-[#212529] border border-black/10 rounded-2xl p-4 sm:p-5 paper-shadow-lift">
                   {/* Top Header Strip */}
-                  <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-white/15 text-[11px] font-mono text-[#E9ECEF]/70">
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#212529]/10 text-[11px] font-mono text-[#212529]/70">
                     <div className="flex items-center gap-2">
                       <span className="inline-block size-2 rounded-full bg-[#FB5607]" />
-                      <span className="font-bold text-white tracking-wider">
-                        EMS // DOSSIER NO. 26
+                      <span className="font-semibold text-[#212529] tracking-wider">
+                        EMS // SKETCHBOOK № 26
                       </span>
                     </div>
                     <span className="text-[10px] text-[#8338EC] font-bold tracking-widest">
-                      [ ★ VOLCANIC ASH ★ ]
+                      [ STUDIO DRAFT ]
                     </span>
                   </div>
 
-                  {/* 2. Main Event Booklet / Printed Program Guide Leaflet */}
-                  <div className="relative bg-[#E9ECEF] border-2 border-[#212529] rounded-xl p-3.5 sm:p-4 text-[#212529] shadow-[2px_2px_0px_rgba(0,0,0,0.15)] overflow-hidden">
-                    {/* Printed Registration Marks in corners */}
-                    <div className="absolute top-1.5 left-1.5 text-[8px] font-mono text-[#212529]/40 leading-none">
-                      ⌖
+                  {/* 2. Main Event Leaflet Sheet with Faint Ruling */}
+                  <div className="relative bg-[#E9ECEF]/70 border border-[#212529]/10 rounded-xl p-3.5 sm:p-4 text-[#212529] paper-shadow-soft overflow-hidden">
+                    {/* Faint pencil crop marks */}
+                    <div className="absolute top-2 left-2 text-[9px] font-mono text-[#212529]/30 leading-none">
+                      +
                     </div>
-                    <div className="absolute top-1.5 right-1.5 text-[8px] font-mono text-[#212529]/40 leading-none">
-                      ⌖
+                    <div className="absolute top-2 right-2 text-[9px] font-mono text-[#212529]/30 leading-none">
+                      +
                     </div>
 
                     {/* Booklet Header Strip */}
-                    <div className="flex items-center justify-between pb-2 border-b-2 border-[#212529]">
+                    <div className="flex items-center justify-between pb-2 border-b border-[#212529]/10">
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <span className="px-2 py-0.5 rounded bg-[#FB5607] text-white text-[9px] font-mono font-bold tracking-wider uppercase">
+                          <span className="px-2 py-0.5 rounded-sm bg-[#FB5607]/15 text-[#FB5607] text-[10px] font-mono font-bold tracking-wider uppercase">
                             LINEUP
                           </span>
-                          <span className="text-xs font-black tracking-tight uppercase text-[#212529]">
+                          <span className="text-xs font-bold tracking-tight uppercase text-[#212529]">
                             CAMPUS SCHEDULE
                           </span>
                         </div>
-                        <p className="text-[9px] font-mono text-[#212529]/60 mt-0.5">
-                          VOL. 26 • ALL SESSIONS • ADMIT ALL
+                        <p className="text-[10px] font-script text-[#212529]/70 mt-0.5 text-xs">
+                          vol. 26 • open to all departments
                         </p>
                       </div>
                       <div className="text-right">
-                        <span className="inline-block px-1.5 py-0.5 border border-[#212529] rounded text-[8px] font-mono font-bold bg-white shadow-[1px_1px_0px_#212529]">
-                          CIE DISPATCH
+                        <span className="inline-block px-2 py-0.5 rounded text-[9px] font-mono font-semibold bg-white/80 border border-black/10 paper-shadow-soft">
+                          VERIFIED
                         </span>
                       </div>
                     </div>
 
-                    {/* Event Category Agenda Rows */}
+                    {/* Event Category Agenda Rows (Soft Paper Slips) */}
                     <div className="mt-3 space-y-2">
-                      {/* Row 1: HACKATHON (Orange highlight) */}
-                      <div className="flex items-center justify-between p-2 rounded-lg bg-white border border-[#212529] shadow-[2px_2px_0px_#212529]">
+                      {/* Row 1: HACKATHON */}
+                      <div className="flex items-center justify-between p-2 rounded-lg bg-white/90 border border-black/5 paper-shadow-soft">
                         <div className="flex items-center gap-2">
-                          <span className="size-5 rounded bg-[#FB5607] text-white font-mono text-[10px] font-black flex items-center justify-center border border-[#212529]">
+                          <span className="size-5 rounded-full bg-[#FB5607]/15 text-[#FB5607] font-mono text-[10px] font-bold flex items-center justify-center">
                             01
                           </span>
                           <div>
-                            <div className="text-[11px] sm:text-xs font-black tracking-tight uppercase text-[#212529]">
-                              HACKATHON
+                            <div className="text-[11px] sm:text-xs font-bold tracking-tight uppercase text-[#212529]">
+                              HACKATHON 2026
                             </div>
                             <div className="text-[9px] font-mono text-[#212529]/60">
                               48H CODE SPRINT • LABS
                             </div>
                           </div>
                         </div>
-                        <span className="px-2 py-0.5 rounded text-[8px] font-mono font-bold bg-[rgba(251,86,7,0.12)] text-[#FB5607] border border-[#FB5607]/40">
+                        <span className="px-2 py-0.5 rounded text-[9px] font-mono font-medium bg-[#FB5607]/12 text-[#FB5607]">
                           #TECH
                         </span>
                       </div>
 
-                      {/* Row 2: ARTIST SHOWCASE (Violet highlight) */}
-                      <div className="flex items-center justify-between p-2 rounded-lg bg-white border border-[#212529] shadow-[2px_2px_0px_#212529]">
+                      {/* Row 2: ARTIST SHOWCASE */}
+                      <div className="flex items-center justify-between p-2 rounded-lg bg-white/90 border border-black/5 paper-shadow-soft">
                         <div className="flex items-center gap-2">
-                          <span className="size-5 rounded bg-[#8338EC] text-white font-mono text-[10px] font-black flex items-center justify-center border border-[#212529]">
+                          <span className="size-5 rounded-full bg-[#8338EC]/15 text-[#8338EC] font-mono text-[10px] font-bold flex items-center justify-center">
                             02
                           </span>
                           <div>
-                            <div className="text-[11px] sm:text-xs font-black tracking-tight uppercase text-[#212529]">
+                            <div className="text-[11px] sm:text-xs font-bold tracking-tight uppercase text-[#212529]">
                               ARTIST SHOWCASE
                             </div>
                             <div className="text-[9px] font-mono text-[#212529]/60">
@@ -258,19 +265,19 @@ export default function Hero() {
                             </div>
                           </div>
                         </div>
-                        <span className="px-2 py-0.5 rounded text-[8px] font-mono font-bold bg-[rgba(131,56,236,0.12)] text-[#8338EC] border border-[#8338EC]/40">
+                        <span className="px-2 py-0.5 rounded text-[9px] font-mono font-medium bg-[#8338EC]/12 text-[#8338EC]">
                           #ARTS
                         </span>
                       </div>
 
-                      {/* Row 3: TECH FEST '26 (Dark highlight) */}
-                      <div className="flex items-center justify-between p-2 rounded-lg bg-[#212529] text-[#E9ECEF] border border-[#212529] shadow-[2px_2px_0px_#FB5607]">
+                      {/* Row 3: TECH FEST '26 (Soft obsidian highlight) */}
+                      <div className="flex items-center justify-between p-2 rounded-lg bg-[#212529] text-[#E9ECEF] paper-shadow-soft">
                         <div className="flex items-center gap-2">
-                          <span className="size-5 rounded bg-[#FB5607] text-white font-mono text-[10px] font-black flex items-center justify-center border border-[#212529]">
+                          <span className="size-5 rounded-full bg-[#FB5607] text-white font-mono text-[10px] font-bold flex items-center justify-center">
                             03
                           </span>
                           <div>
-                            <div className="text-[11px] sm:text-xs font-black tracking-tight uppercase text-white">
+                            <div className="text-[11px] sm:text-xs font-bold tracking-tight uppercase text-white">
                               TECH FEST &apos;26
                             </div>
                             <div className="text-[9px] font-mono text-[#E9ECEF]/70">
@@ -278,19 +285,19 @@ export default function Hero() {
                             </div>
                           </div>
                         </div>
-                        <span className="px-2 py-0.5 rounded text-[8px] font-mono font-bold bg-[#FB5607] text-white">
+                        <span className="px-2 py-0.5 rounded text-[9px] font-mono font-medium bg-[#FB5607] text-white">
                           #FEATURED
                         </span>
                       </div>
 
                       {/* Row 4: CULTURAL NIGHT */}
-                      <div className="flex items-center justify-between p-2 rounded-lg bg-white border border-[#212529] shadow-[2px_2px_0px_#212529]">
+                      <div className="flex items-center justify-between p-2 rounded-lg bg-white/90 border border-black/5 paper-shadow-soft">
                         <div className="flex items-center gap-2">
-                          <span className="size-5 rounded bg-[#E9ECEF] text-[#212529] font-mono text-[10px] font-black flex items-center justify-center border border-[#212529]">
+                          <span className="size-5 rounded-full bg-[#E9ECEF] text-[#212529] font-mono text-[10px] font-bold flex items-center justify-center">
                             04
                           </span>
                           <div>
-                            <div className="text-[11px] sm:text-xs font-black tracking-tight uppercase text-[#212529]">
+                            <div className="text-[11px] sm:text-xs font-bold tracking-tight uppercase text-[#212529]">
                               CULTURAL NIGHT
                             </div>
                             <div className="text-[9px] font-mono text-[#212529]/60">
@@ -298,17 +305,17 @@ export default function Hero() {
                             </div>
                           </div>
                         </div>
-                        <span className="px-2 py-0.5 rounded text-[8px] font-mono font-bold bg-[rgba(131,56,236,0.12)] text-[#8338EC] border border-[#8338EC]/40">
+                        <span className="px-2 py-0.5 rounded text-[9px] font-mono font-medium bg-[#8338EC]/12 text-[#8338EC]">
                           #CULTURAL
                         </span>
                       </div>
                     </div>
 
-                    {/* Perforated Barcode Strip */}
-                    <div className="mt-3 pt-2.5 border-t-2 border-dashed border-[#212529]/30 flex items-center justify-between">
+                    {/* Perforated Receipt Line */}
+                    <div className="mt-3 pt-2.5 border-t border-dashed border-[#212529]/20 flex items-center justify-between">
                       <div>
                         <div
-                          className="flex items-center gap-0.5 h-6 overflow-hidden"
+                          className="flex items-center gap-0.5 h-5 overflow-hidden opacity-70"
                           aria-label="Ticket Barcode"
                         >
                           <span className="w-1 h-full bg-[#212529]" />
@@ -321,58 +328,44 @@ export default function Hero() {
                           <span className="w-1.5 h-full bg-[#212529]" />
                           <span className="w-0.5 h-full bg-[#212529]" />
                           <span className="w-1 h-full bg-[#212529]" />
-                          <span className="w-2 h-full bg-[#212529]" />
                         </div>
-                        <span className="text-[8px] font-mono text-[#212529]/60 block mt-0.5 font-bold">
-                          *EMS-VOLCANIC-2026*
+                        <span className="text-[8px] font-mono text-[#212529]/60 block mt-0.5">
+                          *EMS-STUDIO-2026*
                         </span>
                       </div>
                       <div className="text-right">
-                        <div className="text-[8px] font-mono font-bold text-[#212529]">
+                        <div className="text-[9px] font-mono font-semibold text-[#212529]">
                           OCT 24—26
                         </div>
-                        <div className="inline-block mt-0.5 px-2 py-0.5 bg-[#8338EC] text-white text-[8px] font-mono font-extrabold rounded border border-[#212529]">
-                          VERIFIED PASS
+                        <div className="inline-block mt-0.5 px-2 py-0.5 bg-[#8338EC]/15 text-[#8338EC] text-[9px] font-mono font-bold rounded">
+                          ALL ACCESS
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* 3. Tucked Layered Physical Lava Orange Ticket Flap */}
-                <div className="absolute -top-4 -right-4 bg-[#FB5607] text-white border-2 border-[#212529] rounded-lg px-3 py-1.5 shadow-[4px_4px_0px_#212529] rotate-[8deg] z-20">
-                  <div className="flex items-center gap-1.5 text-[10px] font-mono font-bold">
+                {/* 3. Tucked Sticky Note Flap */}
+                <div className="absolute -top-3 -right-3 bg-[#FB5607]/90 text-white rounded-md px-3 py-1.5 paper-shadow rotate-[6deg] z-20">
+                  <div className="flex items-center gap-1.5 text-[10px] font-mono font-semibold">
                     <span className="size-1.5 rounded-full bg-white animate-pulse" />
                     <span className="tracking-wider">ADMIT ALL</span>
-                    <span className="text-white/40">|</span>
-                    <span className="text-white font-extrabold">#0492</span>
+                    <span className="text-white/50">|</span>
+                    <span className="font-bold">#0492</span>
                   </div>
                 </div>
 
-                {/* 4. Scrapbook Stickers & Doodles */}
-                {/* Sticker A: #TECH FEST Tactile Stamp (Top Left) */}
-                <div className="absolute -top-4 -left-4 sm:-left-6 bg-white text-[#212529] border-2 border-[#212529] px-2.5 py-1 rounded-md shadow-[3px_3px_0px_#212529] -rotate-6 z-20">
-                  <span className="text-[10px] font-mono font-black tracking-tight">
-                    #TECH FEST
+                {/* 4. Organic Sketchbook Marginalia Notes */}
+                {/* Note A: Handwritten sticky note at bottom left */}
+                <div className="absolute -bottom-4 -left-4 sm:-left-6 bg-white/95 text-[#212529] px-3 py-1.5 rounded-md paper-shadow -rotate-6 z-20 border border-black/5">
+                  <span className="text-xs font-script font-bold text-[#FB5607] block">
+                    bring a friend! ↗
                   </span>
                 </div>
 
-                {/* Sticker B: Violet Circular Rubber Stamp (Bottom Left) */}
-                <div className="absolute -bottom-5 -left-3 sm:-left-5 size-16 sm:size-18 rounded-full border-2 border-dashed border-[#8338EC] bg-[#E9ECEF] flex flex-col items-center justify-center text-center p-1 text-[#8338EC] shadow-[3px_3px_0px_#212529] rotate-[-12deg] z-20">
-                  <span className="text-[7px] font-mono font-black tracking-widest uppercase">
-                    ★ CAMPUS ★
-                  </span>
-                  <span className="text-[9px] font-display uppercase leading-none my-0.5 text-[#212529]">
-                    ACTIVE
-                  </span>
-                  <span className="text-[7px] font-mono font-bold text-[#FB5607]">
-                    2026
-                  </span>
-                </div>
-
-                {/* Sticker C: Doodle Smiley (Bottom Right) */}
-                <div className="absolute -bottom-4 -right-3 z-20 rotate-6 bg-white/90 p-1.5 rounded-full border-2 border-[#212529] shadow-[3px_3px_0px_#212529]">
-                  <DoodleSmiley className="size-6 text-[#212529]" />
+                {/* Note B: Doodle Smiley */}
+                <div className="absolute -bottom-3 -right-2 z-20 rotate-6 bg-white/95 p-1.5 rounded-full paper-shadow border border-black/5">
+                  <DoodleSmiley className="size-5 text-[#212529]/80" />
                 </div>
               </div>
             </div>

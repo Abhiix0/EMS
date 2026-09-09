@@ -10,11 +10,11 @@ import { TornPaperDivider, MarkerSquiggle } from "./doodles";
 /**
  * YOUR CAMPUS HAS A LOT GOING ON — Section 04: The Campus Index
  *
- * Volcanic Ash & Zine Collage Edition:
+ * Digital Scratchpad & Personal Sketchbook / Volcanic Ash Edition:
  * - Obsidian Charcoal (#212529) backdrop creating a high-contrast volcanic band.
- * - Monolithic chapter heading in Permanent Marker display typography with Lava Orange (#FB5607) highlight.
- * - Three tactile neo-brutal index rows (EVENTS, CLUBS, EXPERIENCES) with tactile press feedback.
- * - Electric Violet (#8338EC) & Lava Orange (#FB5607) accent strips and arrow affordances.
+ * - Monolithic chapter heading in Space Grotesk display typography with Lava Orange (#FB5607) highlight.
+ * - Three tactile index rows (EVENTS, CLUBS, EXPERIENCES) with soft graphite dividers and smooth hover lifts.
+ * - Preserves GSAP hooks: #campus-index-header, #campus-index-heading, .campus-index-row.
  */
 
 interface IndexRow {
@@ -64,7 +64,7 @@ export default function CampusActivity() {
     <section
       id="campus-activity"
       aria-labelledby="campus-index-heading"
-      className="relative bg-[#212529] text-[#E9ECEF] py-24 sm:py-32 lg:py-40 px-4 sm:px-6 lg:px-10 border-b-2 border-[#212529] overflow-hidden"
+      className="relative bg-[#212529] text-[#E9ECEF] py-24 sm:py-32 lg:py-40 px-4 sm:px-6 lg:px-10 border-b border-[#212529]/20 overflow-hidden"
     >
       {/* Torn Paper Boundary at Top */}
       <div className="absolute top-0 left-0 right-0 -translate-y-[99%] overflow-hidden leading-none pointer-events-none z-20">
@@ -99,14 +99,14 @@ export default function CampusActivity() {
            ======================================================== */}
         <header id="campus-index-header" className="mb-16 sm:mb-24 lg:mb-28">
           {/* Chapter Metadata Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b-2 border-white/15">
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-white/15">
             <div className="flex items-center gap-3">
-              <span className="inline-block w-3 h-3 bg-[#FB5607] border border-white/40" />
-              <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#FB5607] font-black">
+              <span className="inline-block size-2 rounded-full bg-[#FB5607]" />
+              <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#FB5607] font-semibold">
                 THE CAMPUS INDEX · CHAPTER 04
               </span>
             </div>
-            <span className="font-mono text-xs tracking-wider text-[#E9ECEF]/60 uppercase font-bold hidden sm:block">
+            <span className="font-mono text-xs tracking-wider text-[#E9ECEF]/60 uppercase font-semibold hidden sm:block">
               ECOSYSTEM DIRECTORY
             </span>
           </div>
@@ -115,13 +115,13 @@ export default function CampusActivity() {
           <div className="mt-10 sm:mt-12">
             <h2
               id="campus-index-heading"
-              className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-display uppercase tracking-tight text-[#E9ECEF] leading-[0.92]"
+              className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-bold uppercase tracking-tight text-[#E9ECEF] leading-[0.92]"
             >
               YOUR CAMPUS HAS
               <br />
               <span className="text-[#FB5607] inline-block relative">
                 A LOT GOING ON.
-                <MarkerSquiggle className="w-full h-3 sm:h-5 text-[#8338EC] -mt-1 sm:-mt-2" />
+                <MarkerSquiggle className="w-full h-3 sm:h-5 text-[#8338EC] -mt-1 sm:-mt-2 opacity-80" />
               </span>
             </h2>
           </div>
@@ -133,7 +133,7 @@ export default function CampusActivity() {
         <div
           role="navigation"
           aria-label="Campus Ecosystem Index"
-          className="border-t-2 border-white/20 divide-y-2 divide-white/10"
+          className="border-t border-white/15 divide-y divide-white/10"
         >
           {ROWS.map((row) => {
             const isOrange = row.accentColor === "orange";
@@ -143,11 +143,11 @@ export default function CampusActivity() {
                 <Link
                   href={row.href}
                   aria-label={`${row.category}: ${row.supporting}`}
-                  className="group relative block py-8 sm:py-12 lg:py-14 px-4 sm:px-8 -mx-4 sm:-mx-8 rounded-none transition-all duration-200 hover:bg-white/[0.04] hover:translate-x-1 sm:hover:translate-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FB5607] focus-visible:ring-offset-4 focus-visible:ring-offset-[#212529] motion-reduce:hover:translate-x-0"
+                  className="group relative block py-8 sm:py-12 lg:py-14 px-4 sm:px-8 -mx-4 sm:-mx-8 rounded-2xl transition-all duration-200 hover:bg-white/[0.03] hover:translate-x-1 sm:hover:translate-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FB5607] focus-visible:ring-offset-4 focus-visible:ring-offset-[#212529] motion-reduce:hover:translate-x-0"
                 >
                   {/* Left Accent Stripe Indicator on Hover */}
                   <div
-                    className={`absolute left-0 top-0 bottom-0 w-2 transition-all duration-200 opacity-0 group-hover:opacity-100 ${
+                    className={`absolute left-0 top-3 bottom-3 w-1.5 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 ${
                       isOrange ? "bg-[#FB5607]" : "bg-[#8338EC]"
                     }`}
                     aria-hidden="true"
@@ -158,13 +158,13 @@ export default function CampusActivity() {
                     {/* Left: Number + Dominant Category Title + Supporting Text */}
                     <div className="flex flex-col sm:flex-row sm:items-baseline gap-3 sm:gap-6 lg:gap-8 min-w-0">
                       {/* Classification Number */}
-                      <span className="font-mono text-base sm:text-lg font-black text-[#FB5607] tracking-widest shrink-0">
+                      <span className="font-mono text-base sm:text-lg font-bold text-[#FB5607] tracking-widest shrink-0">
                         {row.number}
                       </span>
 
                       <div>
                         {/* Dominant Category Title */}
-                        <h3 className="text-3xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight text-[#E9ECEF] group-hover:text-[#FB5607] transition-colors leading-none">
+                        <h3 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold uppercase tracking-tight text-[#E9ECEF] group-hover:text-[#FB5607] transition-colors leading-none">
                           {row.category}
                         </h3>
 
@@ -179,12 +179,12 @@ export default function CampusActivity() {
                     <div className="flex items-center justify-between lg:justify-end gap-6 sm:gap-8 shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-white/10">
                       {/* Optional Tiny Restrained Preview Fragment */}
                       <div className="flex flex-col items-start lg:items-end">
-                        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#E9ECEF]/50 group-hover:text-[#E9ECEF]/80 transition-colors font-bold">
+                        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#E9ECEF]/50 group-hover:text-[#E9ECEF]/80 transition-colors font-semibold">
                           {row.previewLabel}
                         </span>
-                        <div className="flex items-center gap-2 mt-1 font-mono text-xs text-[#E9ECEF]/70 group-hover:text-white transition-colors font-semibold">
+                        <div className="flex items-center gap-2 mt-1 font-mono text-xs text-[#E9ECEF]/70 group-hover:text-white transition-colors font-medium">
                           <span
-                            className={`inline-block size-2 rounded-full ${
+                            className={`inline-block size-1.5 rounded-full ${
                               isOrange ? "bg-[#FB5607]" : "bg-[#8338EC]"
                             }`}
                           />
@@ -194,8 +194,8 @@ export default function CampusActivity() {
                         </div>
                       </div>
 
-                      {/* Tactile Neo-Brutal Arrow Affordance */}
-                      <div className="size-12 sm:size-14 rounded-xl border-2 border-white/20 bg-white/[0.04] flex items-center justify-center text-[#E9ECEF] group-hover:text-[#212529] group-hover:border-[#FB5607] group-hover:bg-[#FB5607] group-hover:translate-x-1.5 transition-all duration-200 shrink-0 shadow-[3px_3px_0px_0px_#FB5607]">
+                      {/* Tactile Circular Arrow Affordance */}
+                      <div className="size-12 sm:size-14 rounded-full border border-white/15 bg-white/[0.04] flex items-center justify-center text-[#E9ECEF] group-hover:text-white group-hover:border-[#FB5607] group-hover:bg-[#FB5607] group-hover:shadow-[0_4px_16px_-2px_rgba(251,86,7,0.4)] group-hover:translate-x-1 transition-all duration-200 shrink-0">
                         <ArrowRight className="size-5 sm:size-6 transition-transform group-hover:translate-x-0.5" />
                       </div>
                     </div>

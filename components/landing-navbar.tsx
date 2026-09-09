@@ -38,8 +38,8 @@ export function LandingNavbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled || mobileMenuOpen
-          ? "border-b-2 border-[#212529] bg-[#E9ECEF]/95 shadow-[0_2px_0px_rgba(33,37,41,0.06)] backdrop-blur-md"
-          : "border-b border-[#212529]/10 bg-[#E9ECEF]/80 backdrop-blur-xs"
+          ? "border-b border-[#212529]/10 bg-[#E9ECEF]/90 paper-shadow backdrop-blur-md"
+          : "border-b border-[#212529]/5 bg-[#E9ECEF]/75 backdrop-blur-xs"
       )}
     >
       <nav className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6 sm:px-10 font-body">
@@ -56,7 +56,7 @@ export function LandingNavbar() {
             priority
             className="h-8 sm:h-9 w-auto object-contain filter contrast-125"
           />
-          <span className="font-display text-sm tracking-wide text-[#212529] hidden sm:inline-block -rotate-1 px-1.5 py-0.5 rounded bg-white/70 border border-[#212529]/20 shadow-[1px_1px_0px_#212529]">
+          <span className="font-display text-xs tracking-wider text-[#212529] hidden sm:inline-block px-2 py-0.5 rounded-md bg-white/70 border border-[#212529]/10 paper-shadow-soft">
             EMS
           </span>
         </Link>
@@ -65,14 +65,14 @@ export function LandingNavbar() {
         <div className="hidden items-center gap-8 md:flex md:mr-8 lg:mr-10">
           <Link
             href="/events"
-            className="group relative py-1 text-sm font-bold text-[#212529] uppercase tracking-wider transition-colors hover:text-[#FB5607]"
+            className="group relative py-1 text-sm font-semibold text-[#212529] uppercase tracking-wider transition-colors hover:text-[#FB5607]"
           >
             Events
             <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#FB5607] transition-all duration-300 group-hover:w-full" />
           </Link>
           <Link
             href="/clubs"
-            className="group relative py-1 text-sm font-bold text-[#212529] uppercase tracking-wider transition-colors hover:text-[#8338EC]"
+            className="group relative py-1 text-sm font-semibold text-[#212529] uppercase tracking-wider transition-colors hover:text-[#8338EC]"
           >
             Clubs
             <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#8338EC] transition-all duration-300 group-hover:w-full" />
@@ -81,7 +81,7 @@ export function LandingNavbar() {
           {session ? (
             <DropdownMenu modal={false}>
               <DropdownMenuTrigger className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FB5607]">
-                <Avatar className="h-8 w-8 border border-[#212529]">
+                <Avatar className="h-8 w-8 border border-[#212529]/20 paper-shadow-soft">
                   <AvatarImage
                     src={session.user?.image ?? ""}
                     alt={session.user?.name ?? ""}
@@ -92,17 +92,17 @@ export function LandingNavbar() {
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent
-                className="w-56 bg-[#E9ECEF] border-2 border-[#212529] shadow-[3px_3px_0px_#212529] rounded-none text-[#212529]"
+                className="w-56 bg-white/95 border border-[#212529]/10 paper-shadow-lift rounded-xl text-[#212529]"
                 align="end"
               >
                 <Link href="/user/profile">
-                  <DropdownMenuItem className="cursor-pointer font-medium hover:bg-white focus:bg-white">
+                  <DropdownMenuItem className="cursor-pointer font-medium hover:bg-[#E9ECEF] focus:bg-[#E9ECEF]">
                     Profile
                   </DropdownMenuItem>
                 </Link>
-                <DropdownMenuSeparator className="bg-[#212529]/15" />
+                <DropdownMenuSeparator className="bg-[#212529]/10" />
                 <DropdownMenuItem
-                  className="cursor-pointer font-bold text-[#FB5607] hover:bg-white focus:bg-white"
+                  className="cursor-pointer font-bold text-[#FB5607] hover:bg-[#E9ECEF] focus:bg-[#E9ECEF]"
                   onClick={() => signOut()}
                 >
                   Logout
@@ -113,7 +113,7 @@ export function LandingNavbar() {
             <LoginDialog>
               <Button
                 variant="default"
-                className="h-9 rounded-full px-5 text-xs font-black uppercase tracking-widest bg-[#212529] text-[#E9ECEF] border border-[#212529] shadow-[2px_2px_0px_#212529] hover:bg-[#212529] hover:shadow-[3px_3px_0px_#FB5607] hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all duration-150 cursor-pointer"
+                className="h-9 rounded-full px-5 text-xs font-bold uppercase tracking-widest bg-[#212529] text-[#E9ECEF] hover:bg-[#212529] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_-2px_rgba(251,86,7,0.35)] transition-all duration-200 cursor-pointer"
               >
                 Login
               </Button>
@@ -163,8 +163,8 @@ export function LandingNavbar() {
 
       {/* Mobile Slide-down Panel */}
       {mobileMenuOpen && (
-        <div className="border-t-2 border-[#212529] bg-[#E9ECEF] px-8 py-6 space-y-4 shadow-[0_8px_16px_rgba(33,37,41,0.1)] animate-in slide-in-from-top-2 duration-200 md:hidden">
-          <div className="flex flex-col space-y-3 font-bold uppercase tracking-wider text-sm">
+        <div className="border-t border-[#212529]/10 bg-[#E9ECEF]/95 backdrop-blur-md px-8 py-6 space-y-4 paper-shadow animate-in slide-in-from-top-2 duration-200 md:hidden">
+          <div className="flex flex-col space-y-3 font-semibold uppercase tracking-wider text-sm">
             <Link
               href="/events"
               onClick={() => setMobileMenuOpen(false)}
@@ -181,11 +181,11 @@ export function LandingNavbar() {
             </Link>
           </div>
 
-          <div className="border-t border-[#212529]/15 pt-4">
+          <div className="border-t border-[#212529]/10 pt-4">
             {session ? (
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <Avatar className="h-9 w-9 border border-[#212529]">
+                  <Avatar className="h-9 w-9 border border-[#212529]/15">
                     <AvatarImage
                       src={session.user?.image ?? ""}
                       alt={session.user?.name ?? ""}
@@ -228,7 +228,7 @@ export function LandingNavbar() {
               <LoginDialog triggerClassName="w-full">
                 <Button
                   variant="default"
-                  className="h-10 w-full rounded-full text-xs font-black uppercase tracking-widest bg-[#212529] text-[#E9ECEF] border border-[#212529] shadow-[2px_2px_0px_#212529] hover:shadow-[3px_3px_0px_#FB5607]"
+                  className="h-10 w-full rounded-full text-xs font-bold uppercase tracking-widest bg-[#212529] text-[#E9ECEF] hover:bg-[#212529]/90 hover:shadow-[0_6px_16px_-2px_rgba(251,86,7,0.35)]"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Login
@@ -243,7 +243,7 @@ export function LandingNavbar() {
               href="https://mlrit.ac.in/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-[#EF4444]/30 bg-[#EF4444]/10 px-3.5 py-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-[#EF4444] hover:bg-[#EF4444]/20 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-[#EF4444]/20 bg-[#EF4444]/10 px-3.5 py-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-[#EF4444] hover:bg-[#EF4444]/20 transition-colors"
             >
               <span className="size-2 rounded-full bg-[#EF4444] animate-pulse" />
               <span>MLR · OFFICIAL 2026 SEASON</span>

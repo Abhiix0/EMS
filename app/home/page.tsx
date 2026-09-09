@@ -13,7 +13,7 @@ import GetInvolved from "@/components/landing/get-involved";
 
 export default function Page() {
   return (
-    <div className="relative min-h-screen bg-[#E9ECEF] text-[#212529] selection:bg-[#FB5607]/30 selection:text-[#212529] font-body bg-paper-grain overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#E9ECEF] text-[#212529] selection:bg-[#FB5607]/30 selection:text-[#212529] font-body bg-notebook-ruled overflow-x-hidden">
       <Hero />
       <HappeningNow />
       <FindYourPeople />
