@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Dela+Gothic+One&family=Permanent+Marker&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Caveat:wght@500;600;700&family=Dela+Gothic+One&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -9,7 +9,7 @@
   --color-volcanic-violet: #8338EC;
   --color-volcanic-dark: #212529;
   --color-volcanic-ash: #E9ECEF;
-  --font-display: 'Permanent Marker', cursive, sans-serif;
+  --font-display: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
   --font-dela: 'Dela Gothic One', sans-serif;
   --font-script: 'Caveat', cursive;
   --font-body: 'Plus Jakarta Sans', var(--font-geist-sans), sans-serif;

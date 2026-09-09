@@ -35,7 +35,7 @@ module.exports = {
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
-        display: ["'Permanent Marker'", "cursive", "sans-serif"],
+        display: ["'Comic Sans MS'", "'Comic Neue'", "cursive", "sans-serif"],
         dela: ["'Dela Gothic One'", "sans-serif"],
         script: ["'Caveat'", "cursive"],
         body: ["'Plus Jakarta Sans'", "sans-serif"],
