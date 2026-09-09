@@ -2,14 +2,14 @@
 
 /**
  * Get Involved section component for CIE Landing Page.
- * Phase 1 structural skeleton with section heading "GET INVOLVED"
- * and dedicated structural CTA areas for Login and Explore.
+ * Volcanic Ash & Zine Scrapbook Edition.
  */
 import React from "react";
 import Link from "next/link";
 import { LogIn, Compass, ArrowRight } from "lucide-react";
 import { LoginDialog } from "@/components/ui/login-dialog";
 import { useIndexInvitationTransition } from "./use-index-invitation-transition";
+import { ScotchTape, MarkerSquiggle, DoodleSparkle } from "./doodles";
 
 export default function GetInvolved() {
   useIndexInvitationTransition();
@@ -22,27 +22,50 @@ export default function GetInvolved() {
     >
       <div
         id="get-involved-card"
-        className="relative rounded-3xl border border-white/10 bg-white/[0.02] p-8 sm:p-12 lg:p-16 overflow-hidden"
+        className="relative rounded-2xl sm:rounded-3xl border-2 border-[#212529] bg-white p-8 sm:p-14 lg:p-18 shadow-[8px_8px_0px_#212529,14px_14px_0px_#FB5607] overflow-hidden"
       >
-        {/* Ambient subtle backlighting without hard gradient blobs */}
-        <div className="absolute inset-0 bg-radial from-white/[0.03] to-transparent pointer-events-none" />
+        {/* Scotch Tape Accents on Corners */}
+        <ScotchTape className="absolute -top-3 left-10 w-24 h-7 -rotate-2 z-20 pointer-events-none" />
+        <ScotchTape className="absolute -top-3 right-10 w-24 h-7 rotate-3 z-20 pointer-events-none" />
+
+        {/* Subtle grid pattern background */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.035]"
+          style={{
+            backgroundImage: `linear-gradient(#212529 1px, transparent 1px), linear-gradient(to right, #212529 1px, transparent 1px)`,
+            backgroundSize: "24px 24px",
+          }}
+          aria-hidden="true"
+        />
 
         <div className="relative z-10 max-w-3xl mx-auto text-center flex flex-col items-center">
-          <span
-            id="get-involved-badge"
-            className="text-xs font-mono uppercase tracking-[0.25em] text-red-400 font-semibold mb-3"
-          >
-            Participate &amp; Lead
-          </span>
-          <h2
-            id="get-involved-heading"
-            className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white"
-          >
-            GET INVOLVED
-          </h2>
+          <div className="inline-flex items-center gap-2 mb-3">
+            <span
+              id="get-involved-badge"
+              className="text-xs font-mono uppercase tracking-[0.25em] text-[#FB5607] font-black px-3 py-1 bg-[#FB5607]/10 border-2 border-[#FB5607] rounded-sm"
+            >
+              PARTICIPATE &amp; LEAD · OFFICIAL PASS
+            </span>
+            <DoodleSparkle className="size-4 text-[#FB5607]" />
+          </div>
+
+          <div className="relative inline-block my-2">
+            <h2
+              id="get-involved-heading"
+              className="text-4xl sm:text-6xl lg:text-7xl font-display uppercase tracking-tight text-[#212529]"
+            >
+              GET INVOLVED
+            </h2>
+            <MarkerSquiggle className="w-full h-3 text-[#FB5607] -mt-1" />
+          </div>
+
+          <p className="mt-2 text-2xl sm:text-3xl font-script text-[#8338EC] font-bold">
+            &ldquo;Don&apos;t just attend. Make it happen.&rdquo;
+          </p>
+
           <p
             id="get-involved-copy"
-            className="mt-6 text-base sm:text-lg text-slate-300 max-w-xl font-normal leading-relaxed"
+            className="mt-4 text-base sm:text-lg text-[#212529]/80 max-w-xl font-medium leading-relaxed"
           >
             Whether you are here to organize an event, join an innovation
             cohort, or participate in the next hackathon, jump right in.
@@ -57,7 +80,7 @@ export default function GetInvolved() {
             <LoginDialog>
               <button
                 type="button"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-base font-medium text-white bg-white/10 hover:bg-white/20 border border-white/20 transition-all duration-200 cursor-pointer shadow-lg shadow-black/20"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-lg text-sm font-black font-mono uppercase text-[#212529] bg-[#FB5607] border-2 border-[#212529] shadow-[4px_4px_0px_#212529] hover:shadow-[2px_2px_0px_#212529] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all duration-150 cursor-pointer"
               >
                 <LogIn className="size-4" />
                 <span>Sign In / Student Login</span>
@@ -67,9 +90,9 @@ export default function GetInvolved() {
             {/* Explore CTA Area */}
             <Link
               href="/events"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-base font-medium text-slate-300 hover:text-white bg-transparent hover:bg-white/5 border border-white/10 transition-all duration-200 group"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-lg text-sm font-bold font-mono uppercase text-[#212529] bg-white hover:bg-[#212529] hover:text-[#E9ECEF] border-2 border-[#212529] shadow-[4px_4px_0px_#212529] hover:shadow-[2px_2px_0px_#212529] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all duration-150 group"
             >
-              <Compass className="size-4 text-slate-400" />
+              <Compass className="size-4 text-[#FB5607] group-hover:text-white" />
               <span>Explore Platform</span>
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
             </Link>
@@ -77,7 +100,7 @@ export default function GetInvolved() {
 
           <div
             id="get-involved-institutions"
-            className="mt-10 pt-8 border-t border-white/5 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400"
+            className="mt-12 pt-8 border-t-2 border-dashed border-[#212529]/20 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-mono text-[#212529]/70 font-bold uppercase tracking-wider"
           >
             <span>MLR Institute of Technology</span>
             <span>•</span>

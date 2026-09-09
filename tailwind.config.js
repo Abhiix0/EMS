@@ -26,11 +26,19 @@ module.exports = {
         spinEase: "spinEase 700ms",
       },
       colors: {
-        primary: "#F4A4BF", // Tight gradient
-        secondary: "#A652BC", // Radial gradient
+        primary: "#F4A4BF",
+        secondary: "#A652BC",
+        "volcanic-orange": "#FB5607",
+        "volcanic-violet": "#8338EC",
+        "volcanic-dark": "#212529",
+        "volcanic-ash": "#E9ECEF",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+        display: ["'Permanent Marker'", "cursive", "sans-serif"],
+        dela: ["'Dela Gothic One'", "sans-serif"],
+        script: ["'Caveat'", "cursive"],
+        body: ["'Plus Jakarta Sans'", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

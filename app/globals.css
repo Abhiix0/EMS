@@ -1,9 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Dela+Gothic+One&family=Permanent+Marker&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --color-volcanic-orange: #FB5607;
+  --color-volcanic-violet: #8338EC;
+  --color-volcanic-dark: #212529;
+  --color-volcanic-ash: #E9ECEF;
+  --font-display: 'Permanent Marker', cursive, sans-serif;
+  --font-dela: 'Dela Gothic One', sans-serif;
+  --font-script: 'Caveat', cursive;
+  --font-body: 'Plus Jakarta Sans', var(--font-geist-sans), sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -226,4 +235,35 @@
     animation: none !important;
     transform: none !important;
   }
+}
+
+/* Scrapbook Grunge & Tape Utilities */
+.bg-paper-grain {
+  background-color: #E9ECEF;
+  background-image: radial-gradient(rgba(33, 37, 41, 0.065) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.tape-strip {
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  border-left: 1px dashed rgba(33, 37, 41, 0.25);
+  border-right: 1px dashed rgba(33, 37, 41, 0.25);
+  backdrop-filter: blur(1.5px);
+}
+
+.tape-strip-amber {
+  background: rgba(251, 86, 7, 0.18);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  border-left: 1px dashed rgba(251, 86, 7, 0.4);
+  border-right: 1px dashed rgba(251, 86, 7, 0.4);
+  backdrop-filter: blur(1.5px);
+}
+
+.tape-strip-violet {
+  background: rgba(131, 56, 236, 0.18);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  border-left: 1px dashed rgba(131, 56, 236, 0.4);
+  border-right: 1px dashed rgba(131, 56, 236, 0.4);
+  backdrop-filter: blur(1.5px);
 }

@@ -38,62 +38,71 @@ export function LandingNavbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled || mobileMenuOpen
-          ? "border-b border-black/5 bg-white/80 shadow-xs backdrop-blur-md dark:border-white/10 dark:bg-[#0A0B1E]/80"
-          : "border-b border-transparent bg-transparent"
+          ? "border-b-2 border-[#212529] bg-[#E9ECEF]/95 shadow-[0_2px_0px_rgba(33,37,41,0.06)] backdrop-blur-md"
+          : "border-b border-[#212529]/10 bg-[#E9ECEF]/80 backdrop-blur-xs"
       )}
     >
-      <nav className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-8 sm:px-10">
-        {/* Left: CIE Logo */}
-        <Link href="/home" className="flex shrink-0 items-center">
+      <nav className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6 sm:px-10 font-body">
+        {/* Left: CIE Logo + Indie Star Motif */}
+        <Link href="/home" className="flex shrink-0 items-center gap-2.5 group">
+          <span className="text-[#FB5607] text-lg select-none group-hover:rotate-12 transition-transform duration-200">
+            ★
+          </span>
           <Image
             src="/logos/cie.png"
             alt="CIE Logo"
             width={120}
             height={40}
             priority
-            className="h-9 w-auto object-contain sm:h-10"
+            className="h-8 sm:h-9 w-auto object-contain filter contrast-125"
           />
+          <span className="font-display text-sm tracking-wide text-[#212529] hidden sm:inline-block -rotate-1 px-1.5 py-0.5 rounded bg-white/70 border border-[#212529]/20 shadow-[1px_1px_0px_#212529]">
+            EMS
+          </span>
         </Link>
 
         {/* Center-Right: Desktop Nav Links & Session/Login */}
         <div className="hidden items-center gap-8 md:flex md:mr-8 lg:mr-10">
           <Link
             href="/events"
-            className="group relative py-1 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+            className="group relative py-1 text-sm font-bold text-[#212529] uppercase tracking-wider transition-colors hover:text-[#FB5607]"
           >
             Events
-            <span className="absolute bottom-0 left-0 h-px w-0 bg-foreground transition-all duration-300 group-hover:w-full" />
+            <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#FB5607] transition-all duration-300 group-hover:w-full" />
           </Link>
           <Link
             href="/clubs"
-            className="group relative py-1 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+            className="group relative py-1 text-sm font-bold text-[#212529] uppercase tracking-wider transition-colors hover:text-[#8338EC]"
           >
             Clubs
-            <span className="absolute bottom-0 left-0 h-px w-0 bg-foreground transition-all duration-300 group-hover:w-full" />
+            <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#8338EC] transition-all duration-300 group-hover:w-full" />
           </Link>
 
           {session ? (
             <DropdownMenu modal={false}>
-              <DropdownMenuTrigger className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                <Avatar className="h-8 w-8">
+              <DropdownMenuTrigger className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FB5607]">
+                <Avatar className="h-8 w-8 border border-[#212529]">
                   <AvatarImage
                     src={session.user?.image ?? ""}
                     alt={session.user?.name ?? ""}
                   />
-                  <AvatarFallback>
+                  <AvatarFallback className="bg-[#212529] text-[#E9ECEF] font-bold">
                     {session.user?.name?.[0] ?? "U"}
                   </AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56" align="end">
+              <DropdownMenuContent
+                className="w-56 bg-[#E9ECEF] border-2 border-[#212529] shadow-[3px_3px_0px_#212529] rounded-none text-[#212529]"
+                align="end"
+              >
                 <Link href="/user/profile">
-                  <DropdownMenuItem className="cursor-pointer">
+                  <DropdownMenuItem className="cursor-pointer font-medium hover:bg-white focus:bg-white">
                     Profile
                   </DropdownMenuItem>
                 </Link>
-                <DropdownMenuSeparator />
+                <DropdownMenuSeparator className="bg-[#212529]/15" />
                 <DropdownMenuItem
-                  className="cursor-pointer text-red-500 hover:text-red-600"
+                  className="cursor-pointer font-bold text-[#FB5607] hover:bg-white focus:bg-white"
                   onClick={() => signOut()}
                 >
                   Logout
@@ -104,7 +113,7 @@ export function LandingNavbar() {
             <LoginDialog>
               <Button
                 variant="default"
-                className="h-8 rounded-full px-4 text-sm font-medium"
+                className="h-9 rounded-full px-5 text-xs font-black uppercase tracking-widest bg-[#212529] text-[#E9ECEF] border border-[#212529] shadow-[2px_2px_0px_#212529] hover:bg-[#212529] hover:shadow-[3px_3px_0px_#FB5607] hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all duration-150 cursor-pointer"
               >
                 Login
               </Button>
@@ -154,42 +163,42 @@ export function LandingNavbar() {
 
       {/* Mobile Slide-down Panel */}
       {mobileMenuOpen && (
-        <div className="border-t border-black/5 bg-white/95 px-8 py-6 space-y-4 backdrop-blur-md animate-in slide-in-from-top-2 duration-200 dark:border-white/10 dark:bg-[#0A0B1E]/95 md:hidden">
-          <div className="flex flex-col space-y-3">
+        <div className="border-t-2 border-[#212529] bg-[#E9ECEF] px-8 py-6 space-y-4 shadow-[0_8px_16px_rgba(33,37,41,0.1)] animate-in slide-in-from-top-2 duration-200 md:hidden">
+          <div className="flex flex-col space-y-3 font-bold uppercase tracking-wider text-sm">
             <Link
               href="/events"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base font-medium text-foreground/80 transition-colors hover:text-foreground"
+              className="text-[#212529] transition-colors hover:text-[#FB5607]"
             >
               Events
             </Link>
             <Link
               href="/clubs"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base font-medium text-foreground/80 transition-colors hover:text-foreground"
+              className="text-[#212529] transition-colors hover:text-[#8338EC]"
             >
               Clubs
             </Link>
           </div>
 
-          <div className="border-t border-border/60 pt-4">
+          <div className="border-t border-[#212529]/15 pt-4">
             {session ? (
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <Avatar className="h-9 w-9">
+                  <Avatar className="h-9 w-9 border border-[#212529]">
                     <AvatarImage
                       src={session.user?.image ?? ""}
                       alt={session.user?.name ?? ""}
                     />
-                    <AvatarFallback>
+                    <AvatarFallback className="bg-[#212529] text-[#E9ECEF] font-bold">
                       {session.user?.name?.[0] ?? "U"}
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col overflow-hidden">
-                    <span className="truncate text-sm font-medium text-foreground">
+                    <span className="truncate text-sm font-bold text-[#212529]">
                       {session.user?.name}
                     </span>
-                    <span className="truncate text-xs text-muted-foreground">
+                    <span className="truncate text-xs text-[#212529]/60">
                       {session.user?.email}
                     </span>
                   </div>
@@ -198,18 +207,18 @@ export function LandingNavbar() {
                   <Link
                     href="/user/profile"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-sm font-medium text-foreground/80 hover:text-foreground"
+                    className="text-sm font-medium text-[#212529] hover:text-[#8338EC]"
                   >
                     Profile
                   </Link>
-                  <span className="text-muted-foreground">·</span>
+                  <span className="text-[#212529]/40">·</span>
                   <button
                     type="button"
                     onClick={() => {
                       setMobileMenuOpen(false);
                       signOut();
                     }}
-                    className="text-sm font-medium text-red-500 hover:text-red-600"
+                    className="text-sm font-bold text-[#FB5607] hover:underline"
                   >
                     Logout
                   </button>
@@ -219,7 +228,7 @@ export function LandingNavbar() {
               <LoginDialog triggerClassName="w-full">
                 <Button
                   variant="default"
-                  className="h-9 w-full rounded-full text-sm font-medium"
+                  className="h-10 w-full rounded-full text-xs font-black uppercase tracking-widest bg-[#212529] text-[#E9ECEF] border border-[#212529] shadow-[2px_2px_0px_#212529] hover:shadow-[3px_3px_0px_#FB5607]"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Login

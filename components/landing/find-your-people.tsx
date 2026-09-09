@@ -5,17 +5,16 @@ import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Compass } from "lucide-react";
 import { motion } from "motion/react";
 import { useHappeningPeopleTransition } from "./use-happening-people-transition";
+import { ScotchTape, MarkerSquiggle, DoodleSparkle } from "./doodles";
 
 /**
- * FIND YOUR PEOPLE Section — Editorial Neo-Brutalism for CIE / EMS
+ * FIND YOUR PEOPLE Section — Zine-Inspired Grunge Scrapbook / Volcanic Ash Edition
  *
  * Visual Strategy:
- * - Cream / off-white paper canvas (#F6F5F0) creating tactile visual relief between dark sections.
- * - Neo-brutalist physical club identity objects with 2px ink borders (#0A0F1D),
- *   hard offset shadows, registration marks (+), and distinct typographic personality per club.
- * - Clear distinction between MAIN CLUBS (expressive campus-wide identities) and
- *   DEPARTMENT CLUBS (structured academic communities).
- * - Zero fake statistics or member counts. The club names themselves are the artwork.
+ * - Ash Pale White (#E9ECEF) paper canvas creating tactile visual relief.
+ * - Neo-brutalist indie zine cutout cards with 2px Obsidian Charcoal (#212529) ink borders.
+ * - Volcanic hard offset shadows (Lava Orange #FB5607 & Electric Violet #8338EC).
+ * - Authentic scrapbook details: scotch tape, stamp tags, and script handwriting.
  */
 
 interface MainClub {
@@ -132,7 +131,7 @@ export default function FindYourPeople() {
     <section
       id="find-your-people"
       aria-labelledby="find-your-people-heading"
-      className="relative bg-[#F6F5F0] text-[#0A0F1D] py-20 sm:py-28 lg:py-32 px-4 sm:px-6 lg:px-10 border-y-2 border-[#0A0F1D] overflow-hidden"
+      className="relative bg-[#E9ECEF] text-[#212529] py-20 sm:py-28 lg:py-32 px-4 sm:px-6 lg:px-10 border-y-2 border-[#212529] overflow-hidden"
     >
       {/* Target Anchor Hooks */}
       <div
@@ -146,12 +145,12 @@ export default function FindYourPeople() {
         aria-hidden="true"
       />
 
-      {/* Subtle Printed Paper Grid Pattern */}
+      {/* Subtle Paper Grid Pattern */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
+        className="pointer-events-none absolute inset-0 opacity-[0.04]"
         style={{
-          backgroundImage: `linear-gradient(#0A0F1D 1px, transparent 1px), linear-gradient(to right, #0A0F1D 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
+          backgroundImage: `linear-gradient(#212529 1px, transparent 1px), linear-gradient(to right, #212529 1px, transparent 1px)`,
+          backgroundSize: "28px 28px",
         }}
         aria-hidden="true"
       />
@@ -166,30 +165,33 @@ export default function FindYourPeople() {
         <header id="find-your-people-header" className="mb-14 sm:mb-20">
           <div
             id="find-your-people-badge-strip"
-            className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b-2 border-[#0A0F1D]"
+            className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b-2 border-[#212529]"
           >
             <div className="flex items-center gap-3">
-              <span className="inline-block w-2.5 h-2.5 bg-[#C5283D] border border-[#0A0F1D]" />
-              <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#0A0F1D]/70 font-semibold">
+              <span className="inline-block w-3 h-3 bg-[#FB5607] border-2 border-[#212529]" />
+              <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#212529]/80 font-black">
                 CLUBS &amp; COMMUNITIES · SECTION 03
               </span>
             </div>
-            <div className="font-mono text-xs tracking-wider text-[#0A0F1D]/50 uppercase hidden sm:block">
-              CIE CAMPUS INDEX
+            <div className="font-mono text-xs tracking-wider text-[#212529]/60 uppercase font-bold hidden sm:block">
+              CIE CAMPUS INDEX · 2026
             </div>
           </div>
 
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
             <div className="lg:col-span-8">
-              <h2
-                id="find-your-people-heading"
-                className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#0A0F1D] leading-[0.95]"
-              >
-                FIND YOUR PEOPLE
-              </h2>
+              <div className="relative inline-block">
+                <h2
+                  id="find-your-people-heading"
+                  className="text-4xl sm:text-6xl lg:text-7xl font-display uppercase tracking-tight text-[#212529] leading-[0.95]"
+                >
+                  FIND YOUR PEOPLE
+                </h2>
+                <MarkerSquiggle className="w-full h-3 text-[#FB5607] -mt-1" />
+              </div>
               <p
                 id="find-your-people-quote"
-                className="mt-4 text-xl sm:text-2xl lg:text-3xl font-serif italic text-[#0A0F1D]/80"
+                className="mt-4 text-2xl sm:text-3xl lg:text-4xl font-script text-[#212529] font-bold"
               >
                 &ldquo;There&apos;s probably a club for that.&rdquo;
               </p>
@@ -198,13 +200,14 @@ export default function FindYourPeople() {
             <div className="lg:col-span-4 flex lg:justify-end">
               <div
                 id="find-your-people-mapping-card"
-                className="border border-[#0A0F1D] bg-white p-3.5 shadow-[2px_2px_0px_0px_#0A0F1D] max-w-xs"
+                className="relative border-2 border-[#212529] bg-white p-4 shadow-[4px_4px_0px_0px_#FB5607] max-w-xs"
               >
-                <div className="flex items-center gap-2 font-mono text-[11px] text-[#0A0F1D]/60 uppercase tracking-wider mb-1">
-                  <Compass className="size-3.5 text-[#C5283D]" />
+                <ScotchTape className="absolute -top-3 right-4 w-16 h-5 rotate-2 pointer-events-none" />
+                <div className="flex items-center gap-2 font-mono text-[11px] text-[#212529] uppercase tracking-wider mb-1 font-bold">
+                  <Compass className="size-3.5 text-[#FB5607]" />
                   <span>COMMUNITY MAPPING</span>
                 </div>
-                <p className="text-xs text-[#0A0F1D]/80 leading-relaxed">
+                <p className="text-xs text-[#212529]/80 leading-relaxed font-medium">
                   Broader campus initiatives and academic guilds where students
                   build, create, and organize.
                 </p>
@@ -220,17 +223,17 @@ export default function FindYourPeople() {
           {/* Subheader Label */}
           <div
             id="find-your-people-main-subheader"
-            className="flex items-baseline justify-between mb-8 pb-3 border-b border-[#0A0F1D]/20"
+            className="flex items-baseline justify-between mb-8 pb-3 border-b-2 border-[#212529]/20"
           >
             <div className="flex items-center gap-2.5">
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] px-2.5 py-0.5 bg-[#0A0F1D] text-[#F6F5F0]">
+              <span className="font-mono text-xs font-black uppercase tracking-[0.2em] px-3 py-1 bg-[#212529] text-[#E9ECEF] border border-[#212529] shadow-[2px_2px_0px_#FB5607]">
                 MAIN CLUBS
               </span>
-              <span className="text-xs font-mono text-[#0A0F1D]/50 uppercase tracking-wider hidden sm:inline">
+              <span className="text-xs font-mono text-[#212529]/70 uppercase tracking-wider hidden sm:inline font-bold">
                 Campus-Wide Collectives
               </span>
             </div>
-            <span className="font-mono text-[11px] text-[#0A0F1D]/40">
+            <span className="font-mono text-xs text-[#212529]/60 font-bold">
               [ 08 GUILDS ]
             </span>
           </div>
@@ -241,10 +244,12 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="club-identity-card lg:col-span-7 bg-[#0A0F1D] text-[#F6F5F0] border-2 border-[#0A0F1D] p-6 sm:p-8 shadow-[5px_5px_0px_0px_#C5283D] flex flex-col justify-between group relative overflow-hidden"
+              className="club-identity-card lg:col-span-7 bg-[#212529] text-[#E9ECEF] border-2 border-[#212529] p-6 sm:p-8 shadow-[6px_6px_0px_0px_#FB5607] flex flex-col justify-between group relative overflow-hidden"
             >
+              <ScotchTape className="absolute -top-3 left-8 w-24 h-6 -rotate-2 z-10 pointer-events-none" />
+
               <div
-                className="pointer-events-none absolute right-4 -bottom-6 font-black text-[120px] sm:text-[140px] text-white/[0.04] select-none font-mono leading-none tracking-tighter"
+                className="pointer-events-none absolute right-4 -bottom-6 font-black text-[120px] sm:text-[140px] text-white/[0.05] select-none font-mono leading-none tracking-tighter"
                 aria-hidden="true"
               >
                 CIE
@@ -252,36 +257,36 @@ export default function FindYourPeople() {
 
               <div>
                 <div className="flex items-center justify-between gap-2 mb-6">
-                  <span className="font-mono text-[11px] tracking-widest text-[#6EE7B7] uppercase font-bold px-2 py-0.5 border border-[#6EE7B7]/40 bg-[#6EE7B7]/10">
+                  <span className="font-mono text-[11px] tracking-widest text-[#212529] uppercase font-black px-2.5 py-0.5 bg-[#FB5607] border border-[#212529]">
                     {MAIN_CLUBS[0].catalog}
                   </span>
-                  <span className="font-mono text-[11px] text-white/40 tracking-wider">
+                  <span className="font-mono text-xs text-[#E9ECEF]/50 tracking-wider font-bold">
                     EST. 2018
                   </span>
                 </div>
 
                 <div className="my-3">
-                  <h3 className="text-5xl sm:text-7xl font-black tracking-tight text-white group-hover:text-[#6EE7B7] transition-colors">
+                  <h3 className="text-5xl sm:text-7xl font-display tracking-tight text-white group-hover:text-[#FB5607] transition-colors">
                     {MAIN_CLUBS[0].code}
                   </h3>
-                  <p className="font-mono text-sm uppercase tracking-wider text-white/70 mt-1 font-semibold">
+                  <p className="font-mono text-sm uppercase tracking-wider text-[#E9ECEF]/80 mt-1 font-bold">
                     {MAIN_CLUBS[0].name}
                   </p>
                 </div>
 
-                <p className="mt-4 text-sm sm:text-base text-white/80 max-w-lg leading-relaxed">
+                <p className="mt-4 text-sm sm:text-base text-[#E9ECEF]/90 max-w-lg leading-relaxed font-medium">
                   {MAIN_CLUBS[0].tagline}
                 </p>
               </div>
 
-              <div className="mt-8 pt-5 border-t border-white/15 flex items-center justify-between">
-                <span className="font-mono text-xs uppercase tracking-wider text-[#6EE7B7] flex items-center gap-1.5 font-bold">
-                  <span className="size-1.5 rounded-full bg-[#6EE7B7] animate-pulse" />
+              <div className="mt-8 pt-5 border-t border-white/20 flex items-center justify-between">
+                <span className="font-mono text-xs uppercase tracking-wider text-[#FB5607] flex items-center gap-1.5 font-bold">
+                  <span className="size-2 rounded-full bg-[#FB5607] animate-pulse" />
                   INCUBATION HUB
                 </span>
                 <Link
                   href="/clubs"
-                  className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-white hover:text-[#6EE7B7] transition-colors focus-visible:ring-2 focus-visible:ring-[#6EE7B7] p-1 rounded"
+                  className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-white hover:text-[#FB5607] transition-colors focus-visible:ring-2 focus-visible:ring-[#FB5607] p-1 rounded font-bold"
                 >
                   <span>EXPLORE GUILD</span>
                   <ArrowUpRight className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -293,35 +298,36 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="club-identity-card lg:col-span-5 bg-white border-2 border-[#0A0F1D] p-6 sm:p-7 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-5 bg-white border-2 border-[#212529] p-6 sm:p-7 shadow-[6px_6px_0px_0px_#8338EC] flex flex-col justify-between group relative"
             >
+              <ScotchTape className="absolute -top-3 right-6 w-20 h-5 rotate-3 pointer-events-none" />
               <div>
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="font-mono text-[11px] tracking-widest text-[#C5283D] uppercase font-bold">
+                  <span className="font-mono text-[11px] tracking-widest text-[#8338EC] uppercase font-black">
                     {MAIN_CLUBS[1].catalog}
                   </span>
-                  <span className="size-2 rounded-full bg-[#C5283D]" />
+                  <DoodleSparkle className="size-4 text-[#8338EC]" />
                 </div>
 
-                <h3 className="text-4xl sm:text-5xl font-black tracking-tight text-[#0A0F1D] group-hover:text-[#C5283D] transition-colors">
+                <h3 className="text-4xl sm:text-5xl font-display tracking-tight text-[#212529] group-hover:text-[#8338EC] transition-colors">
                   {MAIN_CLUBS[1].code}
                 </h3>
-                <p className="font-mono text-xs uppercase tracking-wider text-[#0A0F1D]/70 mt-1 font-bold">
+                <p className="font-mono text-xs uppercase tracking-wider text-[#212529]/70 mt-1 font-bold">
                   {MAIN_CLUBS[1].name}
                 </p>
 
-                <p className="mt-4 text-sm text-[#0A0F1D]/80 leading-relaxed">
+                <p className="mt-4 text-sm text-[#212529]/80 leading-relaxed font-medium">
                   {MAIN_CLUBS[1].tagline}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[#0A0F1D]/15 flex items-center justify-between">
-                <span className="font-mono text-[11px] text-[#0A0F1D]/60 uppercase">
+              <div className="mt-6 pt-4 border-t border-[#212529]/20 flex items-center justify-between">
+                <span className="font-mono text-[11px] text-[#212529]/70 uppercase font-bold">
                   MEDIA LAB
                 </span>
                 <Link
                   href="/clubs"
-                  className="inline-flex items-center gap-1 font-mono text-xs uppercase font-bold text-[#0A0F1D] hover:text-[#C5283D] transition-colors focus-visible:ring-2 focus-visible:ring-[#C5283D] p-1 rounded"
+                  className="inline-flex items-center gap-1 font-mono text-xs uppercase font-bold text-[#212529] hover:text-[#8338EC] transition-colors focus-visible:ring-2 focus-visible:ring-[#8338EC] p-1 rounded"
                 >
                   <span>VIEW DETAILS</span>
                   <ArrowUpRight className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -333,37 +339,37 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="club-identity-card lg:col-span-4 bg-[#0A0F1D] text-[#F6F5F0] border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-4 bg-[#212529] text-[#E9ECEF] border-2 border-[#212529] p-6 shadow-[5px_5px_0px_0px_#212529] flex flex-col justify-between group relative"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-[11px] tracking-wider text-[#6EE7B7] uppercase font-bold">
+                  <span className="font-mono text-[11px] tracking-wider text-[#FB5607] uppercase font-bold">
                     {MAIN_CLUBS[2].catalog}
                   </span>
-                  <span className="font-mono text-[11px] text-white/40">
+                  <span className="font-mono text-xs text-[#FB5607] font-bold">
                     &gt;_
                   </span>
                 </div>
 
-                <h3 className="text-4xl sm:text-5xl font-black tracking-tight text-white group-hover:text-[#6EE7B7] transition-colors">
+                <h3 className="text-4xl sm:text-5xl font-display tracking-tight text-white group-hover:text-[#FB5607] transition-colors">
                   {MAIN_CLUBS[2].code}
                 </h3>
-                <p className="font-mono text-xs uppercase tracking-wider text-white/70 mt-1">
+                <p className="font-mono text-xs uppercase tracking-wider text-white/70 mt-1 font-bold">
                   {MAIN_CLUBS[2].name}
                 </p>
 
-                <p className="mt-3 text-xs sm:text-sm text-white/80 leading-relaxed">
+                <p className="mt-3 text-xs sm:text-sm text-white/80 leading-relaxed font-medium">
                   {MAIN_CLUBS[2].tagline}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-white/15 flex items-center justify-between">
-                <span className="font-mono text-[11px] text-[#6EE7B7]">
+              <div className="mt-6 pt-4 border-t border-white/20 flex items-center justify-between">
+                <span className="font-mono text-[11px] text-[#FB5607] font-bold">
                   DEV GUILD
                 </span>
                 <Link
                   href="/clubs"
-                  className="inline-flex items-center gap-1 font-mono text-xs uppercase text-white hover:text-[#6EE7B7] transition-colors focus-visible:ring-2 focus-visible:ring-[#6EE7B7] p-1 rounded"
+                  className="inline-flex items-center gap-1 font-mono text-xs uppercase text-white hover:text-[#FB5607] transition-colors focus-visible:ring-2 focus-visible:ring-[#FB5607] p-1 rounded font-bold"
                 >
                   <span>EXPLORE</span>
                   <ArrowUpRight className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -375,38 +381,38 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#212529] p-6 shadow-[5px_5px_0px_0px_#FB5607] flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-[11px] tracking-widest text-[#0A0F1D]/70 uppercase font-bold">
+                  <span className="font-mono text-[11px] tracking-widest text-[#212529]/70 uppercase font-bold">
                     {MAIN_CLUBS[3].catalog}
                   </span>
-                  <span className="font-serif italic text-sm text-[#0A0F1D]/40">
+                  <span className="font-serif italic text-sm text-[#FB5607] font-bold">
                     §
                   </span>
                 </div>
 
-                <div className="border-l-4 border-[#C5283D] pl-3 my-1">
-                  <h3 className="text-3xl sm:text-4xl font-serif font-black tracking-tight text-[#0A0F1D] leading-none group-hover:text-[#C5283D] transition-colors">
+                <div className="border-l-4 border-[#FB5607] pl-3 my-1">
+                  <h3 className="text-3xl sm:text-4xl font-serif font-black tracking-tight text-[#212529] leading-none group-hover:text-[#FB5607] transition-colors">
                     CLUB
                     <br />
                     LITERATI
                   </h3>
                 </div>
 
-                <p className="mt-4 text-xs sm:text-sm text-[#0A0F1D]/80 leading-relaxed">
+                <p className="mt-4 text-xs sm:text-sm text-[#212529]/80 leading-relaxed font-medium">
                   {MAIN_CLUBS[3].tagline}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[#0A0F1D]/15 flex items-center justify-between">
-                <span className="font-mono text-[11px] text-[#0A0F1D]/60 uppercase">
+              <div className="mt-6 pt-4 border-t border-[#212529]/20 flex items-center justify-between">
+                <span className="font-mono text-[11px] text-[#212529]/70 uppercase font-bold">
                   DEBATING &amp; MUN
                 </span>
                 <Link
                   href="/clubs"
-                  className="inline-flex items-center gap-1 font-mono text-xs uppercase font-bold text-[#0A0F1D] hover:text-[#C5283D] transition-colors focus-visible:ring-2 focus-visible:ring-[#C5283D] p-1 rounded"
+                  className="inline-flex items-center gap-1 font-mono text-xs uppercase font-bold text-[#212529] hover:text-[#FB5607] transition-colors focus-visible:ring-2 focus-visible:ring-[#FB5607] p-1 rounded"
                 >
                   <span>VIEW</span>
                   <ArrowUpRight className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -418,37 +424,37 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#212529] p-6 shadow-[5px_5px_0px_0px_#8338EC] flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-[11px] tracking-widest text-[#0A0F1D]/70 uppercase font-bold">
+                  <span className="font-mono text-[11px] tracking-widest text-[#212529]/70 uppercase font-bold">
                     {MAIN_CLUBS[4].catalog}
                   </span>
-                  <span className="font-mono text-xs font-bold text-[#0A0F1D]">
+                  <span className="font-mono text-xs font-bold text-[#8338EC]">
                     ▲
                   </span>
                 </div>
 
-                <h3 className="text-4xl sm:text-5xl font-black tracking-tight text-[#0A0F1D] group-hover:text-[#C5283D] transition-colors">
+                <h3 className="text-4xl sm:text-5xl font-display tracking-tight text-[#212529] group-hover:text-[#8338EC] transition-colors">
                   {MAIN_CLUBS[4].code}
                 </h3>
-                <p className="font-mono text-xs uppercase tracking-wider text-[#0A0F1D]/70 mt-1 font-semibold">
+                <p className="font-mono text-xs uppercase tracking-wider text-[#212529]/70 mt-1 font-bold">
                   {MAIN_CLUBS[4].name}
                 </p>
 
-                <p className="mt-3 text-xs sm:text-sm text-[#0A0F1D]/80 leading-relaxed">
+                <p className="mt-3 text-xs sm:text-sm text-[#212529]/80 leading-relaxed font-medium">
                   {MAIN_CLUBS[4].tagline}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[#0A0F1D]/15 flex items-center justify-between">
-                <span className="font-mono text-[11px] text-[#0A0F1D]/60 uppercase">
+              <div className="mt-6 pt-4 border-t border-[#212529]/20 flex items-center justify-between">
+                <span className="font-mono text-[11px] text-[#212529]/70 uppercase font-bold">
                   LEADERSHIP
                 </span>
                 <Link
                   href="/clubs"
-                  className="inline-flex items-center gap-1 font-mono text-xs uppercase font-bold text-[#0A0F1D] hover:text-[#C5283D] transition-colors focus-visible:ring-2 focus-visible:ring-[#C5283D] p-1 rounded"
+                  className="inline-flex items-center gap-1 font-mono text-xs uppercase font-bold text-[#212529] hover:text-[#8338EC] transition-colors focus-visible:ring-2 focus-visible:ring-[#8338EC] p-1 rounded"
                 >
                   <span>VIEW</span>
                   <ArrowUpRight className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -460,37 +466,37 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#212529] p-6 shadow-[5px_5px_0px_0px_#FB5607] flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-[11px] tracking-widest text-[#0A0F1D]/70 uppercase font-bold">
+                  <span className="font-mono text-[11px] tracking-widest text-[#212529]/70 uppercase font-bold">
                     {MAIN_CLUBS[5].catalog}
                   </span>
-                  <span className="font-mono text-xs font-bold text-[#0A0F1D]/40">
+                  <span className="font-mono text-xs font-bold text-[#FB5607]">
                     ⊕
                   </span>
                 </div>
 
-                <h3 className="text-4xl sm:text-5xl font-black tracking-tight text-[#0A0F1D] group-hover:text-[#C5283D] transition-colors">
+                <h3 className="text-4xl sm:text-5xl font-display tracking-tight text-[#212529] group-hover:text-[#FB5607] transition-colors">
                   {MAIN_CLUBS[5].code}
                 </h3>
-                <p className="font-mono text-xs uppercase tracking-wider text-[#0A0F1D]/70 mt-1 font-semibold">
+                <p className="font-mono text-xs uppercase tracking-wider text-[#212529]/70 mt-1 font-bold">
                   {MAIN_CLUBS[5].name}
                 </p>
 
-                <p className="mt-3 text-xs sm:text-sm text-[#0A0F1D]/80 leading-relaxed">
+                <p className="mt-3 text-xs sm:text-sm text-[#212529]/80 leading-relaxed font-medium">
                   {MAIN_CLUBS[5].tagline}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[#0A0F1D]/15 flex items-center justify-between">
-                <span className="font-mono text-[11px] text-[#0A0F1D]/60 uppercase">
+              <div className="mt-6 pt-4 border-t border-[#212529]/20 flex items-center justify-between">
+                <span className="font-mono text-[11px] text-[#212529]/70 uppercase font-bold">
                   GRASSROOTS TECH
                 </span>
                 <Link
                   href="/clubs"
-                  className="inline-flex items-center gap-1 font-mono text-xs uppercase font-bold text-[#0A0F1D] hover:text-[#C5283D] transition-colors focus-visible:ring-2 focus-visible:ring-[#C5283D] p-1 rounded"
+                  className="inline-flex items-center gap-1 font-mono text-xs uppercase font-bold text-[#212529] hover:text-[#FB5607] transition-colors focus-visible:ring-2 focus-visible:ring-[#FB5607] p-1 rounded"
                 >
                   <span>VIEW</span>
                   <ArrowUpRight className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -502,37 +508,37 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#0A0F1D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#212529] p-6 shadow-[5px_5px_0px_0px_#8338EC] flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-[11px] tracking-widest text-[#0A0F1D]/70 uppercase font-bold">
+                  <span className="font-mono text-[11px] tracking-widest text-[#212529]/70 uppercase font-bold">
                     {MAIN_CLUBS[6].catalog}
                   </span>
-                  <span className="font-mono text-[11px] text-[#0A0F1D]/40">
+                  <span className="font-mono text-[11px] text-[#8338EC] font-bold">
                     STD
                   </span>
                 </div>
 
-                <h3 className="text-4xl sm:text-5xl font-black tracking-tight text-[#0A0F1D] group-hover:text-[#C5283D] transition-colors">
+                <h3 className="text-4xl sm:text-5xl font-display tracking-tight text-[#212529] group-hover:text-[#8338EC] transition-colors">
                   {MAIN_CLUBS[6].code}
                 </h3>
-                <p className="font-mono text-xs uppercase tracking-wider text-[#0A0F1D]/70 mt-1 font-semibold">
+                <p className="font-mono text-xs uppercase tracking-wider text-[#212529]/70 mt-1 font-bold">
                   {MAIN_CLUBS[6].name}
                 </p>
 
-                <p className="mt-3 text-xs sm:text-sm text-[#0A0F1D]/80 leading-relaxed">
+                <p className="mt-3 text-xs sm:text-sm text-[#212529]/80 leading-relaxed font-medium">
                   {MAIN_CLUBS[6].tagline}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[#0A0F1D]/15 flex items-center justify-between">
-                <span className="font-mono text-[11px] text-[#0A0F1D]/60 uppercase">
+              <div className="mt-6 pt-4 border-t border-[#212529]/20 flex items-center justify-between">
+                <span className="font-mono text-[11px] text-[#212529]/70 uppercase font-bold">
                   SYSTEMS SOCIETY
                 </span>
                 <Link
                   href="/clubs"
-                  className="inline-flex items-center gap-1 font-mono text-xs uppercase font-bold text-[#0A0F1D] hover:text-[#C5283D] transition-colors focus-visible:ring-2 focus-visible:ring-[#C5283D] p-1 rounded"
+                  className="inline-flex items-center gap-1 font-mono text-xs uppercase font-bold text-[#212529] hover:text-[#8338EC] transition-colors focus-visible:ring-2 focus-visible:ring-[#8338EC] p-1 rounded"
                 >
                   <span>VIEW</span>
                   <ArrowUpRight className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -544,35 +550,35 @@ export default function FindYourPeople() {
             <motion.div
               whileHover={{ y: -3, x: 2 }}
               transition={{ duration: 0.15 }}
-              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#0A0F1D] p-6 shadow-[5px_5px_0px_0px_#C5283D] flex flex-col justify-between group"
+              className="club-identity-card lg:col-span-4 bg-white border-2 border-[#212529] p-6 shadow-[5px_5px_0px_0px_#FB5607] flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-[11px] tracking-widest text-[#C5283D] uppercase font-bold">
+                  <span className="font-mono text-[11px] tracking-widest text-[#FB5607] uppercase font-black">
                     {MAIN_CLUBS[7].catalog}
                   </span>
-                  <span className="size-2 bg-[#C5283D]" />
+                  <span className="size-2 bg-[#FB5607] rounded-full" />
                 </div>
 
-                <h3 className="text-4xl sm:text-5xl font-black tracking-tight text-[#0A0F1D] group-hover:text-[#C5283D] transition-colors">
+                <h3 className="text-4xl sm:text-5xl font-display tracking-tight text-[#212529] group-hover:text-[#FB5607] transition-colors">
                   {MAIN_CLUBS[7].code}
                 </h3>
-                <p className="font-mono text-xs uppercase tracking-wider text-[#0A0F1D]/70 mt-1 font-semibold">
+                <p className="font-mono text-xs uppercase tracking-wider text-[#212529]/70 mt-1 font-bold">
                   {MAIN_CLUBS[7].name}
                 </p>
 
-                <p className="mt-3 text-xs sm:text-sm text-[#0A0F1D]/80 leading-relaxed">
+                <p className="mt-3 text-xs sm:text-sm text-[#212529]/80 leading-relaxed font-medium">
                   {MAIN_CLUBS[7].tagline}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[#0A0F1D]/15 flex items-center justify-between">
-                <span className="font-mono text-[11px] text-[#0A0F1D]/60 uppercase">
+              <div className="mt-6 pt-4 border-t border-[#212529]/20 flex items-center justify-between">
+                <span className="font-mono text-[11px] text-[#212529]/70 uppercase font-bold">
                   PUBLIC SERVICE
                 </span>
                 <Link
                   href="/clubs"
-                  className="inline-flex items-center gap-1 font-mono text-xs uppercase font-bold text-[#0A0F1D] hover:text-[#C5283D] transition-colors focus-visible:ring-2 focus-visible:ring-[#C5283D] p-1 rounded"
+                  className="inline-flex items-center gap-1 font-mono text-xs uppercase font-bold text-[#212529] hover:text-[#FB5607] transition-colors focus-visible:ring-2 focus-visible:ring-[#FB5607] p-1 rounded"
                 >
                   <span>VIEW</span>
                   <ArrowUpRight className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -589,17 +595,17 @@ export default function FindYourPeople() {
           {/* Subheader Label */}
           <div
             id="find-your-people-dept-subheader"
-            className="flex items-baseline justify-between mb-8 pb-3 border-b border-[#0A0F1D]/20"
+            className="flex items-baseline justify-between mb-8 pb-3 border-b-2 border-[#212529]/20"
           >
             <div className="flex items-center gap-2.5">
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] px-2.5 py-0.5 bg-[#0A0F1D] text-[#F6F5F0]">
+              <span className="font-mono text-xs font-black uppercase tracking-[0.2em] px-3 py-1 bg-[#212529] text-[#E9ECEF] border border-[#212529] shadow-[2px_2px_0px_#8338EC]">
                 DEPARTMENT CLUBS
               </span>
-              <span className="text-xs font-mono text-[#0A0F1D]/50 uppercase tracking-wider hidden sm:inline">
+              <span className="text-xs font-mono text-[#212529]/70 uppercase tracking-wider hidden sm:inline font-bold">
                 Specialized Academic Communities
               </span>
             </div>
-            <span className="font-mono text-[11px] text-[#0A0F1D]/40">
+            <span className="font-mono text-xs text-[#212529]/60 font-bold">
               [ 05 ACADEMIC CHAPTERS ]
             </span>
           </div>
@@ -611,38 +617,38 @@ export default function FindYourPeople() {
                 key={club.id}
                 whileHover={{ y: -2, x: 1 }}
                 transition={{ duration: 0.12 }}
-                className="dept-identity-card bg-white border-2 border-[#0A0F1D] p-4 sm:p-5 shadow-[3px_3px_0px_0px_#0A0F1D] flex flex-col justify-between group hover:border-[#C5283D] transition-colors"
+                className="dept-identity-card bg-white border-2 border-[#212529] p-4 sm:p-5 shadow-[3px_3px_0px_0px_#212529] flex flex-col justify-between group hover:border-[#FB5607] hover:shadow-[3px_3px_0px_0px_#FB5607] transition-all"
               >
                 <div>
                   <div className="flex items-center justify-between gap-1 mb-3">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-[#0A0F1D]/50 font-semibold">
-                      DEPT {index + 1}
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-[#212529]/60 font-bold">
+                      DEPT 0{index + 1}
                     </span>
-                    <span className="font-mono text-[10px] text-[#C5283D] font-bold">
+                    <span className="font-mono text-[10px] text-[#FB5607] font-black">
                       {club.display.split("·")[1]?.trim()}
                     </span>
                   </div>
 
-                  <h4 className="font-mono text-lg sm:text-xl font-black text-[#0A0F1D] tracking-tight group-hover:text-[#C5283D] transition-colors">
+                  <h4 className="font-mono text-lg sm:text-xl font-black text-[#212529] tracking-tight group-hover:text-[#FB5607] transition-colors">
                     {club.display}
                   </h4>
 
-                  <p className="font-mono text-[11px] uppercase tracking-wider text-[#0A0F1D]/60 mt-1 font-medium">
+                  <p className="font-mono text-[11px] uppercase tracking-wider text-[#212529]/70 mt-1 font-bold">
                     {club.dept}
                   </p>
 
-                  <p className="mt-3 text-xs text-[#0A0F1D]/80 leading-normal">
+                  <p className="mt-3 text-xs text-[#212529]/80 leading-normal font-medium">
                     {club.name}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-[#0A0F1D]/10 flex items-center justify-between">
-                  <span className="font-mono text-[10px] text-[#0A0F1D]/40 uppercase">
+                <div className="mt-5 pt-3 border-t border-[#212529]/15 flex items-center justify-between">
+                  <span className="font-mono text-[10px] text-[#212529]/50 uppercase font-bold">
                     ACADEMIC
                   </span>
                   <Link
                     href="/clubs"
-                    className="font-mono text-[11px] uppercase font-bold text-[#0A0F1D] group-hover:text-[#C5283D] inline-flex items-center gap-0.5 focus-visible:ring-1 focus-visible:ring-[#C5283D] p-0.5 rounded"
+                    className="font-mono text-[11px] uppercase font-black text-[#212529] group-hover:text-[#FB5607] inline-flex items-center gap-0.5 focus-visible:ring-1 focus-visible:ring-[#FB5607] p-0.5 rounded"
                   >
                     <span>OPEN</span>
                     <ArrowRight className="size-3 group-hover:translate-x-0.5 transition-transform" />
@@ -658,13 +664,13 @@ export default function FindYourPeople() {
            ======================================================== */}
         <div
           id="find-your-people-footer"
-          className="pt-8 border-t-2 border-[#0A0F1D] flex flex-col sm:flex-row items-center justify-between gap-6"
+          className="pt-8 border-t-2 border-[#212529] flex flex-col sm:flex-row items-center justify-between gap-6"
         >
           <div>
-            <span className="font-mono text-xs uppercase tracking-wider text-[#0A0F1D]/60 block font-semibold">
+            <span className="font-mono text-xs uppercase tracking-wider text-[#212529]/70 block font-bold">
               EXPLORE THE COMPLETE GUILD DIRECTORY
             </span>
-            <p className="text-sm text-[#0A0F1D]/80 mt-0.5 font-serif italic">
+            <p className="text-sm text-[#212529]/90 mt-0.5 font-script text-base">
               Find leadership rosters, event calendars, and join cohorts for
               each student chapter.
             </p>
@@ -672,7 +678,7 @@ export default function FindYourPeople() {
 
           <Link
             href="/clubs"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-4 bg-[#0A0F1D] text-[#F6F5F0] font-mono text-sm uppercase tracking-widest font-bold border-2 border-[#0A0F1D] shadow-[4px_4px_0px_0px_#C5283D] hover:bg-[#C5283D] hover:text-white hover:shadow-[6px_6px_0px_0px_#0A0F1D] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A0F1D]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#212529] text-[#E9ECEF] font-mono text-sm uppercase tracking-widest font-black border-2 border-[#212529] shadow-[4px_4px_0px_0px_#FB5607] hover:bg-[#FB5607] hover:text-[#212529] hover:shadow-[6px_6px_0px_0px_#212529] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#212529]"
           >
             <span>EXPLORE ALL CLUBS</span>
             <ArrowRight className="size-4" />
